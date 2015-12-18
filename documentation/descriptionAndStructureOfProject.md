@@ -6,10 +6,10 @@
 
 **Player actions:** 
 *Built towers
--if enough money
+*if enough money
 
 *Upgrade tower
--if enough money
+*if enough money
 
 **Game actions:**
 *Game will spawn group of 'enemies' at certain intervals
