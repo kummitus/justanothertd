@@ -5,13 +5,13 @@
 **Different actions:**
 
 **Player actions:** 
-*Built towers
-*if enough money
+* Built towers
+- if enough money
 
-*Upgrade tower
-*if enough money
+* Upgrade tower
+- if enough money
 
 **Game actions:**
-*Game will spawn group of 'enemies' at certain intervals
-*Game will occur random events to player
-*Game will move the students to finish line
+* Game will spawn group of 'enemies' at certain intervals
+* Game will occur random events to player
+* Game will move the students to finish line
