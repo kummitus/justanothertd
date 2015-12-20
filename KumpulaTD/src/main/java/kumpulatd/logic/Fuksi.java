@@ -5,25 +5,37 @@
  */
 package kumpulatd.logic;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author antti
  */
 public class Fuksi implements Enemy{
-
+    private int HP;
+    private int speed;
+    private Map<Integer, Integer> resistance;
+    
+    public Fuksi(){
+        HP = 100;
+        speed = 5;
+        resistance = new HashMap<>();
+    }
+    
     @Override
     public int getHP() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return HP;
     }
 
     @Override
     public void damage(int type, int amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HP -= amount;
     }
 
     @Override
     public int getSpeed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return speed;
     }
     
 }
