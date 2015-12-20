@@ -29,7 +29,8 @@ public class Menu {
                     + "\n  2: Quit");
             String choice = reader.nextLine();
             if(choice.equals("1")){
-                new Game().init();
+                Game game = new Game();
+                game.init();
             } else if(choice.equals("2")){
                 break;
             }
