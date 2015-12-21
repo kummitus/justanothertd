@@ -5,8 +5,10 @@
  */
 package kumpulatd.logic;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -16,12 +18,12 @@ public class Game {
 
     private List<Enemy> enemylist;
     private List<Tower> towerlist;
+    private Scanner reader;
 
-    public Game() {
+    public Game(Scanner reader) {
         enemylist = new ArrayList<>();
         towerlist = new ArrayList<>();
-
-        init();
+        this.reader = reader;
     }
 
     public void init() {
@@ -29,16 +31,27 @@ public class Game {
         gameLoop(board);
     }
 
-    public void gameLoop(GameBoard board)  {
+    public void gameLoop(GameBoard board) {
         while (true) {
             board.draw();
             try {
-            Thread.sleep(16);
+                Thread.sleep(16);
+            } catch (Exception e) {
+
             }
-            catch( Exception e){
-                
+            int command = 0;
+            command = catchCommand();
+            if (command == 1) {
+                break;
             }
+
         }
+    }
+
+    private int catchCommand() {
+        int i = 0;
+        i = Integer.parseInt(reader.skip("").nextLine());
+        return i;
     }
 
 }
