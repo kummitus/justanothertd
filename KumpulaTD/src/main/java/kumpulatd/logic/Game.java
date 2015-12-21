@@ -32,25 +32,34 @@ public class Game {
     }
 
     public void gameLoop(GameBoard board) {
-        while (true) {
+            if(board == null){
+                return;
+            }
+        //while (true) {
             board.draw();
             try {
                 Thread.sleep(16);
             } catch (Exception e) {
-
+                System.out.println("Sleep unsuccesfull");
+                //break;
             }
-            int command = 0;
-            command = catchCommand();
-            if (command == 1) {
-                break;
-            }
+            //int command = 0;
+            //command = catchCommand();
+            //if (command == 1) {
+                //break;
+            //}
 
-        }
+        //}
     }
 
-    private int catchCommand() {
+    public int catchCommand() {
         int i = 0;
-        i = Integer.parseInt(reader.skip("").nextLine());
+        try {
+            i = Integer.parseInt(reader.skip("").nextLine());
+        }
+        catch (Exception e ){
+            return 0;
+        }
         return i;
     }
 

@@ -28,14 +28,14 @@ public class MenuTest {
         menu = new Menu();
     }
     
-    @Test
-    public void testMenu(){
-        String output= "Select:"
-                + "  1: New Game"
-                + "  2: Quit";
-        
-        
-    }
+//    @Test
+//    public void testMenu(){
+//        String output= "Select:"
+//                + "  1: New Game"
+//                + "  2: Quit";
+//        
+//        
+//    }
     
 
     // TODO add test methods here.

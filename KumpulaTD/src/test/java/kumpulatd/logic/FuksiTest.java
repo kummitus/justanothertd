@@ -37,6 +37,12 @@ public class FuksiTest {
         assertEquals(100, fuksi.getHP());
         assertEquals(5, fuksi.getSpeed());
     }
+    
+    @Test
+    public void testDamage(){
+        fuksi.damage(0, 5);
+        assertEquals(95, fuksi.getHP());
+    }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //

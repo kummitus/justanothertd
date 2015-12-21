@@ -31,7 +31,7 @@ public class EnemyGroup implements Enemy{
     @Override
     public void damage(int type, int amount) {
         for (Enemy e : list) {
-            damage(type, amount);
+            e.damage(type, amount);
         }
     }
 
@@ -42,6 +42,10 @@ public class EnemyGroup implements Enemy{
         } else {
             return list.get(0).getSpeed();
         }
+    }
+    
+    public void addMember(Enemy e){
+        list.add(e);
     }
     
 }
