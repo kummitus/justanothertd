@@ -5,12 +5,15 @@
  */
 package kumpulatd.ui;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author kummi
  */
 public class Main {
         public static void main(String[] args) {
-            new Menu();
+            Menu menu = new Menu();
+            SwingUtilities.invokeLater(menu);
         }
 }
