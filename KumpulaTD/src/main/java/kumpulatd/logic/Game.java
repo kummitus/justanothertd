@@ -5,62 +5,62 @@
  */
 package kumpulatd.logic;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
+import kumpulatd.logic.Fuksi;
 
 /**
  *
- * @author antti
+ * @author kummi
  */
 public class Game {
-
-    private List<Enemy> enemylist;
-    private List<Tower> towerlist;
-    private Scanner reader;
-
-    public Game(Scanner reader) {
-        enemylist = new ArrayList<>();
-        towerlist = new ArrayList<>();
-        this.reader = reader;
+    private List<Enemy> enemies;
+    private List<Tower> towers;
+    private List<Ammunition> ammunition;
+    private List<SpawnLocation> spawns;
+    private GoalLocation goal;
+    
+    
+    public Game(){
+        enemies = new ArrayList<>();
+        towers = new ArrayList<>();
+        ammunition = new ArrayList<>();
+        spawns = new ArrayList<>();
+        spawns.add(new SpawnLocation(668, 723));
+        spawns.add(new SpawnLocation(660, 550));
+        goal = new GoalLocation(330, 390);
+        
     }
 
-    public void init() {
-        GameBoard board = new GameBoard();
-        gameLoop(board);
-    }
-
-    public void gameLoop(GameBoard board) {
-            if(board == null){
-                return;
-            }
-        //while (true) {
-            board.draw();
-            try {
-                Thread.sleep(16);
-            } catch (Exception e) {
-                System.out.println("Sleep unsuccesfull");
-                //break;
-            }
-            //int command = 0;
-            //command = catchCommand();
-            //if (command == 1) {
-                //break;
-            //}
-
-        //}
-    }
-
-    public int catchCommand() {
-        int i = 0;
-        try {
-            i = Integer.parseInt(reader.skip("").nextLine());
+    public void update(int frame) {
+        if(frame % 30 == 0){
+            int random = new Random().nextInt(2);
+            int x = spawns.get(random).getX();
+            int y = spawns.get(random).getY();
+            EnemyGroup group = new EnemyGroup();
+            group.addMember(new Fuksi(x, y));
+            enemies.add(group);
         }
-        catch (Exception e ){
-            return 0;
+        
+        for (Enemy e : enemies) {
+            for (Enemy ee : e.getMembers()) {
+                ee.setX(ee.getX() - 2);
+                ee.setY(ee.getY() - 2);
+            }
         }
-        return i;
     }
 
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public List<Tower> getTowers() {
+        return towers;
+    }
+
+    public List<Ammunition> getAmmunition() {
+        return ammunition;
+    }
+    
 }

@@ -29,7 +29,7 @@ public class FuksiTest {
     @Before
     public void setUp() {
         
-        fuksi = new Fuksi();
+        fuksi = new Fuksi(5, 5);
     }
     
     @Test

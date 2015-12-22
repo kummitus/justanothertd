@@ -5,6 +5,7 @@
  */
 package kumpulatd.logic;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,20 @@ import java.util.List;
  *
  * @author antti
  */
-public class EnemyGroup implements Enemy{
+public class EnemyGroup implements Enemy {
+
     private List<Enemy> list;
-    
-    public EnemyGroup(){
+
+    public EnemyGroup() {
         list = new ArrayList<>();
-        
+
     }
+    
+    @Override
+    public List<Enemy> getMembers(){
+        return list;
+    }
+
     @Override
     public int getHP() {
         int hp = 0;
@@ -37,15 +45,56 @@ public class EnemyGroup implements Enemy{
 
     @Override
     public int getSpeed() {
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return 0;
         } else {
             return list.get(0).getSpeed();
         }
     }
-    
-    public void addMember(Enemy e){
+
+    public void addMember(Enemy e) {
         list.add(e);
     }
-    
+
+    @Override
+    public int getX() {
+        if (list.isEmpty()) {
+            return 0;
+        }
+        int sum = 0;
+
+        for (Enemy e : list) {
+            sum += e.getX();
+        }
+        return sum / list.size();
+    }
+
+    @Override
+    public int getY() {
+        if (list.isEmpty()) {
+            return 0;
+        }
+        int sum = 0;
+
+        for (Enemy e : list) {
+            sum += e.getY();
+        }
+        return sum / list.size();
+    }
+
+    @Override
+    public BufferedImage getImg() {
+        return null;
+    }
+
+    @Override
+    public void setX(int x) {
+
+    }
+
+    @Override
+    public void setY(int y) {
+        
+    }
+
 }

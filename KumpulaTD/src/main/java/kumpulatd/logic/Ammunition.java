@@ -9,20 +9,14 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author antti
+ * @author kummi
  */
-public interface Tower {
-    
-    public int range();
-    
-    public int damage();
-    
-    public int damageType();
-    
-    public BufferedImage getImg();
+public interface Ammunition {
     
     public int getX();
     
     public int getY();
+    
+    public BufferedImage getImg();
     
 }

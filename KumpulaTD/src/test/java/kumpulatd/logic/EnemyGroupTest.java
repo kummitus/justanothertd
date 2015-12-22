@@ -31,16 +31,16 @@ public class EnemyGroupTest {
 
     @Test
     public void testAddMember() {
-        group.addMember(new Fuksi());
-        group.addMember(new Fuksi());
+        group.addMember(new Fuksi(5,5));
+        group.addMember(new Fuksi(5,5));
         assertEquals(200, group.getHP());
         assertEquals(5, group.getSpeed());
     }
 
     @Test
     public void testDamage() {
-        group.addMember(new Fuksi());
-        group.addMember(new Fuksi());
+        group.addMember(new Fuksi(5,5));
+        group.addMember(new Fuksi(5,5));
         group.damage(0, 50);
         assertEquals(100, group.getHP());
         assertEquals(5, group.getSpeed());

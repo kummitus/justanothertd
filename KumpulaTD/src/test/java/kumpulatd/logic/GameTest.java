@@ -5,11 +5,9 @@
  */
 package kumpulatd.logic;
 
-import java.util.Scanner;
-import org.junit.After;
-import org.junit.AfterClass;
+
+import kumpulatd.ui.GameView;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,15 +17,14 @@ import static org.junit.Assert.*;
  */
 public class GameTest {
 
-    Game game;
-    Scanner reader;
+    GameView game;
 
     public GameTest() {
     }
 
     @Before
     public void setUp() {
-        game = new Game(reader);
+        game = new GameView();
     }
 
     // TODO add test methods here.
@@ -35,17 +32,5 @@ public class GameTest {
     //
     // @Test
     // public void hello() {}
-    @Test
-    public void testCatchCommand() {
-        reader = new Scanner("5");
-        game = new Game(reader);
-        assertEquals(5, game.catchCommand());
-    }
 
-    @Test
-    public void testCatchCommandString() {
-        reader = new Scanner("hey");
-        game = new Game(reader);
-        assertEquals(0, game.catchCommand());
-    }
 }
