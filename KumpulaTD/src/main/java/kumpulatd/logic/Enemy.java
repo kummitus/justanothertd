@@ -32,5 +32,9 @@ public interface Enemy {
     
     public void setY(int newy);
     
+    public int currentTarget();
+    
+    public void increaseTarget();
+    
     
 }

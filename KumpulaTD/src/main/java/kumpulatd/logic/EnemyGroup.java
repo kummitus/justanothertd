@@ -16,14 +16,16 @@ import java.util.List;
 public class EnemyGroup implements Enemy {
 
     private List<Enemy> list;
+    private int target;
 
     public EnemyGroup() {
         list = new ArrayList<>();
+        target = 0;
 
     }
-    
+
     @Override
-    public List<Enemy> getMembers(){
+    public List<Enemy> getMembers() {
         return list;
     }
 
@@ -94,7 +96,24 @@ public class EnemyGroup implements Enemy {
 
     @Override
     public void setY(int y) {
-        
+
+    }
+
+    @Override
+    public int currentTarget() {
+        return target;
+    }
+
+    @Override
+    public void increaseTarget() {
+        if (list.isEmpty()) {
+            target++;
+        } else {
+            for (Enemy e : list) {
+                e.increaseTarget();
+            }
+        }
+
     }
 
 }

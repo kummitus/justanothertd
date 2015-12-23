@@ -58,14 +58,19 @@ public class Menu implements Runnable {
     private Component createMenu() {
         JButton newgame = new JButton("New Game");
         JButton exit = new JButton("Exit");
+        
+        ActionListenerGame gamelist = new ActionListenerGame(frame, game);
+        ActionListenerExit exitlist = new ActionListenerExit();
+        
+        newgame.addActionListener(gamelist);
+        exit.addActionListener(exitlist);
+        
         ButtonGroup buttons = new ButtonGroup();
         buttons.add(newgame);
-        ActionListenerGame gamelist = new ActionListenerGame(frame, game);
-        newgame.addActionListener(gamelist);
         buttons.add(exit);
-        ActionListenerExit exitlist = new ActionListenerExit();
-        exit.addActionListener(exitlist);
+        
         JPanel menu = new JPanel(new GridLayout(1, 2));
+        
         menu.add(newgame);
         menu.add(exit);
         return menu;

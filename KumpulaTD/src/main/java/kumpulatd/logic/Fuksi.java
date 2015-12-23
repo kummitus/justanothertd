@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Fuksi implements Enemy {
     private BufferedImage img;
     private int x;
     private int y;
+    private int target;
 
     public Fuksi(int x, int y) {
         HP = 100;
@@ -34,9 +36,14 @@ public class Fuksi implements Enemy {
         try {
             img = ImageIO.read(new File("src/main/resources/freshman.png"));
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Eggs are not supposed to be green.",
+                    "No image of Fuksi was found",
+                    JOptionPane.ERROR_MESSAGE);
         }
         this.x = x;
         this.y = y;
+        target = 0;
     }
 
     @Override
@@ -82,6 +89,16 @@ public class Fuksi implements Enemy {
     @Override
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public int currentTarget() {
+        return target;
+    }
+
+    @Override
+    public void increaseTarget() {
+        target++;
     }
 
 }

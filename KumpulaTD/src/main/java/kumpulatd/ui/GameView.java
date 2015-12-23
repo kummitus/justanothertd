@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import kumpulatd.logic.Ammunition;
@@ -37,6 +38,8 @@ public class GameView extends JPanel implements ActionListener {
 
         Timer timer = new Timer(16, this);
         timer.start();
+
+
     }
 
     @Override
@@ -47,6 +50,7 @@ public class GameView extends JPanel implements ActionListener {
         drawBackGround(g2d);
 
         game.update(frame);
+
         List<Enemy> enemies = game.getEnemies();
         List<Tower> towers = game.getTowers();
         List<Ammunition> ammunition = game.getAmmunition();
@@ -61,6 +65,10 @@ public class GameView extends JPanel implements ActionListener {
         try {
             img = ImageIO.read(new File("src/main/resources/background.png"));
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Eggs are not supposed to be green.",
+                    "No gamefield was found",
+                    JOptionPane.ERROR_MESSAGE);
         }
         g2d.drawImage(img, null, 0, 0);
     }
@@ -84,11 +92,11 @@ public class GameView extends JPanel implements ActionListener {
         }
 
         for (Tower e : towers) {
-                g2d.drawImage(e.getImg(), null, e.getX(), e.getY());            
+            g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
         }
 
         for (Ammunition e : ammunition) {
-                g2d.drawImage(e.getImg(), null, e.getX(), e.getY());            
+            g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
         }
 
     }
