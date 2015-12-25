@@ -133,5 +133,9 @@ public final class Game {
         return spawns;
     }
 
+    public PathFinding path() {
+        return path;
+    }
+
 
 }

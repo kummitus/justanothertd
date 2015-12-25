@@ -7,6 +7,7 @@ package kumpulatd.logic;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -46,16 +47,47 @@ public class GameTest {
     public void firstSpawnFrame(){
         game.update(30);
         for (SpawnLocation sl : game.getSpawns()) {
-            if(sl.getX() == game.getEnemies().get(0).getX() && sl.getY() == game.getEnemies().get(0).getY()){
-                assertEquals(new ArrayList<>().add(new Fuksi(sl.getX(), sl.getY())), game.getEnemies());
+            if(sl.getX() == game.getEnemies().get(0).getMembers().get(0).getX() && sl.getY() == game.getEnemies().get(0).getMembers().get(0).getY()){
+                assertEquals(new ArrayList<>().add(new Fuksi(sl.getX(), sl.getY())), game.getEnemies().get(0).getMembers());
+                
             }
         }
         
+        
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    
+    
+    @Test
+    public void testIfClose(){
+        assertFalse(game.testIfClose(new Fuksi(5,5)));
+        assertTrue(game.testIfClose(new Fuksi(642,555)));
+        assertTrue(game.testIfClose(new Fuksi(641,555)));
+        assertTrue(game.testIfClose(new Fuksi(643,555)));
+        assertTrue(game.testIfClose(new Fuksi(641,554)));
+        assertTrue(game.testIfClose(new Fuksi(642,554)));
+        //assertTrue(game.testIfClose(new Fuksi(643,554)));
+        //assertTrue(game.testIfClose(new Fuksi(641,556)));
+        assertTrue(game.testIfClose(new Fuksi(642,556)));
+        assertTrue(game.testIfClose(new Fuksi(643,556)));
+    
+    
+    }
+    
+    @Test
+    public void testPathPoints(){
+        assertEquals(game.path().getPoints(), game.path().getPoints());
+        assertEquals(642, game.path().getPoint(0).getX());
+        assertEquals(555, game.path().getPoint(0).getY());
+        assertEquals(483, game.path().getPoint(1).getX());
+        assertEquals(563, game.path().getPoint(1).getY());
+        assertEquals(470, game.path().getPoint(2).getX());
+        assertEquals(521, game.path().getPoint(2).getY());
+        assertEquals(550, game.path().getPoint(3).getX());
+        assertEquals(440, game.path().getPoint(3).getY());
+        assertEquals(350, game.path().getPoint(4).getX());
+        assertEquals(220, game.path().getPoint(4).getY());
+        
+    }
 
 }

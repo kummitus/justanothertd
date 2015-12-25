@@ -41,5 +41,10 @@ public class PathFindingTest {
     public void getInvalidPoint(){
         assertEquals(null, path.getPoint(0));
     }
+    
+    @Test
+    public void sizeZeroListIsZeroSize(){
+        assertEquals(0, path.getPoints().size());
+    }
 
 }

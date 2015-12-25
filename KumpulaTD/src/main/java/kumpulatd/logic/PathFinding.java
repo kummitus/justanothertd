@@ -33,4 +33,8 @@ public class PathFinding {
     public int getSize() {
         return list.size();
     }
+    
+    public List<PathPoint> getPoints(){
+        return list;
+    }
 }
