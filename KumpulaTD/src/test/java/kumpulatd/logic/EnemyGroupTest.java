@@ -5,10 +5,9 @@
  */
 package kumpulatd.logic;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,16 +30,17 @@ public class EnemyGroupTest {
 
     @Test
     public void testAddMember() {
-        group.addMember(new Fuksi(5,5));
-        group.addMember(new Fuksi(5,5));
+        group.addMember(new Fuksi(5, 5));
+        group.addMember(new Fuksi(5, 5));
         assertEquals(200, group.getHP());
         assertEquals(5, group.getSpeed());
+
     }
 
     @Test
     public void testDamage() {
-        group.addMember(new Fuksi(5,5));
-        group.addMember(new Fuksi(5,5));
+        group.addMember(new Fuksi(5, 5));
+        group.addMember(new Fuksi(5, 5));
         group.damage(0, 50);
         assertEquals(100, group.getHP());
         assertEquals(5, group.getSpeed());
@@ -52,9 +52,88 @@ public class EnemyGroupTest {
         assertEquals(0, group.getSpeed());
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testEmptyMembers() {
+        assertEquals(new ArrayList<>(), group.getMembers());
+    }
+
+    @Test
+    public void testOneMembers() {
+        Enemy fuksi = new Fuksi(1, 1);
+        group.addMember(fuksi);
+        List<Enemy> list = new ArrayList<>();
+        list.add(fuksi);
+        assertEquals(list, group.getMembers());
+    }
+
+    @Test
+    public void ifEmptyGetX() {
+        assertEquals(0, group.getX());
+    }
+
+    @Test
+    public void ifEmptyGetY() {
+        assertEquals(0, group.getY());
+    }
+
+    @Test
+    public void oneMemberGetXY() {
+        group.addMember(new Fuksi(5, 5));
+        assertEquals(5, group.getX());
+        assertEquals(5, group.getY());
+
+    }
+
+    @Test
+    public void averageMemberGetXY() {
+        group.addMember(new Fuksi(5, 5));
+        group.addMember(new Fuksi(15, 15));
+        assertEquals(10, group.getX());
+        assertEquals(10, group.getY());
+
+    }
+
+    @Test
+    public void average2MemberGetXY() {
+        group.addMember(new Fuksi(5, 5));
+        group.addMember(new Fuksi(10, 10));
+        assertEquals(7, group.getX());
+        assertEquals(7, group.getY());
+
+    }
+    
+    @Test
+    public void nullBufferedImage(){
+        assertEquals(null, group.getImg());
+    }
+    
+    @Test
+    public void currentTarget(){
+        assertEquals(0, group.currentTarget());
+    }
+    
+    @Test
+    public void nextTarget(){
+        group.increaseTarget();
+        assertEquals(1, group.currentTarget());
+    }
+    
+    @Test
+    public void nextTargetMember(){
+        group.addMember(new Fuksi(5,5));
+        group.increaseTarget();
+        assertEquals(1, group.getMembers().get(0).currentTarget());
+    }
+    
+    @Test
+    public void setXsetY(){
+        group.addMember(new Fuksi(5,5));
+        group.addMember(new Fuksi(10, 10));
+        group.setX(200);
+        group.setY(200);
+        assertEquals(200, group.getX());
+        assertEquals(200, group.getY());
+    }
+
+    
 }

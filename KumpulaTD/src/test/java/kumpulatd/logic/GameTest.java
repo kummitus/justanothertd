@@ -6,7 +6,7 @@
 package kumpulatd.logic;
 
 
-import kumpulatd.ui.GameView;
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,16 +17,41 @@ import static org.junit.Assert.*;
  */
 public class GameTest {
 
-    GameView game;
+    Game game;
 
     public GameTest() {
     }
 
     @Before
     public void setUp() {
-        game = new GameView();
+        game = new Game();
+    }
+    
+    @Test
+    public void nullEnemies(){
+        assertEquals(new ArrayList<>(), game.getEnemies());
     }
 
+    @Test
+    public void nullTowers(){
+        assertEquals(new ArrayList<>(), game.getTowers());
+    }
+    
+    @Test
+    public void nullAmmunition(){
+        assertEquals(new ArrayList<>(), game.getAmmunition());
+    }
+    
+    @Test
+    public void firstSpawnFrame(){
+        game.update(30);
+        for (SpawnLocation sl : game.getSpawns()) {
+            if(sl.getX() == game.getEnemies().get(0).getX() && sl.getY() == game.getEnemies().get(0).getY()){
+                assertEquals(new ArrayList<>().add(new Fuksi(sl.getX(), sl.getY())), game.getEnemies());
+            }
+        }
+        
+    }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //

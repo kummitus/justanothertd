@@ -128,5 +128,10 @@ public final class Game {
         path.addPoint(550, 440);
         path.addPoint(350, 220);
     }
+    
+    public List<SpawnLocation> getSpawns(){
+        return spawns;
+    }
+
 
 }

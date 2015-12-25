@@ -91,12 +91,16 @@ public class EnemyGroup implements Enemy {
 
     @Override
     public void setX(int x) {
-
+        for (Enemy e : list) {
+            e.setX(x);
+        }
     }
 
     @Override
     public void setY(int y) {
-
+        for (Enemy e : list) {
+            e.setY(y);
+        }
     }
 
     @Override

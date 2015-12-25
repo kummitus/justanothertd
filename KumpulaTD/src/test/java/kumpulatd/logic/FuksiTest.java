@@ -5,11 +5,11 @@
  */
 package kumpulatd.logic;
 
-import kumpulatd.logic.Fuksi;
-import org.junit.After;
-import org.junit.AfterClass;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,34 +18,52 @@ import static org.junit.Assert.*;
  * @author antti
  */
 public class FuksiTest {
-    
+
     Fuksi fuksi;
-    
+
     public FuksiTest() {
     }
-    
 
-    
     @Before
     public void setUp() {
-        
+
         fuksi = new Fuksi(5, 5);
     }
-    
+
     @Test
-    public void testNewFuksi(){
+    public void testNewFuksi() {
         assertEquals(100, fuksi.getHP());
         assertEquals(5, fuksi.getSpeed());
     }
-    
+
     @Test
-    public void testDamage(){
+    public void testDamage() {
         fuksi.damage(0, 5);
         assertEquals(95, fuksi.getHP());
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+
+    @Test
+    public void testImg(){
+        BufferedImage img;
+        try {
+            img = ImageIO.read(new File("src/main/resources/freshman.png"));
+            //assertEquals(img, fuksi.getImg());
+        } catch (IOException e) {
+            assertEquals(null, fuksi.getImg());
+        }
+
+    }
+
+    @Test
+    public void testMembersIsNull() {
+        assertEquals(null, fuksi.getMembers());
+    }
+
+    @Test
+    public void testSetXSetY() {
+        fuksi.setX(100);
+        fuksi.setY(100);
+        assertEquals(100, fuksi.getY());
+        assertEquals(100, fuksi.getX());
+    }
 }
