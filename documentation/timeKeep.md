@@ -7,3 +7,4 @@
 | 21.12 | 1 hour | Classchart and tests |
 | 22.12 | 7 hours | Learning how to do realtime graphics and implementing actual game loop and graphics engine that draws current situation to screen |
 | 25.12 | 2 hours | Added tests |
+| 28.12 | 2 hours | Added new classchart, gave input |
