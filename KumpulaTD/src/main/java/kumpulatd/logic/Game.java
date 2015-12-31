@@ -137,5 +137,10 @@ public final class Game {
         return path;
     }
 
+    public String infoDraw() {
+        String text = "hau";
+        return text;
+    }
+
 
 }

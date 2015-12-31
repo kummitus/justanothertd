@@ -5,6 +5,7 @@
  */
 package kumpulatd.ui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -36,8 +37,8 @@ public class GameView extends JPanel implements ActionListener {
         frame = 0;
         //gameLoop();
 
-        Timer timer = new Timer(16, this);
-        timer.start();
+        //Timer timer = new Timer(16, this);
+        //timer.start();
 
 
     }
@@ -58,6 +59,8 @@ public class GameView extends JPanel implements ActionListener {
         drawDrawables(enemies, towers, ammunition, g2d);
 
         drawFrameCounter(g2d);
+        
+        infoDraw(g2d);
     }
 
     public void drawBackGround(Graphics2D g2d) {
@@ -71,6 +74,11 @@ public class GameView extends JPanel implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
         }
         g2d.drawImage(img, null, 0, 0);
+        g2d.setBackground(Color.white);
+        g2d.setColor(Color.white);
+        g2d.fillRect(800, 0, 400, 800);
+        g2d.setColor(Color.black);
+        
     }
 
     public void drawFrameCounter(Graphics2D g2d) {
@@ -98,7 +106,12 @@ public class GameView extends JPanel implements ActionListener {
         for (Ammunition e : ammunition) {
             g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
         }
+        
 
+    }
+
+    private void infoDraw(Graphics2D g2d) {
+        g2d.drawString(game.infoDraw(), 825, 50);
     }
 
 }

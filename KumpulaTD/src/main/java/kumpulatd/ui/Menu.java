@@ -32,7 +32,7 @@ public class Menu implements Runnable {
     public void run() {
         
         frame = new JFrame("Menu");
-        frame.setPreferredSize(new Dimension(800, 800));
+        frame.setPreferredSize(new Dimension(1200, 800));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
