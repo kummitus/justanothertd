@@ -37,8 +37,8 @@ public class GameView extends JPanel implements ActionListener {
         frame = 0;
         //gameLoop();
 
-        //Timer timer = new Timer(16, this);
-        //timer.start();
+        Timer timer = new Timer(16, this);
+        timer.start();
 
 
     }

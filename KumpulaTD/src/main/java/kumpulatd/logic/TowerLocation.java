@@ -9,6 +9,20 @@ package kumpulatd.logic;
  *
  * @author antti
  */
-class TowerLocation {
+public class TowerLocation {
+    private int x;
+    private int y;
     
+    public TowerLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    public int getX(){
+        return x;
+    }
+    
+    public int getY(){
+        return y;
+    }
 }

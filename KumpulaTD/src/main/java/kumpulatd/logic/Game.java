@@ -22,11 +22,13 @@ public final class Game {
     private List<SpawnLocation> spawns;
     private final GoalLocation goal;
     private PathFinding path;
+    private List<TowerLocation> towerlocations;
 
     public Game() {
         initLists();
         goal = new GoalLocation(350, 220);
         initPath();
+        initTowers();
 
     }
 
@@ -37,6 +39,8 @@ public final class Game {
         spawns = new ArrayList<>();
         spawns.add(new SpawnLocation(668, 723));
         spawns.add(new SpawnLocation(660, 550));
+        towerlocations = new ArrayList<>();
+        
     }
 
     public void update(int frame) {
@@ -140,6 +144,10 @@ public final class Game {
     public String infoDraw() {
         String text = "hau";
         return text;
+    }
+
+    private void initTowers() {
+        //towerlocations.add(new TowerLocation())
     }
 
 
