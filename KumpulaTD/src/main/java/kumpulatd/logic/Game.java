@@ -58,7 +58,7 @@ public final class Game {
                 if (ee.getX() == goal.getX() && ee.getY() == goal.getY()) {
 
                 }
-                System.out.println(ee.currentTarget() + "" + ee.getX() + "" + ee.getY());
+                //System.out.println(ee.currentTarget() + "" + ee.getX() + "" + ee.getY());
                 if (testIfClose(ee)) {
                     ee.increaseTarget();
                     if (ee.currentTarget() > path.getSize()) {

@@ -42,7 +42,8 @@ public class GameView extends JPanel implements ActionListener {
         Timer timer = new Timer(16, this);
         timer.start();
         currentTower = '1';
-
+        
+        nextCommand = ' ';
     }
 
     public void setNextCommand(char command) {
@@ -126,18 +127,21 @@ public class GameView extends JPanel implements ActionListener {
             g2d.drawString(row, x, y);
             y += 12;
         }
-        g2d.drawString(currentTower + "asdasdas", x+50, y+50);
+        g2d.drawString(currentTower + "asdasdas", x + 50, y + 50);
         currentTower = nextCommand;
-        if (currentTower == '1' || currentTower == '2' || currentTower == '3' || currentTower == '4') {
-            drawSelectedTower(currentTower, g2d, x, y);
-            nextCommand = ' ';
+        if (nextCommand != ' ') {
+            if (currentTower == '1' || currentTower == '2' || currentTower == '3' || currentTower == '4') {
+                drawSelectedTower(currentTower, g2d, x, y);
+                nextCommand = ' ';
+            }
         }
 
     }
 
     private void drawSelectedTower(char currentTower, Graphics2D g2d, int x, int y) {
         y += 24;
-        if (currentTower == '1') {
+
+        if (currentTower == '1' && !game.getTowers().isEmpty()) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(0).getName(), x, y);
             y += 12;
@@ -146,21 +150,21 @@ public class GameView extends JPanel implements ActionListener {
             g2d.drawString(currentTower + " ", x, y);
         }
 
-        if (currentTower == '2') {
+        if (currentTower == '2' && game.getTowers().size() >= 2) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(1).getName(), x, y);
             y += 12;
             g2d.drawString(game.getTowers().get(1).damage() + "", x, y);
         }
 
-        if (currentTower == '3') {
+        if (currentTower == '3' && game.getTowers().size() >= 3) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(2).getName(), x, y);
             y += 12;
             g2d.drawString(game.getTowers().get(2).damage() + "", x, y);
         }
 
-        if (currentTower == '4') {
+        if (currentTower == '4' && game.getTowers().size() >= 4) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(3).getName(), x, y);
             y += 12;
