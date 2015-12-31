@@ -40,7 +40,7 @@ public final class Game {
         spawns.add(new SpawnLocation(668, 723));
         spawns.add(new SpawnLocation(660, 550));
         towerlocations = new ArrayList<>();
-        
+
     }
 
     public void update(int frame) {
@@ -76,12 +76,10 @@ public final class Game {
                     } else {
                         ee.setX(ee.getX() + 1);
                     }
+                } else if (ee.getY() >= path.getPoint(ee.currentTarget()).getY()) {
+                    ee.setY(ee.getY() - 1);
                 } else {
-                    if (ee.getY() >= path.getPoint(ee.currentTarget()).getY()) {
-                        ee.setY(ee.getY() - 1);
-                    } else {
-                        ee.setY(ee.getY() + 1);
-                    }
+                    ee.setY(ee.getY() + 1);
                 }
             }
         }
@@ -132,8 +130,8 @@ public final class Game {
         path.addPoint(550, 440);
         path.addPoint(350, 220);
     }
-    
-    public List<SpawnLocation> getSpawns(){
+
+    public List<SpawnLocation> getSpawns() {
         return spawns;
     }
 
@@ -141,9 +139,28 @@ public final class Game {
         return path;
     }
 
-    public String infoDraw() {
-        String text = "hau";
-        return text;
+    public List<String> infoDraw() {
+        StringBuilder str;
+        List<String> list = new ArrayList<>();
+        int i = 1;
+        int j = 0;
+        for (TowerLocation location : towerlocations) {
+            str = new StringBuilder();
+            str.append("Tower ").append(i).append(": ");
+            for (Tower tower : towers) {
+                if (tower.getLocation().equals(location)) {
+                    str.append(tower.getName());
+                    j++;
+                }
+            }
+            if(j == 0){
+                str.append("empty");
+            }
+            list.add(str.toString());
+            i++;
+            
+        }
+        return list;
     }
 
     private void initTowers() {
@@ -152,6 +169,5 @@ public final class Game {
         towerlocations.add(new TowerLocation(524, 370));
         towerlocations.add(new TowerLocation(370, 266));
     }
-
 
 }

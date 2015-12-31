@@ -21,6 +21,7 @@ public class Tutor implements Tower{
     private int damageType;
     private BufferedImage img;
     private int damage;
+    private String name;
     
     Tutor(TowerLocation location){
         this.location = location;
@@ -28,6 +29,7 @@ public class Tutor implements Tower{
         damageType = 1;
         initImg();
         damage = 20;
+        name = "Tutor";
     }
 
     @Override
@@ -65,6 +67,11 @@ public class Tutor implements Tower{
                     "No gamefield was found",
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
 

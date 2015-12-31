@@ -111,7 +111,13 @@ public class GameView extends JPanel implements ActionListener {
     }
 
     private void infoDraw(Graphics2D g2d) {
-        g2d.drawString(game.infoDraw(), 1025, 50);
+        int x = 1025;
+        int y = 50;
+        for(String row : game.infoDraw()){
+            g2d.drawString(row, x, y);
+            y += 12;
+        }
+        
     }
 
 }

@@ -23,4 +23,6 @@ public interface Tower {
     
     public TowerLocation getLocation();
     
+    public String getName();
+    
 }
