@@ -147,7 +147,10 @@ public final class Game {
     }
 
     private void initTowers() {
-        //towerlocations.add(new TowerLocation())
+        towerlocations.add(new TowerLocation(530, 588));
+        towerlocations.add(new TowerLocation(468, 505));
+        towerlocations.add(new TowerLocation(524, 370));
+        towerlocations.add(new TowerLocation(370, 266));
     }
 
 

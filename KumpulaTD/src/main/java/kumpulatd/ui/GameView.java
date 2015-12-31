@@ -76,7 +76,7 @@ public class GameView extends JPanel implements ActionListener {
         g2d.drawImage(img, null, 0, 0);
         g2d.setBackground(Color.white);
         g2d.setColor(Color.white);
-        g2d.fillRect(800, 0, 400, 800);
+        g2d.fillRect(1000, 0, 400, 800);
         g2d.setColor(Color.black);
         
     }
@@ -100,7 +100,7 @@ public class GameView extends JPanel implements ActionListener {
         }
 
         for (Tower e : towers) {
-            g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
+            g2d.drawImage(e.getImg(), null, e.getLocation().getX(), e.getLocation().getY());
         }
 
         for (Ammunition e : ammunition) {
@@ -111,7 +111,7 @@ public class GameView extends JPanel implements ActionListener {
     }
 
     private void infoDraw(Graphics2D g2d) {
-        g2d.drawString(game.infoDraw(), 825, 50);
+        g2d.drawString(game.infoDraw(), 1025, 50);
     }
 
 }

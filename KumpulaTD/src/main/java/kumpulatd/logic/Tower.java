@@ -21,8 +21,6 @@ public interface Tower {
     
     public BufferedImage getImg();
     
-    public int getX();
-    
-    public int getY();
+    public TowerLocation getLocation();
     
 }
