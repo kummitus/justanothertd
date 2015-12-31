@@ -48,6 +48,8 @@ public class Menu implements Runnable {
         contentPane.setLayout(new BorderLayout());
         
         contentPane.add(createMenu(), BorderLayout.SOUTH);
+        
+
 
     }
 
@@ -61,6 +63,7 @@ public class Menu implements Runnable {
         
         ActionListenerGame gamelist = new ActionListenerGame(frame, game);
         ActionListenerExit exitlist = new ActionListenerExit();
+        
         
         newgame.addActionListener(gamelist);
         exit.addActionListener(exitlist);

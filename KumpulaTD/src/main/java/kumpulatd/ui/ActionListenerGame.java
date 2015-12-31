@@ -13,10 +13,11 @@ import javax.swing.JFrame;
  *
  * @author kummi
  */
-public class ActionListenerGame implements ActionListener{
+public class ActionListenerGame implements ActionListener {
+
     private JFrame frame;
     private GameView game;
-    
+
     ActionListenerGame(JFrame frame, GameView game) {
         this.frame = frame;
         this.game = game;
@@ -26,7 +27,9 @@ public class ActionListenerGame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(game);
+        KeyListenerGame keylist = new KeyListenerGame(game);
+        frame.addKeyListener(keylist);
         frame.validate();
     }
-    
+
 }
