@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import kumpulatd.ui.WarningMessage;
 
 /**
  *
@@ -36,10 +37,8 @@ public class Fuksi implements Enemy {
         try {
             img = ImageIO.read(new File("src/main/resources/freshman.png"));
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Eggs are not supposed to be green.",
-                    "No image of Fuksi was found",
-                    JOptionPane.ERROR_MESSAGE);
+
+            new WarningMessage().invokeWarning();
         }
         this.x = x;
         this.y = y;
@@ -60,9 +59,9 @@ public class Fuksi implements Enemy {
     public int getSpeed() {
         return speed;
     }
-    
+
     @Override
-    public BufferedImage getImg(){
+    public BufferedImage getImg() {
         return img;
     }
 

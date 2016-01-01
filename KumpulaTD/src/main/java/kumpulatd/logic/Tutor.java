@@ -10,20 +10,22 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import kumpulatd.ui.WarningMessage;
 
 /**
  *
  * @author kummi
  */
-public class Tutor implements Tower{
+public class Tutor implements Tower {
+
     private TowerLocation location;
     private int range;
     private int damageType;
     private BufferedImage img;
     private int damage;
     private String name;
-    
-    Tutor(TowerLocation location){
+
+    Tutor(TowerLocation location) {
         this.location = location;
         range = 30;
         damageType = 1;
@@ -62,10 +64,8 @@ public class Tutor implements Tower{
         try {
             img = ImageIO.read(new File("src/main/resources/penguinillustration.png"));
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Eggs are not supposed to be green.",
-                    "No gamefield was found",
-                    JOptionPane.ERROR_MESSAGE);
+
+            new WarningMessage().invokeWarning();
         }
     }
 
@@ -74,6 +74,4 @@ public class Tutor implements Tower{
         return name;
     }
 
-
-    
 }

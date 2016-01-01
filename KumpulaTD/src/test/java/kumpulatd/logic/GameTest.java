@@ -58,21 +58,7 @@ public class GameTest {
     
     
     
-    @Test
-    public void testIfClose(){
-        assertFalse(game.testIfClose(new Fuksi(5,5)));
-        assertTrue(game.testIfClose(new Fuksi(642,555)));
-        assertTrue(game.testIfClose(new Fuksi(641,555)));
-        assertTrue(game.testIfClose(new Fuksi(643,555)));
-        assertTrue(game.testIfClose(new Fuksi(641,554)));
-        assertTrue(game.testIfClose(new Fuksi(642,554)));
-        //assertTrue(game.testIfClose(new Fuksi(643,554)));
-        //assertTrue(game.testIfClose(new Fuksi(641,556)));
-        assertTrue(game.testIfClose(new Fuksi(642,556)));
-        assertTrue(game.testIfClose(new Fuksi(643,556)));
-    
-    
-    }
+
     
     @Test
     public void testPathPoints(){

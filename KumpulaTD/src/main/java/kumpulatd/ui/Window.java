@@ -20,12 +20,12 @@ import javax.swing.WindowConstants;
  *
  * @author antti
  */
-public class Menu implements Runnable {
+public class Window implements Runnable {
 
     private JFrame frame;
     private GameView game;
 
-    public Menu() {
+    public Window() {
     }
 
     @Override

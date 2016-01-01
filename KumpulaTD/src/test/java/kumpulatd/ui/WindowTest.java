@@ -5,7 +5,7 @@
  */
 package kumpulatd.ui;
 
-import kumpulatd.ui.Menu;
+import kumpulatd.ui.Window;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,15 +17,15 @@ import static org.junit.Assert.*;
  *
  * @author antti
  */
-public class MenuTest {
-    Menu menu;
-    public MenuTest() {
+public class WindowTest {
+    Window menu;
+    public WindowTest() {
         
     }
 
     @Before
     public void setUp() {
-        menu = new Menu();
+        menu = new Window();
     }
     
 //    @Test

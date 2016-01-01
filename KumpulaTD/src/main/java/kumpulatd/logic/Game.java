@@ -8,7 +8,7 @@ package kumpulatd.logic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import javax.swing.JOptionPane;
+import kumpulatd.ui.WarningMessage;
 
 /**
  *
@@ -32,7 +32,7 @@ public final class Game {
 
     }
 
-    public void initLists() {
+    private void initLists() {
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
         ammunition = new ArrayList<>();
@@ -44,15 +44,12 @@ public final class Game {
     }
 
     public void update(int frame) {
-        if (frame % 30 == 0) {
-            int random = new Random().nextInt(2);
-            int x = spawns.get(random).getX();
-            int y = spawns.get(random).getY();
-            EnemyGroup group = new EnemyGroup();
-            group.addMember(new Fuksi(x, y));
-            enemies.add(group);
-        }
+        spawnEnemies1(frame);
 
+        testForPathFinding();
+    }
+
+    private void testForPathFinding() {
         for (Enemy e : enemies) {
             for (Enemy ee : e.getMembers()) {
                 if (ee.getX() == goal.getX() && ee.getY() == goal.getY()) {
@@ -62,11 +59,7 @@ public final class Game {
                 if (testIfClose(ee)) {
                     ee.increaseTarget();
                     if (ee.currentTarget() > path.getSize()) {
-                        JOptionPane.showMessageDialog(null,
-                                "You lost.",
-                                "No image of Fuksi was found",
-                                JOptionPane.ERROR_MESSAGE);
-                        System.exit(0);
+                        new WarningMessage().invokeWarning();
                     }
 
                 }
@@ -85,7 +78,18 @@ public final class Game {
         }
     }
 
-    public boolean testIfClose(Enemy ee) {
+    private void spawnEnemies1(int frame) {
+        if (frame % 30 == 0) {
+            int random = new Random().nextInt(2);
+            int x = spawns.get(random).getX();
+            int y = spawns.get(random).getY();
+            EnemyGroup group = new EnemyGroup();
+            group.addMember(new Fuksi(x, y));
+            enemies.add(group);
+        }
+    }
+
+    boolean testIfClose(Enemy ee) {
         if (ee.getX() == path.getPoint(ee.currentTarget()).getX() && ee.getY() == path.getPoint(ee.currentTarget()).getY()) {
             return true;
         }
@@ -168,6 +172,10 @@ public final class Game {
         towerlocations.add(new TowerLocation(468, 505));
         towerlocations.add(new TowerLocation(524, 370));
         towerlocations.add(new TowerLocation(370, 266));
+    }
+
+    public GoalLocation getGoal() {
+        return goal;
     }
 
 }

@@ -29,6 +29,7 @@ public class ActionListenerGame implements ActionListener {
         frame.getContentPane().add(game);
         KeyListenerGame keylist = new KeyListenerGame(game);
         frame.addKeyListener(keylist);
+        frame.requestFocusInWindow();
         frame.validate();
     }
 

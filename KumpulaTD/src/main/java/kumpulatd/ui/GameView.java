@@ -72,6 +72,8 @@ public class GameView extends JPanel implements ActionListener {
         drawFrameCounter(g2d);
 
         infoDraw(g2d);
+        
+        drawGoal(g2d);
     }
 
     public void drawBackGround(Graphics2D g2d) {
@@ -171,6 +173,10 @@ public class GameView extends JPanel implements ActionListener {
             g2d.drawString(game.getTowers().get(3).damage() + "", x, y);
         }
 
+    }
+
+    private void drawGoal(Graphics2D g2d) {
+        g2d.drawImage(game.getGoal().getImg(), null, game.getGoal().getX()-40, game.getGoal().getY()-40);
     }
 
 }
