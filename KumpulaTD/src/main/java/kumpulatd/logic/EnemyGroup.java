@@ -117,7 +117,5 @@ public class EnemyGroup implements Enemy {
                 e.increaseTarget();
             }
         }
-
     }
-
 }

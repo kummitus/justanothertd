@@ -6,16 +6,16 @@
 package kumpulatd.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import kumpulatd.ui.WarningMessage;
 
 /**
  *
  * @author kummi
  */
 public final class Game {
-
+    
     private List<Enemy> enemies;
     private List<Tower> towers;
     private List<Ammunition> ammunition;
@@ -23,19 +23,19 @@ public final class Game {
     private GoalLocation goal;
     private PathFinding path;
     private List<TowerLocation> towerlocations;
-
+    private PathFinder pathFinder;
+    
     public Game() {
         initLists();
         initGoal();
         initPath();
         initTowers();
-
     }
-
+    
     private void initGoal() {
         goal = new GoalLocation(350, 220);
     }
-
+    
     private void initLists() {
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
@@ -44,10 +44,10 @@ public final class Game {
         spawns.add(new SpawnLocation(668, 723));
         spawns.add(new SpawnLocation(660, 550));
         towerlocations = new ArrayList<>();
-
     }
-
+    
     private void initPath() {
+        pathFinder = new PathFinder();
         path = new PathFinding();
         path.addPoint(642, 555);
         path.addPoint(483, 563);
@@ -55,73 +55,47 @@ public final class Game {
         path.addPoint(550, 440);
         path.addPoint(350, 220);
     }
-
+    
     private void initTowers() {
         towerlocations.add(new TowerLocation(530, 588));
         towerlocations.add(new TowerLocation(468, 505));
         towerlocations.add(new TowerLocation(524, 370));
         towerlocations.add(new TowerLocation(370, 266));
     }
-
+    
     public List<Enemy> getEnemies() {
         return enemies;
     }
-
+    
     public List<Tower> getTowers() {
         return towers;
     }
-
+    
     public List<Ammunition> getAmmunition() {
         return ammunition;
     }
-
+    
     public List<SpawnLocation> getSpawns() {
         return spawns;
     }
-
+    
     public GoalLocation getGoal() {
         return goal;
     }
-
+    
     public PathFinding getPath() {
         return path;
     }
-
+    
     public void update(int frame) {
+        removeSurvivedEnemies();
+        removeDeadEnemies();
+        
         spawnEnemies1(frame);
-
-        testForPathFinding();
+        
+        enemies = pathFinder.testForPathFinding(enemies, goal, path);
     }
-
-    private void testForPathFinding() {
-        for (Enemy e : enemies) {
-            for (Enemy ee : e.getMembers()) {
-                if (ee.getX() == goal.getX() && ee.getY() == goal.getY()) {
-
-                }
-                //System.out.println(ee.currentTarget() + "" + ee.getX() + "" + ee.getY());
-                if (testIfClose(ee)) {
-                    ee.increaseTarget();
-                    if (ee.currentTarget() > path.getSize()) {
-                        new WarningMessage().invokeWarning();
-                    }
-
-                }
-                if (Math.abs(ee.getX() - path.getPoint(ee.currentTarget()).getX()) >= Math.abs(ee.getY() - path.getPoint(ee.currentTarget()).getY())) {
-                    if (ee.getX() >= path.getPoint(ee.currentTarget()).getX()) {
-                        ee.setX(ee.getX() - 1);
-                    } else {
-                        ee.setX(ee.getX() + 1);
-                    }
-                } else if (ee.getY() >= path.getPoint(ee.currentTarget()).getY()) {
-                    ee.setY(ee.getY() - 1);
-                } else {
-                    ee.setY(ee.getY() + 1);
-                }
-            }
-        }
-    }
-
+    
     private void spawnEnemies1(int frame) {
         if (frame % 30 == 0) {
             int random = new Random().nextInt(2);
@@ -132,32 +106,7 @@ public final class Game {
             enemies.add(group);
         }
     }
-
-    private boolean testIfClose(Enemy ee) {
-        if (ee.getX() == path.getPoint(ee.currentTarget()).getX() && ee.getY() == path.getPoint(ee.currentTarget()).getY()) {
-            return true;
-        }
-        if (ee.getX() - 1 == path.getPoint(ee.currentTarget()).getX() && ee.getY() == path.getPoint(ee.currentTarget()).getY()) {
-            return true;
-        }
-        if (ee.getX() == path.getPoint(ee.currentTarget()).getX() && ee.getY() - 1 == path.getPoint(ee.currentTarget()).getY()) {
-            return true;
-        }
-        if (ee.getX() + 1 == path.getPoint(ee.currentTarget()).getX() && ee.getY() == path.getPoint(ee.currentTarget()).getY()) {
-            return true;
-        }
-        if (ee.getX() == path.getPoint(ee.currentTarget()).getX() && ee.getY() + 1 == path.getPoint(ee.currentTarget()).getY()) {
-            return true;
-        }
-        if (ee.getX() - 1 == path.getPoint(ee.currentTarget()).getX() && ee.getY() - 1 == path.getPoint(ee.currentTarget()).getY()) {
-            return true;
-        }
-        if (ee.getX() + 1 == path.getPoint(ee.currentTarget()).getX() && ee.getY() + 1 == path.getPoint(ee.currentTarget()).getY()) {
-            return true;
-        }
-        return false;
-    }
-
+    
     public List<String> getInfoString() {
         StringBuilder str;
         List<String> list = new ArrayList<>();
@@ -177,9 +126,80 @@ public final class Game {
             }
             list.add(str.toString());
             i++;
-
         }
         return list;
     }
+    
+    public void buyTower(int currentTower, char nextCommand) {
+        boolean test = true;
+        if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {
+            for (Tower tower : towers) {
+                if (tower.getLocation() == towerlocations.get(currentTower - 1)) {
+                    test = false;
+                }
+            }
+            if (test) {
+                towers.add(new Tutor(towerlocations.get(currentTower - 1)));
+            }
+        }
+    }
+    
+    public void sellTower(int currentTower, char nextCommand) {
+        System.out.println("yritetään myydä");
+        boolean test = false;
+        if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {
+            for (Tower tower : towers) {
+                if (tower.getLocation() == towerlocations.get(currentTower - 1)) {
+                    test = true;
+                }
+            }
+            if (test) {
+                Iterator itr = towers.iterator();
+                while (itr.hasNext()) {
+                    Tower lct = (Tower) itr.next();
+                    if (towerlocations.get(currentTower - 1).equals(lct.getLocation())) {
+                        itr.remove();
+                        System.out.println("poistettu");
+                    }
+                }
+            }
+        }
+    }
 
+    private void removeDeadEnemies() {
+        Iterator itr = enemies.iterator();
+        while (itr.hasNext()){
+            Enemy group = (Enemy) itr.next();
+            List<Enemy> grouplist = group.getMembers();
+            Iterator finalitr = grouplist.iterator();
+            while(finalitr.hasNext()){
+                Enemy enemy = (Enemy) finalitr.next();
+                if(enemy.getHP() <= 0){
+                    finalitr.remove();
+                }
+            }
+            if(group.getMembers().isEmpty()){
+                itr.remove();
+            }
+        }
+    }
+
+    private void removeSurvivedEnemies() {
+        Iterator itr = enemies.iterator();
+        while (itr.hasNext()){
+            Enemy group = (Enemy) itr.next();
+            List<Enemy> grouplist = group.getMembers();
+            Iterator finalitr = grouplist.iterator();
+            while(finalitr.hasNext()){
+                Enemy enemy = (Enemy) finalitr.next();
+                if(enemy.currentTarget() > path.getSize()-1){
+                    finalitr.remove();
+                }
+            }
+            if(group.getMembers().isEmpty()){
+                itr.remove();
+            }
+        }
+    }
+    
 }

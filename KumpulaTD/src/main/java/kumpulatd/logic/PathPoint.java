@@ -25,9 +25,4 @@ public class PathPoint {
     public int getY(){
         return y;
     }
-
-    
-
- 
-    
 }

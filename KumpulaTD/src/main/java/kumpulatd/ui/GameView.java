@@ -32,18 +32,15 @@ public class GameView extends JPanel implements ActionListener {
     private Game game;
     private int frame;
     private char nextCommand;
-    private char currentTower;
+    private int currentTower;
 
     public GameView() {
         game = new Game();
         frame = 0;
-        //gameLoop();
-
+        currentTower = '1';        
+        nextCommand = ' ';
         Timer timer = new Timer(16, this);
         timer.start();
-        currentTower = '1';
-        
-        nextCommand = ' ';
     }
 
     public void setNextCommand(char command) {
@@ -91,7 +88,6 @@ public class GameView extends JPanel implements ActionListener {
         g2d.setColor(Color.white);
         g2d.fillRect(1000, 0, 400, 800);
         g2d.setColor(Color.black);
-
     }
 
     public void drawFrameCounter(Graphics2D g2d) {
@@ -119,7 +115,6 @@ public class GameView extends JPanel implements ActionListener {
         for (Ammunition e : ammunition) {
             g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
         }
-
     }
 
     private void infoDraw(Graphics2D g2d) {
@@ -130,20 +125,31 @@ public class GameView extends JPanel implements ActionListener {
             y += 12;
         }
         g2d.drawString(currentTower + "asdasdas", x + 50, y + 50);
-        currentTower = nextCommand;
+        try {
+            currentTower = Integer.parseInt(nextCommand + "");
+        }
+        catch (Exception e){
+            
+        }
+        
         if (nextCommand != ' ') {
             if (currentTower == '1' || currentTower == '2' || currentTower == '3' || currentTower == '4') {
                 drawSelectedTower(currentTower, g2d, x, y);
                 nextCommand = ' ';
+            } else if (nextCommand == 'b'){
+                game.buyTower(currentTower, nextCommand);
+                nextCommand = ' ';
+            } else if (nextCommand == 's'){
+                game.sellTower(currentTower, nextCommand);
+                nextCommand = ' ';
             }
         }
-
     }
 
-    private void drawSelectedTower(char currentTower, Graphics2D g2d, int x, int y) {
+    private void drawSelectedTower(int currentTower, Graphics2D g2d, int x, int y) {
         y += 24;
 
-        if (currentTower == '1' && !game.getTowers().isEmpty()) {
+        if (currentTower == 1 && !game.getTowers().isEmpty()) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(0).getName(), x, y);
             y += 12;
@@ -152,21 +158,21 @@ public class GameView extends JPanel implements ActionListener {
             g2d.drawString(currentTower + " ", x, y);
         }
 
-        if (currentTower == '2' && game.getTowers().size() >= 2) {
+        if (currentTower == 2 && game.getTowers().size() >= 2) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(1).getName(), x, y);
             y += 12;
             g2d.drawString(game.getTowers().get(1).damage() + "", x, y);
         }
 
-        if (currentTower == '3' && game.getTowers().size() >= 3) {
+        if (currentTower == 3 && game.getTowers().size() >= 3) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(2).getName(), x, y);
             y += 12;
             g2d.drawString(game.getTowers().get(2).damage() + "", x, y);
         }
 
-        if (currentTower == '4' && game.getTowers().size() >= 4) {
+        if (currentTower == 4 && game.getTowers().size() >= 4) {
             g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
             g2d.drawString(game.getTowers().get(3).getName(), x, y);
             y += 12;
