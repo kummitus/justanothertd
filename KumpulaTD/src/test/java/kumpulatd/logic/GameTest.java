@@ -62,17 +62,17 @@ public class GameTest {
     
     @Test
     public void testPathPoints(){
-        assertEquals(game.path().getPoints(), game.path().getPoints());
-        assertEquals(642, game.path().getPoint(0).getX());
-        assertEquals(555, game.path().getPoint(0).getY());
-        assertEquals(483, game.path().getPoint(1).getX());
-        assertEquals(563, game.path().getPoint(1).getY());
-        assertEquals(470, game.path().getPoint(2).getX());
-        assertEquals(521, game.path().getPoint(2).getY());
-        assertEquals(550, game.path().getPoint(3).getX());
-        assertEquals(440, game.path().getPoint(3).getY());
-        assertEquals(350, game.path().getPoint(4).getX());
-        assertEquals(220, game.path().getPoint(4).getY());
+        assertEquals(game.getPath().getPoints(), game.getPath().getPoints());
+        assertEquals(642, game.getPath().getPoint(0).getX());
+        assertEquals(555, game.getPath().getPoint(0).getY());
+        assertEquals(483, game.getPath().getPoint(1).getX());
+        assertEquals(563, game.getPath().getPoint(1).getY());
+        assertEquals(470, game.getPath().getPoint(2).getX());
+        assertEquals(521, game.getPath().getPoint(2).getY());
+        assertEquals(550, game.getPath().getPoint(3).getX());
+        assertEquals(440, game.getPath().getPoint(3).getY());
+        assertEquals(350, game.getPath().getPoint(4).getX());
+        assertEquals(220, game.getPath().getPoint(4).getY());
         
     }
 

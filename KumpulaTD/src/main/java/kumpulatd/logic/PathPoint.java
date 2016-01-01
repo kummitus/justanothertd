@@ -10,8 +10,8 @@ package kumpulatd.logic;
  * @author kummi
  */
 public class PathPoint {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     
     public PathPoint(int x, int y){
         this.x = x;

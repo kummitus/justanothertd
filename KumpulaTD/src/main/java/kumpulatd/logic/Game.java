@@ -20,16 +20,20 @@ public final class Game {
     private List<Tower> towers;
     private List<Ammunition> ammunition;
     private List<SpawnLocation> spawns;
-    private final GoalLocation goal;
+    private GoalLocation goal;
     private PathFinding path;
     private List<TowerLocation> towerlocations;
 
     public Game() {
         initLists();
-        goal = new GoalLocation(350, 220);
+        initGoal();
         initPath();
         initTowers();
 
+    }
+
+    private void initGoal() {
+        goal = new GoalLocation(350, 220);
     }
 
     private void initLists() {
@@ -41,6 +45,46 @@ public final class Game {
         spawns.add(new SpawnLocation(660, 550));
         towerlocations = new ArrayList<>();
 
+    }
+
+    private void initPath() {
+        path = new PathFinding();
+        path.addPoint(642, 555);
+        path.addPoint(483, 563);
+        path.addPoint(470, 521);
+        path.addPoint(550, 440);
+        path.addPoint(350, 220);
+    }
+
+    private void initTowers() {
+        towerlocations.add(new TowerLocation(530, 588));
+        towerlocations.add(new TowerLocation(468, 505));
+        towerlocations.add(new TowerLocation(524, 370));
+        towerlocations.add(new TowerLocation(370, 266));
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public List<Tower> getTowers() {
+        return towers;
+    }
+
+    public List<Ammunition> getAmmunition() {
+        return ammunition;
+    }
+
+    public List<SpawnLocation> getSpawns() {
+        return spawns;
+    }
+
+    public GoalLocation getGoal() {
+        return goal;
+    }
+
+    public PathFinding getPath() {
+        return path;
     }
 
     public void update(int frame) {
@@ -89,7 +133,7 @@ public final class Game {
         }
     }
 
-    boolean testIfClose(Enemy ee) {
+    private boolean testIfClose(Enemy ee) {
         if (ee.getX() == path.getPoint(ee.currentTarget()).getX() && ee.getY() == path.getPoint(ee.currentTarget()).getY()) {
             return true;
         }
@@ -114,36 +158,7 @@ public final class Game {
         return false;
     }
 
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
-
-    public List<Tower> getTowers() {
-        return towers;
-    }
-
-    public List<Ammunition> getAmmunition() {
-        return ammunition;
-    }
-
-    private void initPath() {
-        path = new PathFinding();
-        path.addPoint(642, 555);
-        path.addPoint(483, 563);
-        path.addPoint(470, 521);
-        path.addPoint(550, 440);
-        path.addPoint(350, 220);
-    }
-
-    public List<SpawnLocation> getSpawns() {
-        return spawns;
-    }
-
-    public PathFinding path() {
-        return path;
-    }
-
-    public List<String> infoDraw() {
+    public List<String> getInfoString() {
         StringBuilder str;
         List<String> list = new ArrayList<>();
         int i = 1;
@@ -157,25 +172,14 @@ public final class Game {
                     j++;
                 }
             }
-            if(j == 0){
+            if (j == 0) {
                 str.append("empty");
             }
             list.add(str.toString());
             i++;
-            
+
         }
         return list;
-    }
-
-    private void initTowers() {
-        towerlocations.add(new TowerLocation(530, 588));
-        towerlocations.add(new TowerLocation(468, 505));
-        towerlocations.add(new TowerLocation(524, 370));
-        towerlocations.add(new TowerLocation(370, 266));
-    }
-
-    public GoalLocation getGoal() {
-        return goal;
     }
 
 }

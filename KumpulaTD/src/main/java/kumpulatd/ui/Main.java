@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
  */
 public class Main {
         public static void main(String[] args) {
-            Window menu = new Window();
-            SwingUtilities.invokeLater(menu);
+            Window window = new Window();
+            SwingUtilities.invokeLater(window);
         }
 }
