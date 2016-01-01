@@ -9,3 +9,4 @@
 | 25.12 | 2 hours | Added tests |
 | 28.12 | 2 hours | Added new classchart, gave input |
 | 31.12 | 2 hours | Tower logic and image |
+| 1.1 | 5 hours | Bunch of logic and stuff to get closer to actual gameplay |

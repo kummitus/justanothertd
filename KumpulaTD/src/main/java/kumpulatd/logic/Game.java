@@ -107,7 +107,7 @@ public final class Game {
                 removeSurvivedEnemies();
                 removeDeadEnemies();
                 endGameInvoked = false;
-                testForRemainingLives(lives);
+                testForRemainingLives(lives, view);
                 //view.stopTimer();
                 
             }

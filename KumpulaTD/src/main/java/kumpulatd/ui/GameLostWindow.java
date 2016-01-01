@@ -13,11 +13,14 @@ import javax.swing.JOptionPane;
  */
 public class GameLostWindow {
 
-    public void invokeWarning() {
-        JOptionPane.showMessageDialog(null,
-                "Game integrity is not up to standards, some sources files are lost",
-                "Something happened",
-                JOptionPane.PLAIN_MESSAGE);
+    public void invokeWarning(GameView view) {
+        JOptionPane.showOptionDialog(null,
+                "You lose the game",
+                "Haa haa",
+                JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.PLAIN_MESSAGE, null, null, null);
+
+        view.returnMenu();
 
     }
 }

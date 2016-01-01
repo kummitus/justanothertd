@@ -34,14 +34,16 @@ public class GameView extends JPanel implements ActionListener {
     private char nextCommand;
     private int currentTower;
     private Timer timer;
+    private Window window;
 
-    public GameView() {
+    public GameView(Window window) {
         game = new Game();
         frame = 0;
         currentTower = '1';
         nextCommand = ' ';
         timer = new Timer(16, this);
         timer.start();
+        this.window = window;
     }
     
     public void stopTimer(){
@@ -190,6 +192,10 @@ public class GameView extends JPanel implements ActionListener {
 
     private void drawGoal(Graphics2D g2d) {
         g2d.drawImage(game.getGoal().getImg(), null, game.getGoal().getX() - 40, game.getGoal().getY() - 40);
+    }
+    
+    public void returnMenu(){
+        window.restartMenu();
     }
 
 }

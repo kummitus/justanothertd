@@ -44,7 +44,7 @@ public class Window implements Runnable {
     }
 
     private void createComponents(Container contentPane) {
-        game = new GameView();
+        game = new GameView(this);
         contentPane.setLayout(new BorderLayout());
         
         contentPane.add(createMenu(), BorderLayout.SOUTH);
@@ -80,9 +80,9 @@ public class Window implements Runnable {
     }
     
     public void restartMenu(){
-        frame.removeAll();
+        frame.getContentPane().removeAll();
         createComponents(frame.getContentPane());
-        frame.pack();
-        frame.setVisible(true);
+        frame.validate();
+        
     }
 }
