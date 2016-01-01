@@ -5,7 +5,7 @@
  */
 package kumpulatd.logic;
 
-
+import kumpulatd.ui.GameLostWindow;
 
 /**
  *
@@ -38,5 +38,12 @@ public class TestingHelper {
         return false;
     }
 
-    
+    public static void testForRemainingLives(int lives) {
+        if (lives <= 0) {
+
+            new GameLostWindow().invokeWarning();
+
+        }
+    }
+
 }

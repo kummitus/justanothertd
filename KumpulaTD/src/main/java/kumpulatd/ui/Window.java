@@ -78,4 +78,11 @@ public class Window implements Runnable {
         menu.add(exit);
         return menu;
     }
+    
+    public void restartMenu(){
+        frame.removeAll();
+        createComponents(frame.getContentPane());
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

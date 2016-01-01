@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author antti
  */
-public class WarningMessage {
+public class GameLostWindow {
 
     public void invokeWarning() {
         JOptionPane.showMessageDialog(null,
@@ -20,5 +20,4 @@ public class WarningMessage {
                 JOptionPane.PLAIN_MESSAGE);
 
     }
-
 }

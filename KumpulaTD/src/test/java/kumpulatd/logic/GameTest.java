@@ -43,18 +43,18 @@ public class GameTest {
         assertEquals(new ArrayList<>(), game.getAmmunition());
     }
     
-    @Test
-    public void firstSpawnFrame(){
-        game.update(30);
-        for (SpawnLocation sl : game.getSpawns()) {
-            if(sl.getX() == game.getEnemies().get(0).getMembers().get(0).getX() && sl.getY() == game.getEnemies().get(0).getMembers().get(0).getY()){
-                assertEquals(new ArrayList<>().add(new Fuksi(sl.getX(), sl.getY())), game.getEnemies().get(0).getMembers());
-                
-            }
-        }
-        
-        
-    }
+//    @Test
+//    public void firstSpawnFrame(){
+//        game.update(30);
+//        for (SpawnLocation sl : game.getSpawns()) {
+//            if(sl.getX() == game.getEnemies().get(0).getMembers().get(0).getX() && sl.getY() == game.getEnemies().get(0).getMembers().get(0).getY()){
+//                assertEquals(new ArrayList<>().add(new Fuksi(sl.getX(), sl.getY())), game.getEnemies().get(0).getMembers());
+//                
+//            }
+//        }
+//        
+//        
+//    }
     
     
     
