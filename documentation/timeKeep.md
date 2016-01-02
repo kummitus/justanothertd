@@ -10,4 +10,4 @@
 | 28.12 | 2 hours | Added new classchart, gave input |
 | 31.12 | 2 hours | Tower logic and image |
 | 1.1 | 5 hours | Bunch of logic and stuff to get closer to actual gameplay |
-| 2.1 | 7 hours | Tests, chart, Some more finetuning on logic and bugspalshing |
+| 2.1 | 7 hours | Tests, chart, Some more finetuning on logic and bugspalshing, JavaDoc |
