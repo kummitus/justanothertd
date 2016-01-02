@@ -36,6 +36,10 @@ public class GameView extends JPanel implements ActionListener {
     private Timer timer;
     private Window window;
 
+    /**
+     *
+     * @param window
+     */
     public GameView(Window window) {
         game = new Game();
         frame = 0;
@@ -46,16 +50,27 @@ public class GameView extends JPanel implements ActionListener {
         this.window = window;
     }
     
+    /**
+     * Used to stop gameview from refreshing itself
+     */
     public void stopTimer(){
         timer.stop();
         timer.removeActionListener(this);
         
     }
 
+    /**
+     *
+     * @param command
+     */
     public void setNextCommand(char command) {
         nextCommand = command;
     }
 
+    /**
+     *
+     * @return
+     */
     public Game getGame() {
         return game;
     }
@@ -82,6 +97,10 @@ public class GameView extends JPanel implements ActionListener {
         drawGoal(g2d);
     }
 
+    /**
+     *
+     * @param g2d
+     */
     public void drawBackGround(Graphics2D g2d) {
         BufferedImage img = null;
         try {
@@ -99,6 +118,10 @@ public class GameView extends JPanel implements ActionListener {
         g2d.setColor(Color.black);
     }
 
+    /**
+     *
+     * @param g2d
+     */
     public void drawFrameCounter(Graphics2D g2d) {
         String frametostring = "" + frame;
         g2d.drawString(frametostring, 10, 10);
@@ -146,10 +169,10 @@ public class GameView extends JPanel implements ActionListener {
                 drawSelectedTower(currentTower, g2d, x, y);
                 nextCommand = ' ';
             } else if (nextCommand == 'b') {
-                game.buyTower(currentTower, nextCommand);
+                game.buyTower(currentTower);
                 nextCommand = ' ';
             } else if (nextCommand == 's') {
-                game.sellTower(currentTower, nextCommand);
+                game.sellTower(currentTower);
                 nextCommand = ' ';
             }
         }
@@ -194,6 +217,9 @@ public class GameView extends JPanel implements ActionListener {
         g2d.drawImage(game.getGoal().getImg(), null, game.getGoal().getX() - 40, game.getGoal().getY() - 40);
     }
     
+    /**
+     * Changes the view back to opening menu
+     */
     public void returnMenu(){
         window.restartMenu();
     }

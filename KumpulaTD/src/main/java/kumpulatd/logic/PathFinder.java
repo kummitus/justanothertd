@@ -15,6 +15,13 @@ import kumpulatd.ui.WarningMessage;
  */
 public class PathFinder {
 
+    /**
+     *
+     * @param enemies
+     * @param goal
+     * @param path
+     * @return
+     */
     public List<Enemy> testForPathFinding(List<Enemy> enemies, GoalLocation goal, PathFinding path) {
         for (Enemy e : enemies) {
             for (Enemy ee : e.getMembers()) {

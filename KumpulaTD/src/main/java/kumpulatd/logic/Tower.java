@@ -13,16 +13,40 @@ import java.awt.image.BufferedImage;
  */
 public interface Tower {
     
+    /**
+     *
+     * @return
+     */
     public int range();
     
+    /**
+     *
+     * @return
+     */
     public int damage();
     
+    /**
+     *
+     * @return
+     */
     public int damageType();
     
+    /**
+     *
+     * @return
+     */
     public BufferedImage getImg();
     
+    /**
+     *
+     * @return
+     */
     public TowerLocation getLocation();
     
+    /**
+     *
+     * @return
+     */
     public String getName();
     
 }

@@ -18,17 +18,28 @@ public class EnemyGroup implements Enemy {
     private List<Enemy> list;
     private int target;
 
+    /**
+     *
+     */
     public EnemyGroup() {
         list = new ArrayList<>();
         target = 0;
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Enemy> getMembers() {
         return list;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getHP() {
         int hp = 0;
@@ -38,6 +49,11 @@ public class EnemyGroup implements Enemy {
         return hp;
     }
 
+    /**
+     *
+     * @param type
+     * @param amount
+     */
     @Override
     public void damage(int type, int amount) {
         for (Enemy e : list) {
@@ -45,6 +61,10 @@ public class EnemyGroup implements Enemy {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getSpeed() {
         if (list.isEmpty()) {
@@ -54,10 +74,18 @@ public class EnemyGroup implements Enemy {
         }
     }
 
+    /**
+     *
+     * @param e
+     */
     public void addMember(Enemy e) {
         list.add(e);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getX() {
         if (list.isEmpty()) {
@@ -71,6 +99,10 @@ public class EnemyGroup implements Enemy {
         return sum / list.size();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getY() {
         if (list.isEmpty()) {
@@ -84,11 +116,19 @@ public class EnemyGroup implements Enemy {
         return sum / list.size();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public BufferedImage getImg() {
         return null;
     }
 
+    /**
+     *
+     * @param x
+     */
     @Override
     public void setX(int x) {
         for (Enemy e : list) {
@@ -96,6 +136,10 @@ public class EnemyGroup implements Enemy {
         }
     }
 
+    /**
+     *
+     * @param y
+     */
     @Override
     public void setY(int y) {
         for (Enemy e : list) {
@@ -103,11 +147,18 @@ public class EnemyGroup implements Enemy {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int currentTarget() {
         return target;
     }
 
+    /**
+     *
+     */
     @Override
     public void increaseTarget() {
         if (list.isEmpty()) {

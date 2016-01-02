@@ -20,6 +20,11 @@ public class GoalLocation {
     private int y;
     private BufferedImage img;
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public GoalLocation(int x, int y) {
         this.x = x;
         this.y = y;
@@ -33,14 +38,26 @@ public class GoalLocation {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getY() {
         return y;
     }
     
+    /**
+     *
+     * @return
+     */
     public BufferedImage getImg(){
         return img;
     }

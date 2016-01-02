@@ -33,26 +33,46 @@ public class Tutor implements Tower {
         name = "Tutor";
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int range() {
         return range;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int damage() {
         return damage;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int damageType() {
         return damageType;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public BufferedImage getImg() {
         return img;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public TowerLocation getLocation() {
         return location;
@@ -68,6 +88,10 @@ public class Tutor implements Tower {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getName() {
         return name;

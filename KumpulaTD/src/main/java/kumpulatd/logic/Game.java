@@ -153,7 +153,7 @@ public final class Game {
         return list;
     }
 
-    public void buyTower(int currentTower, char nextCommand) {
+    public void buyTower(int currentTower) {
         boolean test = true;
         if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {
             for (Tower tower : towers) {
@@ -167,8 +167,8 @@ public final class Game {
         }
     }
 
-    public void sellTower(int currentTower, char nextCommand) {
-        System.out.println("yritetään myydä");
+    
+    public void sellTower(int currentTower) {
         boolean test = false;
         if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {
             for (Tower tower : towers) {
@@ -182,7 +182,6 @@ public final class Game {
                     Tower lct = (Tower) itr.next();
                     if (towerlocations.get(currentTower - 1).equals(lct.getLocation())) {
                         itr.remove();
-                        System.out.println("poistettu");
                     }
                 }
             }

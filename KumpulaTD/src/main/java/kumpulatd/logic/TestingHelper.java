@@ -14,6 +14,12 @@ import kumpulatd.ui.GameView;
  */
 public class TestingHelper {
 
+    /**
+     *
+     * @param ee
+     * @param path
+     * @return
+     */
     public static boolean testIfClose(Enemy ee, PathFinding path) {
         if (ee.getX() == path.getPoint(ee.currentTarget()).getX() && ee.getY() == path.getPoint(ee.currentTarget()).getY()) {
             return true;
@@ -39,6 +45,11 @@ public class TestingHelper {
         return false;
     }
 
+    /**
+     *
+     * @param lives
+     * @param view
+     */
     public static void testForRemainingLives(int lives, GameView view) {
         if (lives <= 0) {
 

@@ -13,15 +13,28 @@ public class SpawnLocation {
     private int x;
     private int y;
     
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public SpawnLocation(int x, int y){
         this.x = x;
         this.y = y;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getX(){
         return x;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getY(){
         return y;
     }

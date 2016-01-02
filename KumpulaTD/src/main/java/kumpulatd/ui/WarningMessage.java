@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class WarningMessage {
 
+    /**
+     *
+     */
     public void invokeWarning() {
         JOptionPane.showMessageDialog(null,
                 "Game integrity is not up to standards, some sources files are lost",

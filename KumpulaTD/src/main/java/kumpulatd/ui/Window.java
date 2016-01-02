@@ -25,6 +25,9 @@ public class Window implements Runnable {
     private JFrame frame;
     private GameView game;
 
+    /**
+     *
+     */
     public Window() {
     }
 
@@ -53,6 +56,10 @@ public class Window implements Runnable {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public JFrame getFrame() {
         return frame;
     }
@@ -79,6 +86,9 @@ public class Window implements Runnable {
         return menu;
     }
     
+    /**
+     *
+     */
     public void restartMenu(){
         frame.getContentPane().removeAll();
         createComponents(frame.getContentPane());

@@ -13,19 +13,37 @@ public class TowerLocation {
     private int x;
     private int y;
     
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public TowerLocation(int x, int y){
         this.x = x;
         this.y = y;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getX(){
         return x;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getY(){
         return y;
     }
     
+    /**
+     *
+     * @param loc
+     * @return
+     */
     public int CompareTo(TowerLocation loc){
         if(x == loc.getX() && y == loc.getY()){
             return 0;

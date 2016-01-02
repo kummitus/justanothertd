@@ -13,10 +13,22 @@ import java.awt.image.BufferedImage;
  */
 public interface Ammunition {
     
+    /**
+     *
+     * @return
+     */
     public int getX();
     
+    /**
+     *
+     * @return
+     */
     public int getY();
     
+    /**
+     *
+     * @return
+     */
     public BufferedImage getImg();
     
 }

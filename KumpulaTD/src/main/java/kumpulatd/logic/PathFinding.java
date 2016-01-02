@@ -16,14 +16,27 @@ public class PathFinding {
 
     private List<PathPoint> list;
 
+    /**
+     *
+     */
     public PathFinding() {
         list = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public void addPoint(int x, int y) {
         list.add(new PathPoint(x, y));
     }
 
+    /**
+     *
+     * @param x
+     * @return
+     */
     public PathPoint getPoint(int x) {
         if (x < list.size()) {
             return list.get(x);
@@ -32,10 +45,18 @@ public class PathFinding {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSize() {
         return list.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<PathPoint> getPoints() {
         return list;
     }
