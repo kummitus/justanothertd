@@ -7,7 +7,6 @@ package kumpulatd.logic;
 
 import java.util.List;
 import static kumpulatd.logic.TestingHelper.testIfClose;
-import kumpulatd.ui.WarningMessage;
 
 /**
  *
@@ -16,11 +15,11 @@ import kumpulatd.ui.WarningMessage;
 public class PathFinder {
 
     /**
-     *
-     * @param enemies
-     * @param goal
-     * @param path
-     * @return
+     * Used to move the enemies around the map. 
+     * @param enemies Enemies to be moved
+     * @param goal Goal location
+     * @param path Path location
+     * @return Return the moved enemies
      */
     public List<Enemy> testForPathFinding(List<Enemy> enemies, GoalLocation goal, PathFinding path) {
         for (Enemy e : enemies) {
@@ -29,7 +28,6 @@ public class PathFinder {
                     if (ee.getX() == goal.getX() && ee.getY() == goal.getY()) {
 
                     }
-                    //System.out.println(ee.currentTarget() + "" + ee.getX() + "" + ee.getY());
                     if (testIfClose(ee, path)) {
                         ee.increaseTarget();
                     }

@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 public interface Ammunition {
     
     /**
-     *
+     * 
      * @return
      */
     public int getX();

@@ -26,7 +26,7 @@ public class Window implements Runnable {
     private GameView game;
 
     /**
-     *
+     * Constructor for Window
      */
     public Window() {
     }
@@ -87,7 +87,7 @@ public class Window implements Runnable {
     }
     
     /**
-     *
+     * Closes the game and returns to the main menu
      */
     public void restartMenu(){
         frame.getContentPane().removeAll();

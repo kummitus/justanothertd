@@ -29,6 +29,9 @@ public final class Game {
     private int lives;
     private boolean endGameInvoked;
 
+    /**
+     *Constructor for the game class
+     */
     public Game() {
         initLists();
         initGoal();
@@ -69,30 +72,59 @@ public final class Game {
         towerlocations.add(new TowerLocation(370, 266));
     }
 
+    /**
+     *
+     * @return Returns all enemies currently in-game
+     */
     public List<Enemy> getEnemies() {
         return enemies;
     }
 
+    /**
+     *
+     * @return Returns all Towers currently in-game
+     */
     public List<Tower> getTowers() {
         return towers;
     }
 
+    /**
+     *
+     * @return Returns all Ammunition currently in-game
+     */
     public List<Ammunition> getAmmunition() {
         return ammunition;
     }
 
+    /**
+     *
+     * @return Returns all spawn points in map
+     */
     public List<SpawnLocation> getSpawns() {
         return spawns;
     }
 
+    /**
+     *
+     * @return Returns goal location in game
+     */
     public GoalLocation getGoal() {
         return goal;
     }
 
+    /**
+     *
+     * @return Returns the pathfinding associated with the map
+     */
     public PathFinding getPath() {
         return path;
     }
 
+    /**
+     * Update method is used to process the game logic as whole
+     * @param frame Frame is the current frame in the game and is passed from the view
+     * @param view View is the frame allocated to the game and is used for callback when the game is finished
+     */
     public void update(int frame, GameView view) {
 
         if (lives >= 1) {
@@ -126,6 +158,10 @@ public final class Game {
         }
     }
 
+    /**
+     *
+     * @return Gathers the required information from the game and gives it back to view to show player interesting information
+     */
     public List<String> getInfoString() {
         StringBuilder str;
         List<String> list = new ArrayList<>();
@@ -153,6 +189,10 @@ public final class Game {
         return list;
     }
 
+    /**
+     *
+     * @param currentTower Gives the tower location to be manipulated to the logic and tries to perform action on it
+     */
     public void buyTower(int currentTower) {
         boolean test = true;
         if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {
@@ -167,7 +207,10 @@ public final class Game {
         }
     }
 
-    
+    /**
+     *
+     * @param currentTower Gives the tower location to be manipulated to the logic and tries to perform action on it
+     */
     public void sellTower(int currentTower) {
         boolean test = false;
         if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {

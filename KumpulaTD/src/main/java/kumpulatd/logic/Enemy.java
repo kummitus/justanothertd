@@ -16,67 +16,68 @@ public interface Enemy {
     
     /**
      *
-     * @return
+     * @return Returns the current HP of Enemy
      */
     public int getHP();
     
     /**
-     *
-     * @param type
-     * @param amount
+     *Method to damage the Enemy
+     * 
+     * @param type Sets the type of damage
+     * @param amount Sets the amount of damage
      */
     public void damage(int type, int amount);
     
     /**
      *
-     * @return
+     * @return Returns speed or the average for group
      */
     public int getSpeed();
     
     /**
      *
-     * @return
+     * @return Returns x value
      */
     public int getX();
     
     /**
      *
-     * @return
+     * @return Returns y value
      */
     public int getY();
     
     /**
      *
-     * @return
+     * @return Returns the image associated with the enemy, null for groups.
      */
     public BufferedImage getImg();
     
     /**
      *
-     * @return
+     * @return Returns list of Enemies included in the group. Null for Lowest level.
      */
     public List<Enemy> getMembers();
     
     /**
      *
-     * @param newx
+     * @param newx Set new x value
      */
     public void setX(int newx);
     
     /**
      *
-     * @param newy
+     * @param newy Set new y value
      */
     public void setY(int newy);
     
     /**
      *
-     * @return
+     * @return Returns the value that the Enemy is currently moving towards to
      */
     public int currentTarget();
     
     /**
-     *
+     *Increases the target variable for the Enemy pathfinder so that it can seek for the next object
      */
     public void increaseTarget();
     

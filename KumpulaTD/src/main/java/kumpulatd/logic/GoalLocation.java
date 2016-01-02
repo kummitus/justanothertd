@@ -21,9 +21,9 @@ public class GoalLocation {
     private BufferedImage img;
 
     /**
-     *
-     * @param x
-     * @param y
+     * Constructor for goal location
+     * @param x X value
+     * @param y Y value
      */
     public GoalLocation(int x, int y) {
         this.x = x;
@@ -40,7 +40,7 @@ public class GoalLocation {
 
     /**
      *
-     * @return
+     * @return X value
      */
     public int getX() {
         return x;
@@ -48,7 +48,7 @@ public class GoalLocation {
 
     /**
      *
-     * @return
+     * @return Y value
      */
     public int getY() {
         return y;
@@ -56,7 +56,7 @@ public class GoalLocation {
     
     /**
      *
-     * @return
+     * @return Image associated with goal
      */
     public BufferedImage getImg(){
         return img;

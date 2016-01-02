@@ -17,14 +17,14 @@ public class PathFinding {
     private List<PathPoint> list;
 
     /**
-     *
+     *Constructor for the PathFinding class
      */
     public PathFinding() {
         list = new ArrayList<>();
     }
 
     /**
-     *
+     * Add a point to the pathfinding class
      * @param x
      * @param y
      */
@@ -33,7 +33,7 @@ public class PathFinding {
     }
 
     /**
-     *
+     * Get a point from pathfinding class
      * @param x
      * @return
      */
@@ -46,7 +46,7 @@ public class PathFinding {
     }
 
     /**
-     *
+     * Get the length of the path
      * @return
      */
     public int getSize() {
@@ -54,7 +54,7 @@ public class PathFinding {
     }
 
     /**
-     *
+     * Get all the waypoints
      * @return
      */
     public List<PathPoint> getPoints() {

@@ -13,6 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class GameLostWindow {
 
+    /**
+     * 
+     * @param view Gets the frame to be refreshed and shows message and clears the screen
+     */
     public void invokeWarning(GameView view) {
         JOptionPane.showOptionDialog(null,
                 "You lose the game",

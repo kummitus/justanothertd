@@ -38,7 +38,7 @@ public class GameView extends JPanel implements ActionListener {
 
     /**
      *
-     * @param window
+     * @param window When game is started, the application passes the frame forward for the game logic to be manipulated by the game view
      */
     public GameView(Window window) {
         game = new Game();
@@ -51,7 +51,7 @@ public class GameView extends JPanel implements ActionListener {
     }
     
     /**
-     * Used to stop gameview from refreshing itself
+     * Used to stop game view from refreshing itself
      */
     public void stopTimer(){
         timer.stop();
@@ -61,7 +61,7 @@ public class GameView extends JPanel implements ActionListener {
 
     /**
      *
-     * @param command
+     * @param command Passes the game view the key press from keyboard to be processed
      */
     public void setNextCommand(char command) {
         nextCommand = command;
@@ -69,7 +69,7 @@ public class GameView extends JPanel implements ActionListener {
 
     /**
      *
-     * @return
+     * @return Returns the game object the view is associated with.
      */
     public Game getGame() {
         return game;
@@ -99,7 +99,7 @@ public class GameView extends JPanel implements ActionListener {
 
     /**
      *
-     * @param g2d
+     * @param g2d The graphics element to which background is drawn on is passed as parameter.
      */
     public void drawBackGround(Graphics2D g2d) {
         BufferedImage img = null;
@@ -120,7 +120,7 @@ public class GameView extends JPanel implements ActionListener {
 
     /**
      *
-     * @param g2d
+     * @param g2d The graphics element to which background is drawn on is passed as parameter. Utility for development phase to measure performance of the game.
      */
     public void drawFrameCounter(Graphics2D g2d) {
         String frametostring = "" + frame;

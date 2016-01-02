@@ -19,7 +19,7 @@ public class EnemyGroup implements Enemy {
     private int target;
 
     /**
-     *
+     * Constructor for EnemyGroup
      */
     public EnemyGroup() {
         list = new ArrayList<>();

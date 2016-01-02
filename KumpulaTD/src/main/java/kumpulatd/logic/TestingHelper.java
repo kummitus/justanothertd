@@ -9,13 +9,13 @@ import kumpulatd.ui.GameLostWindow;
 import kumpulatd.ui.GameView;
 
 /**
- *
+ * Helper class to include various tests used in the game 
  * @author antti
  */
 public class TestingHelper {
 
     /**
-     *
+     * Tests if the enemy is close and increases the target
      * @param ee
      * @param path
      * @return
@@ -46,7 +46,7 @@ public class TestingHelper {
     }
 
     /**
-     *
+     *  Tests for remaining lives and invokes end game screen
      * @param lives
      * @param view
      */

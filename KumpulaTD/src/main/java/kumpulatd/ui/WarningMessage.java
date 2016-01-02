@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class WarningMessage {
 
     /**
-     *
+     * Invokes warning message if some files are not found
      */
     public void invokeWarning() {
         JOptionPane.showMessageDialog(null,
