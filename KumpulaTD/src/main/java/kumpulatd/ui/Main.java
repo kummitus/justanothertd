@@ -8,7 +8,7 @@ package kumpulatd.ui;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Main class
  * @author kummi
  */
 public class Main {

@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 /**
- *
+ * Interface for all Enemy classes
  * @author antti
  */
 public interface Enemy {

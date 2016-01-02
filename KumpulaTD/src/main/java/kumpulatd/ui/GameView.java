@@ -24,7 +24,7 @@ import kumpulatd.logic.Game;
 import kumpulatd.logic.Tower;
 
 /**
- *
+ * Handles the drawing of the game window
  * @author antti
  */
 public class GameView extends JPanel implements ActionListener {

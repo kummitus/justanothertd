@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
- *
+ * The frame for the game, handles all the elements
  * @author antti
  */
 public class Window implements Runnable {

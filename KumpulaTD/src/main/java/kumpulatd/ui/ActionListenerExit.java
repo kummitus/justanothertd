@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Listens for exit call for the program
  * @author kummi
  */
 public class ActionListenerExit implements ActionListener{

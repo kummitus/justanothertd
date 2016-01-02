@@ -8,7 +8,7 @@ package kumpulatd.ui;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Warning message window
  * @author antti
  */
 public class WarningMessage {

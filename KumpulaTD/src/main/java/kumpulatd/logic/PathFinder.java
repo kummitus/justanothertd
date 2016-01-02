@@ -9,7 +9,7 @@ import java.util.List;
 import static kumpulatd.logic.TestingHelper.testIfClose;
 
 /**
- *
+ * Pathfinder, moves the enemies according to PathFinding class
  * @author antti
  */
 public class PathFinder {

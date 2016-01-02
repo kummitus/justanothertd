@@ -8,7 +8,7 @@ package kumpulatd.logic;
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * Interface for alla ammunition classes
  * @author kummi
  */
 public interface Ammunition {

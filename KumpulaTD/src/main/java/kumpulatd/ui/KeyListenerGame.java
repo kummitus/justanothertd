@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- *
+ * Listens for user keyboard input
  * @author kummi
  */
 class KeyListenerGame implements KeyListener{

@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import kumpulatd.ui.WarningMessage;
 
 /**
- *
+ * Implementation of Tower
  * @author kummi
  */
 public class Tutor implements Tower {

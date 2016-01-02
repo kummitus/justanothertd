@@ -6,7 +6,7 @@
 package kumpulatd.logic;
 
 /**
- *
+ * Specifies a tower location
  * @author antti
  */
 public class TowerLocation {

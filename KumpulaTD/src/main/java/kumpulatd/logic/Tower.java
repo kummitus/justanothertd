@@ -8,7 +8,7 @@ package kumpulatd.logic;
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * Interface for all the tower classes
  * @author antti
  */
 public interface Tower {

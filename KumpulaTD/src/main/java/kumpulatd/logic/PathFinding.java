@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Is used to determine the path the enemies move
  * @author kummi
  */
 public class PathFinding {

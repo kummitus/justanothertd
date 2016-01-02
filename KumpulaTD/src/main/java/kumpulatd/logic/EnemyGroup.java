@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Implementation of Enemy class to form groups of enemies
  * @author antti
  */
 public class EnemyGroup implements Enemy {

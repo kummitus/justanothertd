@@ -6,7 +6,7 @@
 package kumpulatd.logic;
 
 /**
- *
+ * Is a point given to the PathFinding class to determine the path
  * @author kummi
  */
 public class PathPoint {

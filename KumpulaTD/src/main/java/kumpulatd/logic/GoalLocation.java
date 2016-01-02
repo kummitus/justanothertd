@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import kumpulatd.ui.WarningMessage;
 
 /**
- *
+ * Is used to determine the last point of pathfinding
  * @author kummi
  */
 public class GoalLocation {

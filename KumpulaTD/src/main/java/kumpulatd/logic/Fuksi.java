@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import kumpulatd.ui.WarningMessage;
 
 /**
- *
+ * Implementation of enemy class
  * @author antti
  */
 public class Fuksi implements Enemy {

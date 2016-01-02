@@ -13,7 +13,7 @@ import static kumpulatd.logic.TestingHelper.testForRemainingLives;
 import kumpulatd.ui.GameView;
 
 /**
- *
+ * Combines all the game logic found from the game in the update method
  * @author kummi
  */
 public final class Game {

@@ -6,7 +6,7 @@
 package kumpulatd.logic;
 
 /**
- *
+ * Spawn location class
  * @author kummi
  */
 public class SpawnLocation {

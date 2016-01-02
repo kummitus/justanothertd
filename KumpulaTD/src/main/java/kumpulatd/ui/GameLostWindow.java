@@ -8,7 +8,7 @@ package kumpulatd.ui;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The end game window, initiates refreshing of the window
  * @author antti
  */
 public class GameLostWindow {

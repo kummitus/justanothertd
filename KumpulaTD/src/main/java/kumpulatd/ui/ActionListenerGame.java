@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
- *
+ * Listens for initiating the game call
  * @author kummi
  */
 public class ActionListenerGame implements ActionListener {
