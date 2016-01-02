@@ -195,7 +195,7 @@ public final class Game {
      */
     public void buyTower(int currentTower) {
         boolean test = true;
-        if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {
+        if (currentTower - 1 < towerlocations.size() && currentTower > 0) {
             for (Tower tower : towers) {
                 if (tower.getLocation() == towerlocations.get(currentTower - 1)) {
                     test = false;
@@ -213,7 +213,7 @@ public final class Game {
      */
     public void sellTower(int currentTower) {
         boolean test = false;
-        if (currentTower - 1 < towerlocations.size() && currentTower >= 0) {
+        if (currentTower - 1 < towerlocations.size() && currentTower > 0) {
             for (Tower tower : towers) {
                 if (tower.getLocation() == towerlocations.get(currentTower - 1)) {
                     test = true;

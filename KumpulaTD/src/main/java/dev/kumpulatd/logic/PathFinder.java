@@ -7,6 +7,7 @@ package dev.kumpulatd.logic;
 
 import java.util.List;
 import static dev.kumpulatd.logic.TestingHelper.testIfClose;
+import java.util.Iterator;
 
 /**
  * Pathfinder, moves the enemies according to PathFinding class

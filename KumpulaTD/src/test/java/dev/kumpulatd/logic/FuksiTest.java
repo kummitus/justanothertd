@@ -7,6 +7,8 @@ package dev.kumpulatd.logic;
 
 import dev.kumpulatd.logic.Fuksi;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -44,14 +46,19 @@ public class FuksiTest {
     }
 
     @Test
-    public void testImg(){
+    public void testImg() {
         BufferedImage img;
+
+        
         try {
             img = ImageIO.read(new File("src/main/resources/freshman.png"));
-            //assertEquals(img, fuksi.getImg());
         } catch (IOException e) {
             assertEquals(null, fuksi.getImg());
+            img = null;
         }
+        
+        assertEquals(img.getHeight(), fuksi.getImg().getHeight());
+        assertEquals(img.getWidth(), fuksi.getImg().getWidth());
 
     }
 

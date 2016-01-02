@@ -44,10 +44,5 @@ public class TowerLocation {
      * @param loc
      * @return
      */
-    public int CompareTo(TowerLocation loc){
-        if(x == loc.getX() && y == loc.getY()){
-            return 0;
-        }
-        return 1;
-    }
+
 }

@@ -169,4 +169,8 @@ public class EnemyGroup implements Enemy {
             }
         }
     }
+
+    public void setMembers(List<Enemy> testForPathFinding) {
+        this.list = testForPathFinding;
+    }
 }

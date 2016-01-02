@@ -41,7 +41,7 @@ public class PathFinding {
      * @return
      */
     public PathPoint getPoint(int x) {
-        if (x < list.size()) {
+        if (x < list.size() && x >= 0) {
             return list.get(x);
         } else if (!list.isEmpty()) {
             return list.get(this.getSize() - 1);
