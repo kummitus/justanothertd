@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,12 +24,12 @@ public class Tutor implements Tower {
     private int damage;
     private String name;
 
-    Tutor(TowerLocation location) {
+    public Tutor(TowerLocation location) {
         this.location = location;
-        range = 30;
+        range = 150;
         damageType = 1;
         initImg();
-        damage = 20;
+        damage = 5;
         name = "Tutor";
     }
 
@@ -81,7 +81,7 @@ public class Tutor implements Tower {
     private void initImg() {
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/penguinillustration.png"));
+            img = ImageIO.read(new File("src/main/resources/tutor.png"));
         } catch (IOException e) {
 
             new WarningMessage().invokeWarning();
@@ -95,6 +95,12 @@ public class Tutor implements Tower {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void upgrade() {
+        range += 5;
+        damage += 5;
     }
 
 }

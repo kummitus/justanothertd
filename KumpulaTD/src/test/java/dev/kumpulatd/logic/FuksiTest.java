@@ -5,7 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
-import dev.kumpulatd.logic.Fuksi;
+import dev.kumpulatd.objects.Freshman;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferByte;
@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class FuksiTest {
 
-    Fuksi fuksi;
+    Freshman fuksi;
 
     public FuksiTest() {
     }
@@ -30,7 +30,7 @@ public class FuksiTest {
     @Before
     public void setUp() {
 
-        fuksi = new Fuksi(5, 5);
+        fuksi = new Freshman(5, 5);
     }
 
     @Test

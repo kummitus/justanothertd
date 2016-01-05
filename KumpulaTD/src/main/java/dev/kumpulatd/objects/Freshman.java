@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -18,7 +18,7 @@ import dev.kumpulatd.ui.WarningMessage;
  * Implementation of enemy class
  * @author antti
  */
-public class Fuksi implements Enemy {
+public class Freshman implements Enemy {
 
     private int HP;
     private int speed;
@@ -27,14 +27,15 @@ public class Fuksi implements Enemy {
     private int x;
     private int y;
     private int target;
+    private String name;
 
     /**
      *
      * @param x
      * @param y
      */
-    public Fuksi(int x, int y) {
-        HP = 100;
+    public Freshman(int x, int y) {
+        HP = 50;
         speed = 5;
         resistance = new HashMap<>();
         img = null;
@@ -47,6 +48,7 @@ public class Fuksi implements Enemy {
         this.x = x;
         this.y = y;
         target = 0;
+        name = "Freshman";
     }
 
     /**
@@ -146,6 +148,11 @@ public class Fuksi implements Enemy {
     @Override
     public void increaseTarget() {
         target++;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
 }

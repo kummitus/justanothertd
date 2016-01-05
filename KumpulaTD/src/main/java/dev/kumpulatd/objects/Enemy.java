@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -80,6 +80,8 @@ public interface Enemy {
      *Increases the target variable for the Enemy pathfinder so that it can seek for the next object
      */
     public void increaseTarget();
+
+    public String getName();
     
     
 }

@@ -18,13 +18,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import dev.kumpulatd.logic.Ammunition;
-import dev.kumpulatd.logic.Enemy;
+import dev.kumpulatd.objects.Ammunition;
+import dev.kumpulatd.objects.Enemy;
 import dev.kumpulatd.logic.Game;
-import dev.kumpulatd.logic.Tower;
+import dev.kumpulatd.objects.Tower;
 
 /**
  * Handles the drawing of the game window
+ *
  * @author antti
  */
 public class GameView extends JPanel implements ActionListener {
@@ -38,30 +39,32 @@ public class GameView extends JPanel implements ActionListener {
 
     /**
      *
-     * @param window When game is started, the application passes the frame forward for the game logic to be manipulated by the game view
+     * @param window When game is started, the application passes the frame
+     * forward for the game logic to be manipulated by the game view
      */
     public GameView(Window window) {
         game = new Game();
         frame = 0;
-        currentTower = '1';
+        currentTower = 1;
         nextCommand = ' ';
         timer = new Timer(16, this);
         timer.start();
         this.window = window;
     }
-    
+
     /**
      * Used to stop game view from refreshing itself
      */
-    public void stopTimer(){
+    public void stopTimer() {
         timer.stop();
         timer.removeActionListener(this);
-        
+
     }
 
     /**
      *
-     * @param command Passes the game view the key press from keyboard to be processed
+     * @param command Passes the game view the key press from keyboard to be
+     * processed
      */
     public void setNextCommand(char command) {
         nextCommand = command;
@@ -83,11 +86,11 @@ public class GameView extends JPanel implements ActionListener {
         drawBackGround(g2d);
 
         game.update(frame, this);
-        
+
         List<Enemy> enemies = game.getEnemies();
         List<Tower> towers = game.getTowers();
         List<Ammunition> ammunition = game.getAmmunition();
-        
+
         drawDrawables(enemies, towers, ammunition, g2d);
 
         drawFrameCounter(g2d);
@@ -99,7 +102,8 @@ public class GameView extends JPanel implements ActionListener {
 
     /**
      *
-     * @param g2d The graphics element to which background is drawn on is passed as parameter.
+     * @param g2d The graphics element to which background is drawn on is passed
+     * as parameter.
      */
     public void drawBackGround(Graphics2D g2d) {
         BufferedImage img = null;
@@ -114,13 +118,15 @@ public class GameView extends JPanel implements ActionListener {
         g2d.drawImage(img, null, 0, 0);
         g2d.setBackground(Color.white);
         g2d.setColor(Color.white);
-        g2d.fillRect(1000, 0, 400, 800);
+        g2d.fillRect(800, 0, 400, 800);
         g2d.setColor(Color.black);
     }
 
     /**
      *
-     * @param g2d The graphics element to which background is drawn on is passed as parameter. Utility for development phase to measure performance of the game.
+     * @param g2d The graphics element to which background is drawn on is passed
+     * as parameter. Utility for development phase to measure performance of the
+     * game.
      */
     public void drawFrameCounter(Graphics2D g2d) {
         String frametostring = "" + frame;
@@ -134,7 +140,7 @@ public class GameView extends JPanel implements ActionListener {
     }
 
     private void drawDrawables(List<Enemy> enemies, List<Tower> towers, List<Ammunition> ammunition, Graphics2D g2d) {
-        
+
         for (Enemy e : enemies) {
             for (Enemy ee : e.getMembers()) {
                 g2d.drawImage(ee.getImg(), null, ee.getX(), ee.getY());
@@ -151,28 +157,47 @@ public class GameView extends JPanel implements ActionListener {
     }
 
     private void infoDraw(Graphics2D g2d) {
-        int x = 1025;
+        int x = 825;
         int y = 50;
         for (String row : game.getInfoString()) {
             g2d.drawString(row, x, y);
             y += 12;
         }
-        g2d.drawString(currentTower + "asdasdas", x + 50, y + 50);
         try {
             currentTower = Integer.parseInt(nextCommand + "");
         } catch (Exception e) {
 
         }
+//        y += 50;
+//        g2d.drawString("Selected tower: " + currentTower, x, y);
+//        y += 10;
+//        if (game.getTowers().size() > currentTower) {
+//            g2d.drawString("Damage: " + game.getTowers().get(currentTower - 1).damage(), x, y);
+//            g2d.drawString("Range: " + game.getTowers().get(currentTower - 1).range(), x, y);
+//            g2d.drawString("Type: " + game.getTowers().get(currentTower - 1).damageType(), x, y);            
+//        }
 
         if (nextCommand != ' ') {
             if (currentTower == '1' || currentTower == '2' || currentTower == '3' || currentTower == '4') {
                 drawSelectedTower(currentTower, g2d, x, y);
                 nextCommand = ' ';
-            } else if (nextCommand == 'b') {
-                game.buyTower(currentTower);
+            } else if (nextCommand == 'a') {
+                game.buyTower(currentTower, "Tutor");
                 nextCommand = ' ';
             } else if (nextCommand == 's') {
-                game.sellTower(currentTower);
+                game.sellTower(currentTower, "Tutor");
+                nextCommand = ' ';
+            } else if (nextCommand == 'd') {
+                game.upgradeTower(currentTower, "Tutor");
+                nextCommand = ' ';
+            } else if (nextCommand == 'q') {
+                game.buyTower(currentTower, "Professor");
+                nextCommand = ' ';
+            } else if (nextCommand == 'w') {
+                game.sellTower(currentTower, "Professor");
+                nextCommand = ' ';
+            } else if (nextCommand == 'e') {
+                game.upgradeTower(currentTower, "Professor");
                 nextCommand = ' ';
             }
         }
@@ -216,11 +241,11 @@ public class GameView extends JPanel implements ActionListener {
     private void drawGoal(Graphics2D g2d) {
         g2d.drawImage(game.getGoal().getImg(), null, game.getGoal().getX() - 40, game.getGoal().getY() - 40);
     }
-    
+
     /**
      * Changes the view back to opening menu
      */
-    public void returnMenu(){
+    public void returnMenu() {
         window.restartMenu();
     }
 

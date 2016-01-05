@@ -5,6 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
+import dev.kumpulatd.objects.TowerLocation;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

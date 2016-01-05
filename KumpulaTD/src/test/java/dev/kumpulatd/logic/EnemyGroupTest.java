@@ -5,9 +5,9 @@
  */
 package dev.kumpulatd.logic;
 
-import dev.kumpulatd.logic.Fuksi;
-import dev.kumpulatd.logic.Enemy;
-import dev.kumpulatd.logic.EnemyGroup;
+import dev.kumpulatd.objects.Freshman;
+import dev.kumpulatd.objects.Enemy;
+import dev.kumpulatd.objects.EnemyGroup;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -33,8 +33,8 @@ public class EnemyGroupTest {
 
     @Test
     public void testAddMember() {
-        group.addMember(new Fuksi(5, 5));
-        group.addMember(new Fuksi(5, 5));
+        group.addMember(new Freshman(5, 5));
+        group.addMember(new Freshman(5, 5));
         assertEquals(200, group.getHP());
         assertEquals(5, group.getSpeed());
 
@@ -42,8 +42,8 @@ public class EnemyGroupTest {
 
     @Test
     public void testDamage() {
-        group.addMember(new Fuksi(5, 5));
-        group.addMember(new Fuksi(5, 5));
+        group.addMember(new Freshman(5, 5));
+        group.addMember(new Freshman(5, 5));
         group.damage(0, 50);
         assertEquals(100, group.getHP());
         assertEquals(5, group.getSpeed());
@@ -62,7 +62,7 @@ public class EnemyGroupTest {
 
     @Test
     public void testOneMembers() {
-        Enemy fuksi = new Fuksi(1, 1);
+        Enemy fuksi = new Freshman(1, 1);
         group.addMember(fuksi);
         List<Enemy> list = new ArrayList<>();
         list.add(fuksi);
@@ -81,7 +81,7 @@ public class EnemyGroupTest {
 
     @Test
     public void oneMemberGetXY() {
-        group.addMember(new Fuksi(5, 5));
+        group.addMember(new Freshman(5, 5));
         assertEquals(5, group.getX());
         assertEquals(5, group.getY());
 
@@ -89,8 +89,8 @@ public class EnemyGroupTest {
 
     @Test
     public void averageMemberGetXY() {
-        group.addMember(new Fuksi(5, 5));
-        group.addMember(new Fuksi(15, 15));
+        group.addMember(new Freshman(5, 5));
+        group.addMember(new Freshman(15, 15));
         assertEquals(10, group.getX());
         assertEquals(10, group.getY());
 
@@ -98,8 +98,8 @@ public class EnemyGroupTest {
 
     @Test
     public void average2MemberGetXY() {
-        group.addMember(new Fuksi(5, 5));
-        group.addMember(new Fuksi(10, 10));
+        group.addMember(new Freshman(5, 5));
+        group.addMember(new Freshman(10, 10));
         assertEquals(7, group.getX());
         assertEquals(7, group.getY());
 
@@ -123,15 +123,15 @@ public class EnemyGroupTest {
     
     @Test
     public void nextTargetMember(){
-        group.addMember(new Fuksi(5,5));
+        group.addMember(new Freshman(5,5));
         group.increaseTarget();
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
     
     @Test
     public void setXsetY(){
-        group.addMember(new Fuksi(5,5));
-        group.addMember(new Fuksi(10, 10));
+        group.addMember(new Freshman(5,5));
+        group.addMember(new Freshman(10, 10));
         group.setX(200);
         group.setY(200);
         assertEquals(200, group.getX());

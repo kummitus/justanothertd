@@ -5,7 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
-import dev.kumpulatd.logic.SpawnLocation;
+import dev.kumpulatd.objects.SpawnLocation;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

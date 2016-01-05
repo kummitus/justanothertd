@@ -5,7 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
-import dev.kumpulatd.logic.GoalLocation;
+import dev.kumpulatd.objects.GoalLocation;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

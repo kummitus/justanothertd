@@ -5,6 +5,8 @@
  */
 package dev.kumpulatd.logic;
 
+import dev.kumpulatd.objects.Enemy;
+import dev.kumpulatd.objects.GoalLocation;
 import java.util.List;
 import static dev.kumpulatd.logic.TestingHelper.testIfClose;
 import java.util.Iterator;

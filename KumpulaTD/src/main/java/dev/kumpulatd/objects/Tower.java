@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
+import dev.kumpulatd.objects.TowerLocation;
 import java.awt.image.BufferedImage;
 
 /**
@@ -48,5 +49,7 @@ public interface Tower {
      * @return
      */
     public String getName();
+
+    public void upgrade();
     
 }

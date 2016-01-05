@@ -5,6 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
+import dev.kumpulatd.objects.PathPoint;
 import java.util.ArrayList;
 import java.util.List;
 

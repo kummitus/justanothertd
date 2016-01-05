@@ -5,6 +5,8 @@
  */
 package dev.kumpulatd.logic;
 
+import dev.kumpulatd.objects.Freshman;
+import dev.kumpulatd.objects.SpawnLocation;
 import dev.kumpulatd.ui.GameView;
 import dev.kumpulatd.ui.Window;
 import java.util.ArrayList;
@@ -49,7 +51,7 @@ public class GameTest {
         game.update(30, new GameView(new Window()));
         for (SpawnLocation sl : game.getSpawns()) {
             if (sl.getX() == game.getEnemies().get(0).getMembers().get(0).getX() && sl.getY() == game.getEnemies().get(0).getMembers().get(0).getY()) {
-                assertEquals(new ArrayList<>().add(new Fuksi(sl.getX(), sl.getY())), game.getEnemies().get(0).getMembers());
+                assertEquals(new ArrayList<>().add(new Freshman(sl.getX(), sl.getY())), game.getEnemies().get(0).getMembers());
 
             }
         }

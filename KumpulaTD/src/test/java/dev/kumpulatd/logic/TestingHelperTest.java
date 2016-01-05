@@ -5,6 +5,10 @@
  */
 package dev.kumpulatd.logic;
 
+import dev.kumpulatd.objects.Enemy;
+import dev.kumpulatd.objects.EnemyGroup;
+import dev.kumpulatd.objects.Freshman;
+import dev.kumpulatd.objects.GoalLocation;
 import static dev.kumpulatd.logic.TestingHelper.testForRemainingLives;
 import static dev.kumpulatd.logic.TestingHelper.testIfClose;
 import dev.kumpulatd.ui.GameView;
@@ -47,7 +51,7 @@ public class TestingHelperTest {
 
         path = new PathFinding();
         group = new EnemyGroup();
-        group.addMember(new Fuksi(2, 2));
+        group.addMember(new Freshman(2, 2));
         finder = new PathFinder();
         location = new GoalLocation(10, 10);
         enemies = new ArrayList<>();

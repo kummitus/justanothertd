@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 /**
- * Specifies a tower location
- * @author antti
+ * Spawn location class
+ * @author kummi
  */
-public class TowerLocation {
+public class SpawnLocation {
     private int x;
     private int y;
     
@@ -18,7 +18,7 @@ public class TowerLocation {
      * @param x
      * @param y
      */
-    public TowerLocation(int x, int y){
+    public SpawnLocation(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -38,11 +38,4 @@ public class TowerLocation {
     public int getY(){
         return y;
     }
-    
-    /**
-     *
-     * @param loc
-     * @return
-     */
-
 }

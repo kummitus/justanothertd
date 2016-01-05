@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 /**
- * Is a point given to the PathFinding class to determine the path
- * @author kummi
+ * Specifies a tower location
+ * @author antti
  */
-public class PathPoint {
-    private final int x;
-    private final int y;
+public class TowerLocation {
+    private int x;
+    private int y;
     
     /**
      *
      * @param x
      * @param y
      */
-    public PathPoint(int x, int y){
+    public TowerLocation(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -38,4 +38,11 @@ public class PathPoint {
     public int getY(){
         return y;
     }
+    
+    /**
+     *
+     * @param loc
+     * @return
+     */
+
 }

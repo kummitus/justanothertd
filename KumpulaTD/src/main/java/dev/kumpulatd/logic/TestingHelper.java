@@ -5,17 +5,20 @@
  */
 package dev.kumpulatd.logic;
 
-import dev.kumpulatd.ui.GameLostWindow;
+import dev.kumpulatd.objects.Enemy;
+import dev.kumpulatd.ui.GameWonWindow;
 import dev.kumpulatd.ui.GameView;
 
 /**
- * Helper class to include various tests used in the game 
+ * Helper class to include various tests used in the game
+ *
  * @author antti
  */
 public class TestingHelper {
 
     /**
      * Tests if the enemy is close and increases the target
+     *
      * @param ee
      * @param path
      * @return
@@ -46,17 +49,21 @@ public class TestingHelper {
     }
 
     /**
-     *  Tests for remaining lives and invokes end game screen
+     * Tests for remaining lives and invokes end game screen
+     *
      * @param lives
      * @param view
      */
     public static void testForRemainingLives(int lives, GameView view) {
         if (lives <= 0) {
 
-            new GameLostWindow().invokeWarning(view);
-            
+            new GameWonWindow().invokeWarning(view);
 
         }
+    }
+
+    public static void winGame(GameView view) {
+        new GameWonWindow().invokeWarning(view);
     }
 
 }

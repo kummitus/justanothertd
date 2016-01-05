@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 /**
- * Spawn location class
+ * Is a point given to the PathFinding class to determine the path
  * @author kummi
  */
-public class SpawnLocation {
-    private int x;
-    private int y;
+public class PathPoint {
+    private final int x;
+    private final int y;
     
     /**
      *
      * @param x
      * @param y
      */
-    public SpawnLocation(int x, int y){
+    public PathPoint(int x, int y){
         this.x = x;
         this.y = y;
     }

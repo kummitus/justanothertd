@@ -5,7 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
-import dev.kumpulatd.logic.PathPoint;
+import dev.kumpulatd.objects.PathPoint;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
