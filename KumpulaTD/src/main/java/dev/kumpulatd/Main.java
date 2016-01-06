@@ -16,7 +16,7 @@ public class Main {
 
     /**
      *
-     * @param args
+     * @param ar
      */
     public static void main(String[] args) {
             Window window = new Window();

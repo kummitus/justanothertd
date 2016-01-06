@@ -49,18 +49,18 @@ public final class Game {
      * Constructor for the game class
      *
      *
-     * @param list Takes configuration as parameter of which it creates the played map
+     * @param list Takes configuration as parameter of which it creates the
+     * played map
      */
     public Game(List<String> list) {
-        
-            initLists(list.get(1));
-            initGoal(list.get(2));
-            initPath(list.get(3));
-            initTowers(list.get(4));
-            lives = Integer.parseInt(list.get(5));
-            endGameInvoked = true;
-            money = Integer.parseInt(list.get(6));
-        
+
+        initLists(list.get(1));
+        initGoal(list.get(2));
+        initPath(list.get(3));
+        initTowers(list.get(4));
+        lives = Integer.parseInt(list.get(5));
+        endGameInvoked = true;
+        money = Integer.parseInt(list.get(6));
 
     }
 
@@ -259,8 +259,9 @@ public final class Game {
      * to view to show player interesting information
      */
     public List<String> getInfoString() {
-        return GameInfo.infoBuilder(towerlocations, towers, enemies, money, lives);        
+        return GameInfo.infoBuilder(towerlocations, towers, enemies, money, lives);
     }
+
     /**
      *
      * @param currentTower Gives the tower location to be manipulated to the
@@ -269,27 +270,29 @@ public final class Game {
      */
     public void buyTower(int currentTower, String tow) {
         boolean test = true;
-        if (money >= 30) {
-            if (currentTower - 1 < towerlocations.size() && currentTower > 0) {
-                for (Tower tower : towers) {
-                    if (tower.getLocation() == towerlocations.get(currentTower - 1)) {
-                        test = false;
-                    }
-                }
-                if (test) {
 
+        if (currentTower - 1 < towerlocations.size() && currentTower > 0) {
+            for (Tower tower : towers) {
+                if (tower.getLocation() == towerlocations.get(currentTower - 1)) {
+                    test = false;
+                }
+            }
+            if (test) {
+                if (money >= 30) {
                     if (tow.equals("Tutor")) {
                         money -= 30;
                         towers.add(new Tutor(towerlocations.get(currentTower - 1)));
                     }
+                }
+                if (money >= 40) {
                     if (tow.equals("Professor")) {
                         money -= 40;
                         towers.add(new Professor(towerlocations.get(currentTower - 1)));
                     }
                 }
             }
-
         }
+
     }
 
     /**

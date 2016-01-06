@@ -7,6 +7,8 @@ package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Freshman;
 import dev.kumpulatd.objects.SpawnLocation;
+import dev.kumpulatd.objects.TowerLocation;
+import dev.kumpulatd.objects.Tutor;
 import dev.kumpulatd.ui.GameView;
 import dev.kumpulatd.ui.Window;
 import java.util.ArrayList;
@@ -189,12 +191,13 @@ public class GameTest {
     @Test
     public void tryReplacingTower() {
         game.buyTower(4, "Tutor");
-        game.buyTower(4, "Tutor");
-        assertEquals(370, game.getTowers().get(0).getLocation().getX());
+        game.buyTower(4, "Professor");
+        assertEquals("Tutor", game.getTowers().get(0).getName());
     }
 
     /**
      *
+     * 
      */
     @Test
     public void buyTowers() {
@@ -202,6 +205,7 @@ public class GameTest {
         game.buyTower(4, "Tutor");
         assertEquals(370, game.getTowers().get(0).getLocation().getX());
         assertEquals(1, game.getTowers().size());
+        assertEquals("Money: 0", game.getInfoString().get(0));
     }
 
     /**
@@ -239,7 +243,7 @@ public class GameTest {
         list.add("");
         list.add("");
         list.add("Enemies: ");
-        
+
         assertEquals(game.getInfoString(), list);
     }
 
@@ -275,7 +279,7 @@ public class GameTest {
         list.add("Type: 1");
         list.add("");
         list.add("Enemies: ");
-        
+
         assertEquals(game.getInfoString(), list);
     }
 
@@ -287,6 +291,24 @@ public class GameTest {
         for (int i = 0; i < 1000; i++) {
             game.update(i, new GameView(new Window(), "kumpula"));
         }
+
+    }
+
+    @Test
+    public void upgradeTower() {
+        List<String> list = new ArrayList<>();
+        list.add("src/main/resources/background.png");
+        list.add("668,723,660,550");
+        list.add("350,220");
+        list.add("642,555,483,563,470,521,550,440,350,220");
+        list.add("530,588,468,505,524,370,370,266");
+        list.add("1");
+        list.add("100");
+        game = new Game(list);
+        game.buyTower(1, "Tutor");
+        game.upgradeTower(1, "Tutor");
+        assertEquals(10, game.getTowers().get(0).damage());
+        assertEquals(155, game.getTowers().get(0).range());
 
     }
 
