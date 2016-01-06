@@ -170,10 +170,18 @@ public class EnemyGroup implements Enemy {
         }
     }
 
+    /**
+     *
+     * @param testForPathFinding
+     */
     public void setMembers(List<Enemy> testForPathFinding) {
         this.list = testForPathFinding;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getName() {
         return "";

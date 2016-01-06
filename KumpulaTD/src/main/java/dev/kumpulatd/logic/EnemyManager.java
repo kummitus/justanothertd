@@ -10,11 +10,16 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- *
+ * Manages enemies actions
  * @author kummi
  */
 public class EnemyManager {
 
+    /**
+     *
+     * @param info Game gives the manager the game info
+     * @return returns modified game info
+     */
     public static GameInfo removeDeadEnemies(GameInfo info) {
         Iterator itr = info.getEnemies().iterator();
         while (itr.hasNext()) {
@@ -35,6 +40,11 @@ public class EnemyManager {
         return info;
     }
 
+    /**
+     *
+     * @param info Game gives the manager the game info
+     * @return returns modified game info
+     */
     public static GameInfo removeSurvivedEnemies(GameInfo info) {
         Iterator itr = info.getEnemies().iterator();
         while (itr.hasNext()) {

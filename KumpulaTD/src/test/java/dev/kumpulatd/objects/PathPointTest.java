@@ -20,20 +20,31 @@ public class PathPointTest {
     
     PathPoint point;
     
+    /**
+     *
+     */
     public PathPointTest() {
     }
     
-
+    /**
+     *
+     */
     @Before
     public void setUp() {
         point = new PathPoint(5,5);
     }
     
+    /**
+     *
+     */
     @Test
     public void testX(){
         assertEquals(5, point.getX());
     }
     
+    /**
+     *
+     */
     @Test
     public void testY(){
         assertEquals(5, point.getY());

@@ -35,17 +35,29 @@ public class TestingHelperTest {
     List<Enemy> enemies;
     TestingHelper test;
 
+    /**
+     *
+     */
     public TestingHelperTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
 
@@ -60,10 +72,16 @@ public class TestingHelperTest {
 
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
 
+    /**
+     *
+     */
     @Test
     public void move1() {
         path.addPoint(1, 1);
@@ -73,6 +91,9 @@ public class TestingHelperTest {
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
 
+    /**
+     *
+     */
     @Test
     public void move2() {
         path.addPoint(1, 2);
@@ -87,6 +108,10 @@ public class TestingHelperTest {
 //        path.addPoint(1, 3);
 //        assertTrue(testIfClose(group.getMembers().get(0), path));
 //    }
+
+    /**
+     *
+     */
     @Test
     public void move4() {
         path.addPoint(2, 1);
@@ -96,6 +121,9 @@ public class TestingHelperTest {
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
 
+    /**
+     *
+     */
     @Test
     public void move5() {
         path.addPoint(2, 2);
@@ -105,6 +133,9 @@ public class TestingHelperTest {
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
 
+    /**
+     *
+     */
     @Test
     public void move6() {
         path.addPoint(2, 3);
@@ -119,6 +150,10 @@ public class TestingHelperTest {
 //        path.addPoint(3, 1);
 //        assertTrue(testIfClose(group.getMembers().get(0), path));
 //    }
+
+    /**
+     *
+     */
     @Test
     public void move8() {
         path.addPoint(3, 2);
@@ -128,6 +163,9 @@ public class TestingHelperTest {
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
 
+    /**
+     *
+     */
     @Test
     public void move9() {
         path.addPoint(3, 3);
@@ -137,6 +175,9 @@ public class TestingHelperTest {
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
 
+    /**
+     *
+     */
     @Test
     public void moveFail() {
 
@@ -147,6 +188,9 @@ public class TestingHelperTest {
         assertEquals(0, group.getMembers().get(0).currentTarget());
     }
 
+    /**
+     *
+     */
     @Test
     public void endGame() {
         Window window = new Window();
@@ -156,6 +200,9 @@ public class TestingHelperTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void endGame1() {
         Window window = new Window();

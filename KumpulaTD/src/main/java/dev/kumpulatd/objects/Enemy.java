@@ -81,6 +81,10 @@ public interface Enemy {
      */
     public void increaseTarget();
 
+    /**
+     *
+     * @return
+     */
     public String getName();
     
     

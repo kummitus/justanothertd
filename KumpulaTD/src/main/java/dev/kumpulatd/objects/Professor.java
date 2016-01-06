@@ -15,7 +15,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Professor Tower
  * @author kummi
  */
 public class Professor implements Tower {
@@ -104,6 +104,9 @@ public class Professor implements Tower {
         return name;
     }
 
+    /**
+     *
+     */
     @Override
     public void upgrade() {
         range += 5;

@@ -16,40 +16,43 @@ public interface Tower {
     
     /**
      *
-     * @return
+     * @return tower damage
      */
     public int range();
     
     /**
      *
-     * @return
+     * @return tower damage
      */
     public int damage();
     
     /**
      *
-     * @return
+     * @return Tower damage type
      */
     public int damageType();
     
     /**
      *
-     * @return
+     * @return Returns tower Sprite
      */
     public BufferedImage getImg();
     
     /**
      *
-     * @return
+     * @return Returns tower location
      */
     public TowerLocation getLocation();
     
     /**
      *
-     * @return
+     * @return tower name/type
      */
     public String getName();
 
+    /**
+     * Upgrades tower with better abilities
+     */
     public void upgrade();
     
 }

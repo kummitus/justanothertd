@@ -323,6 +323,11 @@ public final class Game {
         }
     }
 
+    /**
+     *
+     * @param currentTower Gives the method tower on which upgrade is attempted
+     * @param tow Gives the towers type
+     */
     public void upgradeTower(int currentTower, String tow) {
         boolean test = false;
         if (money >= 15) {

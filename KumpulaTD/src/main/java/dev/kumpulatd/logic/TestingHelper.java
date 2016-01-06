@@ -62,6 +62,10 @@ public class TestingHelper {
         }
     }
 
+    /**
+     * Invokes the screen to show player has won the game
+     * @param view 
+     */
     public static void winGame(GameView view) {
         new GameWonWindow().invokeWarning(view);
     }

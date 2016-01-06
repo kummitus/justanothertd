@@ -49,6 +49,10 @@ public class Window implements Runnable {
 
     }
 
+    /**
+     *
+     * @param contentPane
+     */
     public void createComponents(Container contentPane) {
 
         contentPane.setLayout(new BorderLayout());

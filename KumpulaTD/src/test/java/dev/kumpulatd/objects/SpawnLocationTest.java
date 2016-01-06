@@ -21,20 +21,31 @@ public class SpawnLocationTest {
     
     SpawnLocation point;
     
+    /**
+     *
+     */
     public SpawnLocationTest() {
     }
     
-
+    /**
+     *
+     */
     @Before
     public void setUp() {
         point = new SpawnLocation(5,5);
     }
     
+    /**
+     *
+     */
     @Test
     public void testX(){
         assertEquals(5, point.getX());
     }
     
+    /**
+     *
+     */
     @Test
     public void testY(){
         assertEquals(5, point.getY());

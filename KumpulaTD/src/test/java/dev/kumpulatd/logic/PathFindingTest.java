@@ -18,43 +18,67 @@ public class PathFindingTest {
 
     PathFinding path;
 
+    /**
+     *
+     */
     public PathFindingTest() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         path = new PathFinding();
     }
 
+    /**
+     *
+     */
     @Test
     public void getSinglePoint() {
         path.addPoint(0, 0);
         assertEquals(path.getPoint(0), path.getPoint(0));
     }
 
+    /**
+     *
+     */
     @Test
     public void getLastPoint() {
         path.addPoint(0, 0);
         assertEquals(path.getPoint(0), path.getPoint(1));
     }
 
+    /**
+     *
+     */
     @Test
     public void getLastPoint1() {
         path.addPoint(0, 0);
         assertEquals(path.getPoint(0), path.getPoint(-1));
     }
 
+    /**
+     *
+     */
     @Test
     public void getSinglePointSize() {
         path.addPoint(0, 0);
         assertEquals(1, path.getSize());
     }
 
+    /**
+     *
+     */
     @Test
     public void getInvalidPoint() {
         assertEquals(null, path.getPoint(0));
     }
 
+    /**
+     *
+     */
     @Test
     public void sizeZeroListIsZeroSize() {
         assertEquals(0, path.getPoints().size());

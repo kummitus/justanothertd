@@ -25,25 +25,39 @@ public class GoalLocationTest {
     
     GoalLocation point;
     
+    /**
+     *
+     */
     public GoalLocationTest() {
     }
     
-
+    /**
+     *
+     */
     @Before
     public void setUp() {
         point = new GoalLocation(5,5);
     }
     
+    /**
+     *
+     */
     @Test
     public void testX(){
         assertEquals(5, point.getX());
     }
     
+    /**
+     *
+     */
     @Test
     public void testY(){
         assertEquals(5, point.getY());
     }
     
+    /**
+     *
+     */
     @Test
     public void testImg() {
         BufferedImage img;

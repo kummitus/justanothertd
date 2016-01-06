@@ -24,22 +24,37 @@ public class ProfessorTest {
 
     Professor professor;
 
+    /**
+     *
+     */
     public ProfessorTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         professor = new Professor(new TowerLocation(1, 1));
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -49,6 +64,10 @@ public class ProfessorTest {
     //
     // @Test
     // public void hello() {}
+
+    /**
+     *
+     */
     @Test
     public void testImg() {
         BufferedImage img;
@@ -65,17 +84,26 @@ public class ProfessorTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testRange() {
         assertEquals(100, professor.range());
     }
 
+    /**
+     *
+     */
     @Test
     public void testDamage() {
         assertEquals(3, professor.damage());
         assertEquals(1, professor.damageType());
     }
 
+    /**
+     *
+     */
     @Test
     public void testName() {
         assertEquals("Professor", professor.getName());

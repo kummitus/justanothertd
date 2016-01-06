@@ -22,27 +22,42 @@ public class FreshmanTest {
 
     Freshman fuksi;
 
+    /**
+     *
+     */
     public FreshmanTest() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
 
         fuksi = new Freshman(5, 5);
     }
 
+    /**
+     *
+     */
     @Test
     public void testNewFuksi() {
         assertEquals(50, fuksi.getHP());
         assertEquals(5, fuksi.getSpeed());
     }
 
+    /**
+     *
+     */
     @Test
     public void testDamage() {
         fuksi.damage(0, 5);
         assertEquals(45, fuksi.getHP());
     }
 
+    /**
+     *
+     */
     @Test
     public void testImg() {
         BufferedImage img;
@@ -60,11 +75,17 @@ public class FreshmanTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testMembersIsNull() {
         assertEquals(null, fuksi.getMembers());
     }
 
+    /**
+     *
+     */
     @Test
     public void testSetXSetY() {
         fuksi.setX(100);

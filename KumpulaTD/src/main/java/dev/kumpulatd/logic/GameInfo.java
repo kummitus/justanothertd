@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Generates game info object from the information Game class has
  * @author kummi
  */
 public class GameInfo {
@@ -22,41 +22,84 @@ public class GameInfo {
     private int lives;
     private int money;
 
+    /**
+     *
+     * @param enemies
+     * @param path
+     * @param lives
+     */
     public GameInfo(List<Enemy> enemies, PathFinding path, int lives) {
         this.enemies = enemies;
         this.path = path;
         this.lives = lives;
     }
 
+    /**
+     *
+     * @param enemies
+     * @param money
+     */
     public GameInfo(List<Enemy> enemies, int money) {
         this.enemies = enemies;
         this.money = money;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Enemy> getEnemies() {
         return enemies;
     }
 
+    /**
+     *
+     * @return
+     */
     public PathFinding getPath() {
         return path;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getLives() {
         return lives;
     }
 
+    /**
+     *
+     * @param i
+     */
     public void setLives(int i) {
         lives = i;
     }
 
+    /**
+     * Gives player money when invoked within game info call
+     */
     public void IncreaseMoney() {
         money++;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMoney() {
         return money;
     }
 
+    /**
+     * infoBuilder is used to generate List<String> object from game data that is sent for game view to be drawn for the player
+     * @param towerlocations
+     * @param towers
+     * @param eenemies
+     * @param money
+     * @param lives
+     * @return
+     */
     public static List<String> infoBuilder(List<TowerLocation> towerlocations, List<Tower> towers, List<Enemy> eenemies, int money, int lives) {
         StringBuilder str;
         List<String> list = new ArrayList<>();

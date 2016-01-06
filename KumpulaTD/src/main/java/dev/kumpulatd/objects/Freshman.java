@@ -150,6 +150,10 @@ public class Freshman implements Enemy {
         target++;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getName() {
         return name;

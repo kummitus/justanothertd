@@ -10,17 +10,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
- *
+ * MapListListener reads the user input that which map is to be played and initiates game start
  * @author antti
  */
-class MapListListener implements ActionListener {
+public class MapListListener implements ActionListener {
 
     private String map;
     private JFrame frame;
     private GameView game;
     private Window window;
 
-    MapListListener(JFrame frame, String map, Window window) {
+    public MapListListener(JFrame frame, String map, Window window) {
         this.map = map;
         this.frame = frame;
         this.window = window;

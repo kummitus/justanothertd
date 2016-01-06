@@ -20,23 +20,38 @@ import static org.junit.Assert.*;
 public class TowerLocationTest {
     TowerLocation location;
     
+    /**
+     *
+     */
     public TowerLocationTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         location = new TowerLocation(1,1);
         
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }

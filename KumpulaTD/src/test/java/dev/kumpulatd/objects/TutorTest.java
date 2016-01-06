@@ -25,22 +25,37 @@ public class TutorTest {
 
     Tutor tutor;
 
+    /**
+     *
+     */
     public TutorTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         tutor = new Tutor(new TowerLocation(1, 1));
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -50,6 +65,10 @@ public class TutorTest {
     //
     // @Test
     // public void hello() {}
+
+    /**
+     *
+     */
     @Test
     public void testImg() {
         BufferedImage img;
@@ -66,17 +85,26 @@ public class TutorTest {
         
     }
 
+    /**
+     *
+     */
     @Test
     public void testRange() {
         assertEquals(150, tutor.range());
     }
 
+    /**
+     *
+     */
     @Test
     public void testDamage() {
         assertEquals(5, tutor.damage());
         assertEquals(1, tutor.damageType());
     }
 
+    /**
+     *
+     */
     @Test
     public void testName() {
         assertEquals("Tutor", tutor.getName());

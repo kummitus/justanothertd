@@ -19,10 +19,17 @@ import static org.junit.Assert.*;
  */
 public class WindowTest {
     Window menu;
+
+    /**
+     *
+     */
     public WindowTest() {
         
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         menu = new Window();

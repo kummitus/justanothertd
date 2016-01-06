@@ -24,6 +24,10 @@ public class Tutor implements Tower {
     private int damage;
     private String name;
 
+    /**
+     *
+     * @param location
+     */
     public Tutor(TowerLocation location) {
         this.location = location;
         range = 150;
@@ -97,6 +101,9 @@ public class Tutor implements Tower {
         return name;
     }
 
+    /**
+     *
+     */
     @Override
     public void upgrade() {
         range += 5;

@@ -23,9 +23,15 @@ public class GameTest {
 
     Game game;
 
+    /**
+     *
+     */
     public GameTest() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         List<String> list = new ArrayList<>();
@@ -39,21 +45,33 @@ public class GameTest {
         game = new Game(list);
     }
 
+    /**
+     *
+     */
     @Test
     public void nullEnemies() {
         assertEquals(new ArrayList<>(), game.getEnemies());
     }
 
+    /**
+     *
+     */
     @Test
     public void nullTowers() {
         assertEquals(new ArrayList<>(), game.getTowers());
     }
 
+    /**
+     *
+     */
     @Test
     public void nullAmmunition() {
         assertEquals(new ArrayList<>(), game.getAmmunition());
     }
 
+    /**
+     *
+     */
     @Test
     public void firstSpawnFrame() {
         game.update(30, new GameView(new Window(), "kumpula"));
@@ -66,6 +84,9 @@ public class GameTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testPathPoints() {
         assertEquals(game.getPath().getPoints(), game.getPath().getPoints());
@@ -82,12 +103,18 @@ public class GameTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testGoalLocation() {
         assertEquals(350, game.getGoal().getX());
         assertEquals(220, game.getGoal().getY());
     }
 
+    /**
+     *
+     */
     @Test
     public void testTowerLocations1() {
         game.buyTower(1, "Tutor");
@@ -95,6 +122,9 @@ public class GameTest {
         assertEquals(588, game.getTowers().get(0).getLocation().getY());
     }
 
+    /**
+     *
+     */
     @Test
     public void testTowerLocations2() {
         game.buyTower(2, "Tutor");
@@ -102,6 +132,9 @@ public class GameTest {
         assertEquals(505, game.getTowers().get(0).getLocation().getY());
     }
 
+    /**
+     *
+     */
     @Test
     public void testTowerLocations3() {
         game.buyTower(3, "Tutor");
@@ -109,6 +142,9 @@ public class GameTest {
         assertEquals(370, game.getTowers().get(0).getLocation().getY());
     }
 
+    /**
+     *
+     */
     @Test
     public void testTowerLocations4() {
         game.buyTower(4, "Tutor");
@@ -116,6 +152,9 @@ public class GameTest {
         assertEquals(266, game.getTowers().get(0).getLocation().getY());
     }
 
+    /**
+     *
+     */
     @Test
     public void testNonExistingTower() {
         game.buyTower(5, "Tutor");
@@ -123,6 +162,9 @@ public class GameTest {
         assertEquals(new ArrayList<>(), game.getTowers());
     }
 
+    /**
+     *
+     */
     @Test
     public void sellTower() {
         game.buyTower(4, "Tutor");
@@ -130,6 +172,9 @@ public class GameTest {
         assertEquals(new ArrayList<>(), game.getTowers());
     }
 
+    /**
+     *
+     */
     @Test
     public void sellNonExistingTower() {
         game.buyTower(4, "Tutor");
@@ -138,6 +183,9 @@ public class GameTest {
         assertEquals(370, game.getTowers().get(0).getLocation().getX());
     }
 
+    /**
+     *
+     */
     @Test
     public void tryReplacingTower() {
         game.buyTower(4, "Tutor");
@@ -145,6 +193,9 @@ public class GameTest {
         assertEquals(370, game.getTowers().get(0).getLocation().getX());
     }
 
+    /**
+     *
+     */
     @Test
     public void buyTowers() {
         game.buyTower(4, "Tutor");
@@ -153,6 +204,9 @@ public class GameTest {
         assertEquals(1, game.getTowers().size());
     }
 
+    /**
+     *
+     */
     @Test
     public void testSpawns() {
         assertEquals(668, game.getSpawns().get(0).getX());
@@ -161,6 +215,9 @@ public class GameTest {
         assertEquals(550, game.getSpawns().get(1).getY());
     }
 
+    /**
+     *
+     */
     @Test
     public void testInfoString() {
         List<String> list = new ArrayList<>();
@@ -186,6 +243,9 @@ public class GameTest {
         assertEquals(game.getInfoString(), list);
     }
 
+    /**
+     *
+     */
     @Test
     public void testInfoString1() {
         game.buyTower(1, "Tutor");
@@ -219,6 +279,9 @@ public class GameTest {
         assertEquals(game.getInfoString(), list);
     }
 
+    /**
+     *
+     */
     @Test
     public void getToEnd() {
         for (int i = 0; i < 1000; i++) {

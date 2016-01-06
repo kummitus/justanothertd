@@ -27,23 +27,38 @@ public class PathFinderTest {
     PathFinder path;
     EnemyGroup group;
 
+    /**
+     *
+     */
     public PathFinderTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         path = new PathFinder();
         group = new EnemyGroup();
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -53,6 +68,10 @@ public class PathFinderTest {
     //
     // @Test
     // public void hello() {}
+
+    /**
+     *
+     */
     @Test
     public void moveGroup1() {
         List<Enemy> enemies = new ArrayList<>();
@@ -67,6 +86,9 @@ public class PathFinderTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void moveGroup2() {
         List<Enemy> enemies = new ArrayList<>();

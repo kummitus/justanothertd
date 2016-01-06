@@ -22,15 +22,24 @@ public class EnemyGroupTest {
 
     EnemyGroup group;
 
+    /**
+     *
+     */
     public EnemyGroupTest() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         group = new EnemyGroup();
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testAddMember() {
         group.addMember(new Freshman(5, 5));
@@ -40,6 +49,9 @@ public class EnemyGroupTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testDamage() {
         group.addMember(new Freshman(5, 5));
@@ -49,17 +61,26 @@ public class EnemyGroupTest {
         assertEquals(5, group.getSpeed());
     }
 
+    /**
+     *
+     */
     @Test
     public void testEmptySpeed() {
         assertEquals(0, group.getHP());
         assertEquals(0, group.getSpeed());
     }
 
+    /**
+     *
+     */
     @Test
     public void testEmptyMembers() {
         assertEquals(new ArrayList<>(), group.getMembers());
     }
 
+    /**
+     *
+     */
     @Test
     public void testOneMembers() {
         Enemy fuksi = new Freshman(1, 1);
@@ -69,16 +90,25 @@ public class EnemyGroupTest {
         assertEquals(list, group.getMembers());
     }
 
+    /**
+     *
+     */
     @Test
     public void ifEmptyGetX() {
         assertEquals(0, group.getX());
     }
 
+    /**
+     *
+     */
     @Test
     public void ifEmptyGetY() {
         assertEquals(0, group.getY());
     }
 
+    /**
+     *
+     */
     @Test
     public void oneMemberGetXY() {
         group.addMember(new Freshman(5, 5));
@@ -87,6 +117,9 @@ public class EnemyGroupTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void averageMemberGetXY() {
         group.addMember(new Freshman(5, 5));
@@ -96,6 +129,9 @@ public class EnemyGroupTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void average2MemberGetXY() {
         group.addMember(new Freshman(5, 5));
@@ -105,22 +141,34 @@ public class EnemyGroupTest {
 
     }
     
+    /**
+     *
+     */
     @Test
     public void nullBufferedImage(){
         assertEquals(null, group.getImg());
     }
     
+    /**
+     *
+     */
     @Test
     public void currentTarget(){
         assertEquals(0, group.currentTarget());
     }
     
+    /**
+     *
+     */
     @Test
     public void nextTarget(){
         group.increaseTarget();
         assertEquals(1, group.currentTarget());
     }
     
+    /**
+     *
+     */
     @Test
     public void nextTargetMember(){
         group.addMember(new Freshman(5,5));
@@ -128,6 +176,9 @@ public class EnemyGroupTest {
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
     
+    /**
+     *
+     */
     @Test
     public void setXsetY(){
         group.addMember(new Freshman(5,5));
