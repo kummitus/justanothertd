@@ -24,9 +24,6 @@ import static dev.kumpulatd.logic.EnemyManager.removeSurvivedEnemies;
 import static dev.kumpulatd.logic.EnemyManager.removeDeadEnemies;
 import dev.kumpulatd.objects.Professor;
 import dev.kumpulatd.ui.GameView;
-import dev.kumpulatd.ui.WarningMessage;
-import java.io.File;
-import java.util.Scanner;
 
 /**
  * Combines all the game logic found from the game in the update method
@@ -51,8 +48,8 @@ public final class Game {
     /**
      * Constructor for the game class
      *
-     * @param map
      *
+     * @param list Takes configuration as parameter of which it creates the played map
      */
     public Game(List<String> list) {
         
@@ -262,106 +259,8 @@ public final class Game {
      * to view to show player interesting information
      */
     public List<String> getInfoString() {
-        StringBuilder str;
-        List<String> list = new ArrayList<>();
-        int i = 1;
-        int j = 0;
-        str = new StringBuilder();
-        str.append("Money: ");
-        str.append(money);
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("Remaining lives: ");
-        str.append(lives);
-        list.add(str.toString());
-        for (TowerLocation location : towerlocations) {
-            str = new StringBuilder();
-            str.append("Tower ").append(i).append(": ");
-            for (Tower tower : towers) {
-                if (tower.getLocation().equals(location)) {
-                    str.append(tower.getName());
-                    j++;
-                }
-            }
-            if (j == 0) {
-                str.append("empty");
-            }
-            list.add(str.toString());
-            i++;
-        }
-        list = setInfo(str, list);
-        return list;
+        return GameInfo.infoBuilder(towerlocations, towers, enemies, money, lives);        
     }
-
-    private List<String> setInfo(StringBuilder str, List<String> list) {
-        str = new StringBuilder();
-        str.append("");
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("Press number key to select tower");
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("Press 'a' to buy Tutor tower, costs 30");
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("Press 's' to sell Tutor tower, sells for 20");
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("Press 'd' to upgrade Tutor, costs 15");
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("");
-        list.add(str.toString());
-        list = generateTowerInfo(list, str);
-        list = generateEnemyInfo(list, str);
-
-        return list;
-    }
-
-    private List<String> generateTowerInfo(List<String> list, StringBuilder str) {
-
-        for (Tower tower : towers) {
-            int i = 0;
-            for (TowerLocation lct : towerlocations) {
-                if (lct.equals(tower.getLocation())) {
-                    break;
-                }
-                i++;
-            }
-            str = new StringBuilder();
-            str.append("Tower: ").append(i + 1);
-            list.add(str.toString());
-            str = new StringBuilder();
-            str.append("Damage: ").append(tower.damage());
-            list.add(str.toString());
-            str = new StringBuilder();
-            str.append("Range: ").append(tower.range());
-            list.add(str.toString());
-            str = new StringBuilder();
-            str.append("Type: ").append(tower.damageType());
-            list.add(str.toString());
-        }
-        return list;
-    }
-
-    private List<String> generateEnemyInfo(List<String> list, StringBuilder str) {
-        str = new StringBuilder();
-        str.append("");
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("Enemies: ");
-        list.add(str.toString());
-        for (Enemy e : enemies) {
-            for (Enemy ee : e.getMembers()) {
-
-                str = new StringBuilder();
-                str.append("Type: ").append(ee.getName()).append(" HP: ").append(ee.getHP());
-                list.add(str.toString());
-            }
-        }
-        return list;
-    }
-
     /**
      *
      * @param currentTower Gives the tower location to be manipulated to the

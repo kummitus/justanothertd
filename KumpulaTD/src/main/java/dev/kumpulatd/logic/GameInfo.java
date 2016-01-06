@@ -6,6 +6,9 @@
 package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Enemy;
+import dev.kumpulatd.objects.Tower;
+import dev.kumpulatd.objects.TowerLocation;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +55,102 @@ public class GameInfo {
 
     public int getMoney() {
         return money;
+    }
+
+    public static List<String> infoBuilder(List<TowerLocation> towerlocations, List<Tower> towers, List<Enemy> eenemies, int money, int lives) {
+        StringBuilder str;
+        List<String> list = new ArrayList<>();
+        int i = 1;
+        int j = 0;
+        str = new StringBuilder();
+        str.append("Money: ");
+        str.append(money);
+        list.add(str.toString());
+        str = new StringBuilder();
+        str.append("Remaining lives: ");
+        str.append(lives);
+        list.add(str.toString());
+        for (TowerLocation location : towerlocations) {
+            str = new StringBuilder();
+            str.append("Tower ").append(i).append(": ");
+            for (Tower tower : towers) {
+                if (tower.getLocation().equals(location)) {
+                    str.append(tower.getName());
+                    j++;
+                }
+            }
+            if (j == 0) {
+                str.append("empty");
+            }
+            list.add(str.toString());
+            i++;
+        }
+        list = setInfo(str, list, towerlocations, towers, eenemies);
+        return list;
+    }
+    
+    private static List<String> setInfo(StringBuilder str, List<String> list, List<TowerLocation> towerlocations, List<Tower> towers, List<Enemy> eenemies) {
+        
+        list.add("");
+        list.add("Press number key to select tower");
+        list.add("Press 'a' to buy Tutor tower, costs 30");
+        list.add("Press 's' to sell Tutor tower, sells for 20");
+        list.add("Press 'd' to upgrade Tutor, costs 15");
+        list.add("");
+        list.add("Press 'q' to buy Professor tower, costs 40");
+        list.add("Press 'w' to sell Professor tower, sells for 25");
+        list.add("Press 'e' to upgrade Professor, costs 15");
+        str = new StringBuilder();
+        str.append("");
+        list.add(str.toString());
+        list = generateTowerInfo(list, str, towerlocations, towers);
+        list = generateEnemyInfo(list, str, eenemies);
+
+        return list;
+    }
+
+    private static List<String> generateTowerInfo(List<String> list, StringBuilder str, List<TowerLocation> towerlocations, List<Tower> towers) {
+
+        for (Tower tower : towers) {
+            int i = 0;
+            for (TowerLocation lct : towerlocations) {
+                if (lct.equals(tower.getLocation())) {
+                    break;
+                }
+                i++;
+            }
+            str = new StringBuilder();
+            str.append("Tower: ").append(i + 1);
+            list.add(str.toString());
+            str = new StringBuilder();
+            str.append("Damage: ").append(tower.damage());
+            list.add(str.toString());
+            str = new StringBuilder();
+            str.append("Range: ").append(tower.range());
+            list.add(str.toString());
+            str = new StringBuilder();
+            str.append("Type: ").append(tower.damageType());
+            list.add(str.toString());
+        }
+        return list;
+    }
+
+    private static List<String> generateEnemyInfo(List<String> list, StringBuilder str, List<Enemy> eenemies) {
+        str = new StringBuilder();
+        str.append("");
+        list.add(str.toString());
+        str = new StringBuilder();
+        str.append("Enemies: ");
+        list.add(str.toString());
+        for (Enemy e : eenemies) {
+            for (Enemy ee : e.getMembers()) {
+
+                str = new StringBuilder();
+                str.append("Type: ").append(ee.getName()).append(" HP: ").append(ee.getHP());
+                list.add(str.toString());
+            }
+        }
+        return list;
     }
 
 }

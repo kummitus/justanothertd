@@ -35,8 +35,6 @@ class MapListListener implements ActionListener {
         frame.addKeyListener(keylist);
         frame.requestFocusInWindow();
         frame.validate();
-        
-        window.setCurrentMap(map);
     }
 
 }

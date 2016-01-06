@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
-import dev.kumpulatd.objects.SpawnLocation;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,17 +16,17 @@ import static org.junit.Assert.*;
  *
  * @author antti
  */
-public class SpawnLocationTest {
+public class PathPointTest {
     
-    SpawnLocation point;
+    PathPoint point;
     
-    public SpawnLocationTest() {
+    public PathPointTest() {
     }
     
 
     @Before
     public void setUp() {
-        point = new SpawnLocation(5,5);
+        point = new PathPoint(5,5);
     }
     
     @Test

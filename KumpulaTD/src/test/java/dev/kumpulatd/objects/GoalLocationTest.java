@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 import dev.kumpulatd.objects.GoalLocation;
 import java.awt.image.BufferedImage;

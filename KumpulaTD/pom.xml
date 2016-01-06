@@ -43,10 +43,12 @@
                     <targetClasses>
                         <param>dev.kumpulatd.logic.*</param>
                         <param>dev.kumpulatd.ui.*</param>
+                        <param>dev.kumpulatd.objects.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>dev.kumpulatd.logic.*</param>
                         <param>dev.kumpulatd.ui.*</param>
+                        <param>dev.kumpulatd.objects.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

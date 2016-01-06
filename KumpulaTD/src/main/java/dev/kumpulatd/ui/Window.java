@@ -11,7 +11,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,8 +29,6 @@ import javax.swing.WindowConstants;
 public class Window implements Runnable {
 
     private JFrame frame;
-    private GameView game;
-    private String selectedMap;
 
     /**
      * Constructor for Window
@@ -41,7 +38,7 @@ public class Window implements Runnable {
 
     @Override
     public void run() {
-        frame = new JFrame("Menu");
+        frame = new JFrame("KumpulaTD");
         frame.setPreferredSize(new Dimension(1200, 800));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -53,7 +50,7 @@ public class Window implements Runnable {
     }
 
     public void createComponents(Container contentPane) {
-        
+
         contentPane.setLayout(new BorderLayout());
         contentPane.add(createMapList(), BorderLayout.CENTER);
         contentPane.add(createMenu(), BorderLayout.SOUTH);
@@ -88,12 +85,16 @@ public class Window implements Runnable {
      */
     public void restartMenu() {
         if (Objects.equals(frame, null)) {
-            frame = new JFrame("Menu");
+            frame = new JFrame("KumpulaTD");
             createComponents(frame.getContentPane());
+            frame.revalidate();
+            frame.requestFocusInWindow();
             frame.validate();
         } else {
             frame.getContentPane().removeAll();
             createComponents(frame.getContentPane());
+            frame.revalidate();
+            frame.requestFocusInWindow();
             frame.validate();
 
         }
@@ -110,10 +111,8 @@ public class Window implements Runnable {
             while (reader.hasNextLine()) {
                 maplist.add(reader.nextLine());
             }
-            selectedMap = maplist.get(0);
         } catch (Exception e) {
             new WarningMessage();
-            selectedMap = "kumpula";
         }
         ButtonGroup buttons = new ButtonGroup();
         JPanel menu = new JPanel(new GridLayout(maplist.size(), 1));
@@ -125,9 +124,5 @@ public class Window implements Runnable {
             menu.add(button);
         }
         return menu;
-    }
-
-    public void setCurrentMap(String map) {
-        selectedMap = map;
     }
 }

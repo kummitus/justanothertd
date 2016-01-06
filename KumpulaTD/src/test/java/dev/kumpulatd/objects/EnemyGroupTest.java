@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.kumpulatd.logic;
+package dev.kumpulatd.objects;
 
 import dev.kumpulatd.objects.Freshman;
 import dev.kumpulatd.objects.Enemy;
@@ -137,6 +137,8 @@ public class EnemyGroupTest {
         assertEquals(200, group.getX());
         assertEquals(200, group.getY());
     }
+    
+    
 
     
 }

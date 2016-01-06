@@ -176,6 +176,10 @@ public class GameTest {
         list.add("Press 's' to sell Tutor tower, sells for 20");
         list.add("Press 'd' to upgrade Tutor, costs 15");
         list.add("");
+        list.add("Press 'q' to buy Professor tower, costs 40");
+        list.add("Press 'w' to sell Professor tower, sells for 25");
+        list.add("Press 'e' to upgrade Professor, costs 15");
+        list.add("");
         list.add("");
         list.add("Enemies: ");
         
@@ -200,6 +204,10 @@ public class GameTest {
         list.add("Press 'a' to buy Tutor tower, costs 30");
         list.add("Press 's' to sell Tutor tower, sells for 20");
         list.add("Press 'd' to upgrade Tutor, costs 15");
+        list.add("");
+        list.add("Press 'q' to buy Professor tower, costs 40");
+        list.add("Press 'w' to sell Professor tower, sells for 25");
+        list.add("Press 'e' to upgrade Professor, costs 15");
         list.add("");
         list.add("Tower: 1");
         list.add("Damage: 5");

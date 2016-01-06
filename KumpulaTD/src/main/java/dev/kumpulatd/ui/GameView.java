@@ -44,7 +44,7 @@ public class GameView extends JPanel implements ActionListener {
      *
      * @param window When game is started, the application passes the frame
      * forward for the game logic to be manipulated by the game view
-     * @param list
+     * @param map Gives the name of the map that is to be loaded
      */
     public GameView(Window window, String map) {
         File file = null;
@@ -54,7 +54,8 @@ public class GameView extends JPanel implements ActionListener {
             file = new File(map);
             reader = new Scanner(file);
         } catch (Exception e) {
-
+            new WarningMessage();
+            window.restartMenu();
         }
         List<String> list = new ArrayList<>();
         if (file.exists()) {
@@ -106,7 +107,17 @@ public class GameView extends JPanel implements ActionListener {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        drawBackGround(g2d);
+        try {
+            drawBackGround(g2d);
+        } catch (Exception e) {
+            new WarningMessage();
+            try{
+                window.restartMenu();
+            }
+            catch(Exception ee){
+                System.exit(0);
+            }
+        }
 
         game.update(frame, this);
 
@@ -130,20 +141,21 @@ public class GameView extends JPanel implements ActionListener {
      */
     public void drawBackGround(Graphics2D g2d) {
         BufferedImage img = null;
-        String imageLocation = mapData.get(0);
         try {
+            String imageLocation = mapData.get(0);
             img = ImageIO.read(new File(imageLocation));
+            g2d.drawImage(img, null, 0, 0);
+            g2d.setBackground(Color.white);
+            g2d.setColor(Color.white);
+            g2d.fillRect(800, 0, 400, 800);
+            g2d.setColor(Color.black);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Eggs are not supposed to be green.",
-                    "No gamefield was found",
-                    JOptionPane.ERROR_MESSAGE);
+            new WarningMessage();
+            window.restartMenu();
+        } catch (NullPointerException ee) {
+            new WarningMessage();
+            window.restartMenu();
         }
-        g2d.drawImage(img, null, 0, 0);
-        g2d.setBackground(Color.white);
-        g2d.setColor(Color.white);
-        g2d.fillRect(800, 0, 400, 800);
-        g2d.setColor(Color.black);
     }
 
     /**
