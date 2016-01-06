@@ -12,4 +12,4 @@
 | 1.1 | 5 hours | Bunch of logic and stuff to get closer to actual gameplay |
 | 2.1 | 7 hours | Tests, chart, Some more finetuning on logic and bugspalshing, JavaDoc |
 | 5.1 | 3 hours | Working gameplay |
-| 6.1 | 3 hours | Modular map implementation |
+| 6.1 | 6 hours | Modular map implementation, sequence diagrams, classchart, javadoc, tests, bunch of things |
