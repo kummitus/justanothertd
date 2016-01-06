@@ -7,8 +7,6 @@ package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Freshman;
 import dev.kumpulatd.objects.SpawnLocation;
-import dev.kumpulatd.objects.TowerLocation;
-import dev.kumpulatd.objects.Tutor;
 import dev.kumpulatd.ui.GameView;
 import dev.kumpulatd.ui.Window;
 import java.util.ArrayList;

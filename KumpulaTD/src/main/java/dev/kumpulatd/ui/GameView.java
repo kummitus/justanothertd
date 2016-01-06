@@ -124,7 +124,7 @@ public class GameView extends JPanel implements ActionListener {
         List<Enemy> enemies = game.getEnemies();
         List<Tower> towers = game.getTowers();
         List<Ammunition> ammunition = game.getAmmunition();
-
+        
         drawDrawables(enemies, towers, ammunition, g2d);
 
         drawFrameCounter(g2d);
@@ -204,14 +204,6 @@ public class GameView extends JPanel implements ActionListener {
         } catch (Exception e) {
 
         }
-//        y += 50;
-//        g2d.drawString("Selected tower: " + currentTower, x, y);
-//        y += 10;
-//        if (game.getTowers().size() > currentTower) {
-//            g2d.drawString("Damage: " + game.getTowers().get(currentTower - 1).damage(), x, y);
-//            g2d.drawString("Range: " + game.getTowers().get(currentTower - 1).range(), x, y);
-//            g2d.drawString("Type: " + game.getTowers().get(currentTower - 1).damageType(), x, y);            
-//        }
 
         if (nextCommand != ' ') {
             if (currentTower == '1' || currentTower == '2' || currentTower == '3' || currentTower == '4') {
