@@ -7,8 +7,6 @@ package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Freshman;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -20,11 +18,11 @@ import static org.junit.Assert.*;
  *
  * @author antti
  */
-public class FuksiTest {
+public class FreshmanTest {
 
     Freshman fuksi;
 
-    public FuksiTest() {
+    public FreshmanTest() {
     }
 
     @Before
@@ -35,14 +33,14 @@ public class FuksiTest {
 
     @Test
     public void testNewFuksi() {
-        assertEquals(100, fuksi.getHP());
+        assertEquals(50, fuksi.getHP());
         assertEquals(5, fuksi.getSpeed());
     }
 
     @Test
     public void testDamage() {
         fuksi.damage(0, 5);
-        assertEquals(95, fuksi.getHP());
+        assertEquals(45, fuksi.getHP());
     }
 
     @Test

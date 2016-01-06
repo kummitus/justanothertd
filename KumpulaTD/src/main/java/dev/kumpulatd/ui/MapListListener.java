@@ -7,6 +7,7 @@ package dev.kumpulatd.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 /**
  *
@@ -14,12 +15,28 @@ import java.awt.event.ActionListener;
  */
 class MapListListener implements ActionListener {
 
-    public MapListListener(String get) {
-    }
+    private String map;
+    private JFrame frame;
+    private GameView game;
+    private Window window;
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    MapListListener(JFrame frame, String map, Window window) {
+        this.map = map;
+        this.frame = frame;
+        this.window = window;
     }
     
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        game = new GameView(window, map);
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(game);
+        KeyListenerGame keylist = new KeyListenerGame(game);
+        frame.addKeyListener(keylist);
+        frame.requestFocusInWindow();
+        frame.validate();
+        
+        window.setCurrentMap(map);
+    }
+
 }

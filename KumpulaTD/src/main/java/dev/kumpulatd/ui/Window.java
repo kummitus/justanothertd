@@ -31,7 +31,7 @@ public class Window implements Runnable {
 
     private JFrame frame;
     private GameView game;
-    private List<String> selectedList;
+    private String selectedMap;
 
     /**
      * Constructor for Window
@@ -41,7 +41,6 @@ public class Window implements Runnable {
 
     @Override
     public void run() {
-
         frame = new JFrame("Menu");
         frame.setPreferredSize(new Dimension(1200, 800));
 
@@ -54,7 +53,7 @@ public class Window implements Runnable {
     }
 
     public void createComponents(Container contentPane) {
-        game = new GameView(this, selectedList);
+        
         contentPane.setLayout(new BorderLayout());
         contentPane.add(createMapList(), BorderLayout.CENTER);
         contentPane.add(createMenu(), BorderLayout.SOUTH);
@@ -69,22 +68,17 @@ public class Window implements Runnable {
     }
 
     private Component createMenu() {
-        JButton newgame = new JButton("New Game");
         JButton exit = new JButton("Exit");
 
-        ActionListenerGame gamelist = new ActionListenerGame(frame, game);
         ActionListenerExit exitlist = new ActionListenerExit();
 
-        newgame.addActionListener(gamelist);
         exit.addActionListener(exitlist);
 
         ButtonGroup buttons = new ButtonGroup();
-        buttons.add(newgame);
         buttons.add(exit);
 
         JPanel menu = new JPanel(new GridLayout(1, 2));
 
-        menu.add(newgame);
         menu.add(exit);
         return menu;
     }
@@ -111,36 +105,29 @@ public class Window implements Runnable {
         List<String> maplist = new ArrayList<>();
         List<JButton> buttonlist = new ArrayList<>();
         try {
-            file = new File("src/maplist.txt");
+            file = new File("src/main/resources/maplist.txt");
             reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 maplist.add(reader.nextLine());
             }
+            selectedMap = maplist.get(0);
         } catch (Exception e) {
             new WarningMessage();
+            selectedMap = "kumpula";
         }
-
+        ButtonGroup buttons = new ButtonGroup();
+        JPanel menu = new JPanel(new GridLayout(maplist.size(), 1));
         for (String map : maplist) {
             JButton button = new JButton(map);
             buttonlist.add(button);
-        }
-        int i = 0;
-        for (JButton button : buttonlist) {
-            button.addActionListener(new MapListListener(maplist.get(i)));
-            i++;
-        }
-
-        JPanel menu = new JPanel(new GridLayout(maplist.size(), 1));
-        
-        ButtonGroup buttons = new ButtonGroup();
-        for (JButton button : buttonlist) {
+            button.addActionListener(new MapListListener(frame, map, this));
             buttons.add(button);
             menu.add(button);
         }
-        
-        
-        
-        
         return menu;
+    }
+
+    public void setCurrentMap(String map) {
+        selectedMap = map;
     }
 }

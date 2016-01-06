@@ -22,6 +22,8 @@ import dev.kumpulatd.objects.Ammunition;
 import dev.kumpulatd.objects.Enemy;
 import dev.kumpulatd.logic.Game;
 import dev.kumpulatd.objects.Tower;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Handles the drawing of the game window
@@ -36,6 +38,7 @@ public class GameView extends JPanel implements ActionListener {
     private int currentTower;
     private Timer timer;
     private Window window;
+    private List<String> mapData;
 
     /**
      *
@@ -43,14 +46,33 @@ public class GameView extends JPanel implements ActionListener {
      * forward for the game logic to be manipulated by the game view
      * @param list
      */
-    public GameView(Window window, List<String> list) {
-        game = new Game(list);
-        frame = 0;
-        currentTower = 1;
-        nextCommand = ' ';
-        timer = new Timer(16, this);
-        timer.start();
-        this.window = window;
+    public GameView(Window window, String map) {
+        File file = null;
+        Scanner reader = null;
+        map = "src/main/resources/" + map;
+        try {
+            file = new File(map);
+            reader = new Scanner(file);
+        } catch (Exception e) {
+
+        }
+        List<String> list = new ArrayList<>();
+        if (file.exists()) {
+            while (reader.hasNextLine()) {
+                list.add(reader.nextLine());
+            }
+            mapData = list;
+            game = new Game(list);
+            frame = 0;
+            currentTower = 1;
+            nextCommand = ' ';
+            timer = new Timer(16, this);
+            timer.start();
+            this.window = window;
+
+        } else {
+            new WarningMessage();
+        }
     }
 
     /**
@@ -108,8 +130,9 @@ public class GameView extends JPanel implements ActionListener {
      */
     public void drawBackGround(Graphics2D g2d) {
         BufferedImage img = null;
+        String imageLocation = mapData.get(0);
         try {
-            img = ImageIO.read(new File("src/main/resources/background.png"));
+            img = ImageIO.read(new File(imageLocation));
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null,
                     "Eggs are not supposed to be green.",

@@ -35,7 +35,7 @@ public class EnemyGroupTest {
     public void testAddMember() {
         group.addMember(new Freshman(5, 5));
         group.addMember(new Freshman(5, 5));
-        assertEquals(200, group.getHP());
+        assertEquals(100, group.getHP());
         assertEquals(5, group.getSpeed());
 
     }
@@ -45,7 +45,7 @@ public class EnemyGroupTest {
         group.addMember(new Freshman(5, 5));
         group.addMember(new Freshman(5, 5));
         group.damage(0, 50);
-        assertEquals(100, group.getHP());
+        assertEquals(0, group.getHP());
         assertEquals(5, group.getSpeed());
     }
 

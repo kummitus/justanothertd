@@ -24,6 +24,9 @@ import static dev.kumpulatd.logic.EnemyManager.removeSurvivedEnemies;
 import static dev.kumpulatd.logic.EnemyManager.removeDeadEnemies;
 import dev.kumpulatd.objects.Professor;
 import dev.kumpulatd.ui.GameView;
+import dev.kumpulatd.ui.WarningMessage;
+import java.io.File;
+import java.util.Scanner;
 
 /**
  * Combines all the game logic found from the game in the update method
@@ -48,16 +51,20 @@ public final class Game {
     /**
      * Constructor for the game class
      *
-     * @param list
+     * @param map
+     *
      */
     public Game(List<String> list) {
-        initLists(list.get(0));
-        initGoal(list.get(1));
-        initPath(list.get(2));
-        initTowers(list.get(3));
-        lives = Integer.parseInt(list.get(4));
-        endGameInvoked = true;
-        money = Integer.parseInt(list.get(5));
+        
+            initLists(list.get(1));
+            initGoal(list.get(2));
+            initPath(list.get(3));
+            initTowers(list.get(4));
+            lives = Integer.parseInt(list.get(5));
+            endGameInvoked = true;
+            money = Integer.parseInt(list.get(6));
+        
+
     }
 
     private void initGoal(String row) {
@@ -301,9 +308,6 @@ public final class Game {
         list.add(str.toString());
         str = new StringBuilder();
         str.append("Press 'd' to upgrade Tutor, costs 15");
-        list.add(str.toString());
-        str = new StringBuilder();
-        str.append("Press number key to select tower");
         list.add(str.toString());
         str = new StringBuilder();
         str.append("");

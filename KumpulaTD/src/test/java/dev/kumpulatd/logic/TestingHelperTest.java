@@ -150,7 +150,7 @@ public class TestingHelperTest {
     @Test
     public void endGame() {
         Window window = new Window();
-        GameView view = new GameView(window);
+        GameView view = new GameView(window, "kumpula");
         testForRemainingLives(0, view);
         assertNotNull(window.getFrame());
 
@@ -159,7 +159,7 @@ public class TestingHelperTest {
     @Test
     public void endGame1() {
         Window window = new Window();
-        GameView view = new GameView(window);
+        GameView view = new GameView(window, "kumpula");
         testForRemainingLives(1, view);
         assertEquals(window.getFrame(), null);
 

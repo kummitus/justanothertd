@@ -55,7 +55,7 @@ public class TutorTest {
     public void testImg() {
         BufferedImage img;
         try {
-            img = ImageIO.read(new File("src/main/resources/penguinillustration.png"));
+            img = ImageIO.read(new File("src/main/resources/tutor.png"));
         } catch (IOException e) {
             assertEquals(null, tutor.getImg());
             img = null;
@@ -69,12 +69,12 @@ public class TutorTest {
 
     @Test
     public void testRange() {
-        assertEquals(30, tutor.range());
+        assertEquals(150, tutor.range());
     }
 
     @Test
     public void testDamage() {
-        assertEquals(20, tutor.damage());
+        assertEquals(5, tutor.damage());
         assertEquals(1, tutor.damageType());
     }
 
