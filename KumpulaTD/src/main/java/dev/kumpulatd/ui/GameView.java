@@ -41,9 +41,10 @@ public class GameView extends JPanel implements ActionListener {
      *
      * @param window When game is started, the application passes the frame
      * forward for the game logic to be manipulated by the game view
+     * @param list
      */
-    public GameView(Window window) {
-        game = new Game();
+    public GameView(Window window, List<String> list) {
+        game = new Game(list);
         frame = 0;
         currentTower = 1;
         nextCommand = ' ';

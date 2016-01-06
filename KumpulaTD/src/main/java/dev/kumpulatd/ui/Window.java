@@ -10,7 +10,12 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +31,7 @@ public class Window implements Runnable {
 
     private JFrame frame;
     private GameView game;
+    private List<String> selectedList;
 
     /**
      * Constructor for Window
@@ -48,9 +54,9 @@ public class Window implements Runnable {
     }
 
     public void createComponents(Container contentPane) {
-        game = new GameView(this);
+        game = new GameView(this, selectedList);
         contentPane.setLayout(new BorderLayout());
-
+        contentPane.add(createMapList(), BorderLayout.CENTER);
         contentPane.add(createMenu(), BorderLayout.SOUTH);
     }
 
@@ -97,5 +103,44 @@ public class Window implements Runnable {
             frame.validate();
 
         }
+    }
+
+    private Component createMapList() {
+        File file = null;
+        Scanner reader;
+        List<String> maplist = new ArrayList<>();
+        List<JButton> buttonlist = new ArrayList<>();
+        try {
+            file = new File("src/maplist.txt");
+            reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+                maplist.add(reader.nextLine());
+            }
+        } catch (Exception e) {
+            new WarningMessage();
+        }
+
+        for (String map : maplist) {
+            JButton button = new JButton(map);
+            buttonlist.add(button);
+        }
+        int i = 0;
+        for (JButton button : buttonlist) {
+            button.addActionListener(new MapListListener(maplist.get(i)));
+            i++;
+        }
+
+        JPanel menu = new JPanel(new GridLayout(maplist.size(), 1));
+        
+        ButtonGroup buttons = new ButtonGroup();
+        for (JButton button : buttonlist) {
+            buttons.add(button);
+            menu.add(button);
+        }
+        
+        
+        
+        
+        return menu;
     }
 }

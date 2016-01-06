@@ -47,46 +47,50 @@ public final class Game {
 
     /**
      * Constructor for the game class
+     *
+     * @param list
      */
-    public Game() {
-        initLists();
-        initGoal();
-        initPath();
-        initTowers();
-        lives = 1;
+    public Game(List<String> list) {
+        initLists(list.get(0));
+        initGoal(list.get(1));
+        initPath(list.get(2));
+        initTowers(list.get(3));
+        lives = Integer.parseInt(list.get(4));
         endGameInvoked = true;
-        money = 30;
+        money = Integer.parseInt(list.get(5));
     }
 
-    private void initGoal() {
-        goal = new GoalLocation(350, 220);
+    private void initGoal(String row) {
+        String[] list = row.split(",");
+        goal = new GoalLocation(Integer.parseInt(list[0]), Integer.parseInt(list[1]));
     }
 
-    private void initLists() {
+    private void initLists(String row) {
+        String[] list = row.split(",");
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
         ammunition = new ArrayList<>();
         spawns = new ArrayList<>();
-        spawns.add(new SpawnLocation(668, 723));
-        spawns.add(new SpawnLocation(660, 550));
+        for (int i = 0; i < list.length; i += 2) {
+            spawns.add(new SpawnLocation(Integer.parseInt(list[i]), Integer.parseInt(list[i + 1])));
+        }
         towerlocations = new ArrayList<>();
     }
 
-    private void initPath() {
+    private void initPath(String row) {
+        String[] list = row.split(",");
         pathFinder = new PathFinder();
         path = new PathFinding();
-        path.addPoint(642, 555);
-        path.addPoint(483, 563);
-        path.addPoint(470, 521);
-        path.addPoint(550, 440);
-        path.addPoint(350, 220);
+        for (int i = 0; i < list.length; i += 2) {
+            path.addPoint(Integer.parseInt(list[i]), Integer.parseInt(list[i + 1]));
+        }
     }
 
-    private void initTowers() {
-        towerlocations.add(new TowerLocation(530, 588));
-        towerlocations.add(new TowerLocation(468, 505));
-        towerlocations.add(new TowerLocation(524, 370));
-        towerlocations.add(new TowerLocation(370, 266));
+    private void initTowers(String row) {
+        String[] list = row.split(",");
+        for (int i = 0; i < list.length; i += 2) {
+            towerlocations.add(new TowerLocation(Integer.parseInt(list[i]), Integer.parseInt(list[i + 1])));
+        }
     }
 
     /**
@@ -200,12 +204,12 @@ public final class Game {
                     try {
                         for (Enemy ee : enemies) {
                             for (Enemy eee : ee.getMembers()) {
-                                if(isClose(eee.getX(), eee.getY(), new TowerLocation(e.getX(), e.getY()), 50)){
+                                if (isClose(eee.getX(), eee.getY(), new TowerLocation(e.getX(), e.getY()), 50)) {
                                     eee.damage(tower.damageType(), tower.damage());
                                 }
                             }
                         }
-                        
+
                     } catch (Exception ex) {
 
                     }
@@ -402,7 +406,7 @@ public final class Game {
             if (test) {
                 if (tow.equals("Tutor")) {
                     money += 20;
-                } else if (tow.equals("Professor")){
+                } else if (tow.equals("Professor")) {
                     money += 30;
                 }
                 Iterator itr = towers.iterator();
