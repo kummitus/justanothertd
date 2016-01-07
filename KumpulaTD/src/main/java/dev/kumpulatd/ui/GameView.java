@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import dev.kumpulatd.objects.Ammunition;
@@ -24,9 +23,11 @@ import dev.kumpulatd.logic.Game;
 import dev.kumpulatd.objects.Tower;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Handles the drawing of the game window
+ * Handles the drawing of the game currentWindow
  *
  * @author antti
  */
@@ -37,7 +38,7 @@ public class GameView extends JPanel implements ActionListener {
     private char nextCommand;
     private int currentTower;
     private Timer timer;
-    private Window window;
+    private Window currentWindow;
     private List<String> mapData;
 
     /**
@@ -47,6 +48,9 @@ public class GameView extends JPanel implements ActionListener {
      * @param map Gives the name of the map that is to be loaded
      */
     public GameView(Window window, String map) {
+
+        this.currentWindow = window;
+        List<String> list = new ArrayList<>();
         File file = null;
         Scanner reader = null;
         map = "src/main/resources/" + map;
@@ -54,25 +58,31 @@ public class GameView extends JPanel implements ActionListener {
             file = new File(map);
             reader = new Scanner(file);
         } catch (Exception e) {
-            new WarningMessage();
-            window.restartMenu();
+            new WarningMessage().invokeWarning(this, window);
+            
         }
-        List<String> list = new ArrayList<>();
+
         if (file.exists()) {
             while (reader.hasNextLine()) {
                 list.add(reader.nextLine());
             }
-            mapData = list;
+
             game = new Game(list);
+            mapData = list;
             frame = 0;
             currentTower = 1;
             nextCommand = ' ';
             timer = new Timer(16, this);
             timer.start();
-            this.window = window;
 
         } else {
-            new WarningMessage();
+            game = new Game();
+            mapData = list;
+            frame = 0;
+            currentTower = 1;
+            nextCommand = ' ';
+            timer = new Timer(16, this);
+            timer.start();
         }
     }
 
@@ -104,34 +114,36 @@ public class GameView extends JPanel implements ActionListener {
 
     @Override
     public void paint(Graphics g) {
-
+        boolean test = true;
         Graphics2D g2d = (Graphics2D) g;
 
         try {
             drawBackGround(g2d);
         } catch (Exception e) {
-            new WarningMessage();
-            try{
-                window.restartMenu();
-            }
-            catch(Exception ee){
-                System.exit(0);
-            }
+            test = false;
+            new WarningMessage().invokeWarning(this, currentWindow);
+            
         }
 
-        game.update(frame, this);
+        if (test) {
+            if (mapData.isEmpty()) {
+                game.update(this);
+            } else {
+                game.update(frame, this);
+            }
 
-        List<Enemy> enemies = game.getEnemies();
-        List<Tower> towers = game.getTowers();
-        List<Ammunition> ammunition = game.getAmmunition();
-        
-        drawDrawables(enemies, towers, ammunition, g2d);
+            List<Enemy> enemies = game.getEnemies();
+            List<Tower> towers = game.getTowers();
+            List<Ammunition> ammunition = game.getAmmunition();
 
-        drawFrameCounter(g2d);
+            drawDrawables(enemies, towers, ammunition, g2d);
 
-        infoDraw(g2d);
+            drawFrameCounter(g2d);
 
-        drawGoal(g2d);
+            infoDraw(g2d);
+
+            drawGoal(g2d);
+        }
     }
 
     /**
@@ -150,11 +162,6 @@ public class GameView extends JPanel implements ActionListener {
             g2d.fillRect(800, 0, 400, 800);
             g2d.setColor(Color.black);
         } catch (IOException e) {
-            new WarningMessage();
-            window.restartMenu();
-        } catch (NullPointerException ee) {
-            new WarningMessage();
-            window.restartMenu();
         }
     }
 
@@ -274,7 +281,11 @@ public class GameView extends JPanel implements ActionListener {
      * Changes the view back to opening menu
      */
     public void returnMenu() {
-        window.restartMenu();
+        currentWindow.restartMenu();
+    }
+
+    public void iniatitenewWindow() {
+        currentWindow.run();
     }
 
 }

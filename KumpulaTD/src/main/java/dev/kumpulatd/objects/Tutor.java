@@ -13,6 +13,7 @@ import dev.kumpulatd.ui.WarningMessage;
 
 /**
  * Implementation of Tower
+ *
  * @author kummi
  */
 public class Tutor implements Tower {
@@ -88,6 +89,7 @@ public class Tutor implements Tower {
             img = ImageIO.read(new File("src/main/resources/tutor.png"));
         } catch (IOException e) {
 
+            img = new BufferedImage(1, 1, 1);
             new WarningMessage().invokeWarning();
         }
     }

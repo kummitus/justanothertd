@@ -53,14 +53,29 @@ public final class Game {
      * played map
      */
     public Game(List<String> list) {
-
         initLists(list.get(1));
         initGoal(list.get(2));
         initPath(list.get(3));
         initTowers(list.get(4));
         lives = Integer.parseInt(list.get(5));
+        //lives = 0;
         endGameInvoked = true;
         money = Integer.parseInt(list.get(6));
+
+    }
+
+    public Game() {
+        lives = 0;
+        endGameInvoked = false;
+        money = 0;
+        enemies = new ArrayList<>();
+        towers = new ArrayList<>();
+        ammunition = new ArrayList<>();
+        spawns = new ArrayList<>();
+        goal = new GoalLocation(1, 1);
+        towerlocations = new ArrayList<>();
+        path = new PathFinding();
+        pathFinder = new PathFinder();
 
     }
 
@@ -156,20 +171,21 @@ public final class Game {
     public void update(int frame, GameView view) {
 
         if (lives >= 1) {
-            if (frame < 10000) {
-                info = removeSurvivedEnemies(new GameInfo(enemies, path, lives));
-                enemies = info.getEnemies();
-                lives = info.getLives();
-                info = removeDeadEnemies(new GameInfo(enemies, money));
-                enemies = info.getEnemies();
-                money = info.getMoney();
 
-                damageEnemies(frame);
+            info = removeSurvivedEnemies(new GameInfo(enemies, path, lives));
+            enemies = info.getEnemies();
+            lives = info.getLives();
+            info = removeDeadEnemies(new GameInfo(enemies, money));
+            enemies = info.getEnemies();
+            money = info.getMoney();
+            damageEnemies(frame);
+            if (frame < 50) {
                 spawnEnemies1(frame);
-
-                enemies = pathFinder.testForPathFinding(enemies, goal, path);
             }
-            if (frame > 10000 && enemies.isEmpty()) {
+            enemies = pathFinder.testForPathFinding(enemies, goal, path);
+
+            if (frame > 50 && enemies.isEmpty() && endGameInvoked) {
+                endGameInvoked = false;
                 winGame(view);
             }
         } else if (lives == 0) {
@@ -186,6 +202,9 @@ public final class Game {
 
         }
 
+    }
+
+    public void update(GameView view) {
     }
 
     private void damageEnemies(int frame) {
@@ -299,7 +318,7 @@ public final class Game {
      *
      * @param currentTower Gives the tower location to be manipulated to the
      * logic and tries to perform action on it
-     * @param tow
+     * @param tow Towertype to be sold
      */
     public void sellTower(int currentTower, String tow) {
         boolean test = false;

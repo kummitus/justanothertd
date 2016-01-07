@@ -16,6 +16,7 @@ import dev.kumpulatd.ui.WarningMessage;
 
 /**
  * Implementation of enemy class
+ *
  * @author antti
  */
 public class Freshman implements Enemy {
@@ -43,7 +44,8 @@ public class Freshman implements Enemy {
             img = ImageIO.read(new File("src/main/resources/freshman.png"));
         } catch (IOException e) {
 
-            new WarningMessage().invokeWarning();
+            img = new BufferedImage(1, 1, 1);
+
         }
         this.x = x;
         this.y = y;

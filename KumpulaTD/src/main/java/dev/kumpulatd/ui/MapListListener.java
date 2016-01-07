@@ -5,6 +5,7 @@
  */
 package dev.kumpulatd.ui;
 
+import static dev.kumpulatd.logic.TestingHelper.testForGenericFiles;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -28,6 +29,8 @@ public class MapListListener implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        testForGenericFiles();
         game = new GameView(window, map);
         frame.getContentPane().removeAll();
         frame.getContentPane().add(game);

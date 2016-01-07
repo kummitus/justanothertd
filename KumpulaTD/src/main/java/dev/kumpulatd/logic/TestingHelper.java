@@ -6,8 +6,17 @@
 package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Enemy;
+import dev.kumpulatd.ui.GameLostWindow;
 import dev.kumpulatd.ui.GameWonWindow;
 import dev.kumpulatd.ui.GameView;
+import dev.kumpulatd.ui.WarningMessage;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import javax.imageio.ImageIO;
 
 /**
  * Helper class to include various tests used in the game
@@ -57,17 +66,42 @@ public class TestingHelper {
     public static void testForRemainingLives(int lives, GameView view) {
         if (lives <= 0) {
 
-            new GameWonWindow().invokeWarning(view);
+            new GameLostWindow().invokeWarning(view);
 
         }
     }
 
     /**
      * Invokes the screen to show player has won the game
-     * @param view 
+     *
+     * @param view
      */
     public static void winGame(GameView view) {
         new GameWonWindow().invokeWarning(view);
+    }
+
+    public static void testForGenericFiles() {
+        
+        BufferedImage img = null;
+        
+        try {
+            img = ImageIO.read(new File("src/main/resources/professor.png"));
+        } catch (IOException e) {
+            new WarningMessage().invokeWarning("Tower Image not Found");
+        }
+        img = null;
+        try {
+            img = ImageIO.read(new File("src/main/resources/tutor.png"));
+        } catch (IOException e) {
+            new WarningMessage().invokeWarning("Tower Image not Found");
+        }
+        img = null;
+        try {
+            img = ImageIO.read(new File("src/main/resources/freshman.png"));
+        } catch (IOException e) {
+            new WarningMessage().invokeWarning("Enemy Image not Found");
+        }
+
     }
 
 }

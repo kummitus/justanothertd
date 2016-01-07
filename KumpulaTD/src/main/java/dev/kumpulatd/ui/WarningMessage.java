@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Warning message window
+ *
  * @author antti
  */
 public class WarningMessage {
@@ -17,11 +18,31 @@ public class WarningMessage {
      * Invokes warning message if some files are not found
      */
     public void invokeWarning() {
-        JOptionPane.showMessageDialog(null,
-                "Game integrity is not up to standards, some sources files are lost",
+        JOptionPane.showOptionDialog(null,
+                "Some sources files are lost and might affect game experience",
                 "Something happened",
-                JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.PLAIN_MESSAGE, null, null, null);
 
+    }
+
+    public void invokeWarning(GameView view, Window window) {
+        JOptionPane.showOptionDialog(null,
+                "Map files are not found",
+                "Something happened",
+                JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.PLAIN_MESSAGE, null, null, null);
+        window.stop();
+        view.iniatitenewWindow();
+
+    }
+
+    public void invokeWarning(String text) {
+        JOptionPane.showOptionDialog(null,
+                "Some sources files are lost and might affect game experience\n" + text,
+                "Something happened",
+                JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.PLAIN_MESSAGE, null, null, null);
     }
 
 }

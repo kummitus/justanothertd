@@ -42,8 +42,9 @@ public class Window implements Runnable {
         frame.setPreferredSize(new Dimension(1200, 800));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        frame.getContentPane().removeAll();
         createComponents(frame.getContentPane());
+        frame.requestFocusInWindow();
         frame.pack();
         frame.setVisible(true);
 
@@ -92,15 +93,14 @@ public class Window implements Runnable {
             frame = new JFrame("KumpulaTD");
             createComponents(frame.getContentPane());
             frame.revalidate();
-            frame.requestFocusInWindow();
             frame.validate();
+            frame.requestFocusInWindow();
         } else {
             frame.getContentPane().removeAll();
             createComponents(frame.getContentPane());
             frame.revalidate();
+            frame.validate();            
             frame.requestFocusInWindow();
-            frame.validate();
-
         }
     }
 
@@ -116,7 +116,7 @@ public class Window implements Runnable {
                 maplist.add(reader.nextLine());
             }
         } catch (Exception e) {
-            new WarningMessage();
+            new WarningMessage().invokeWarning();
         }
         ButtonGroup buttons = new ButtonGroup();
         JPanel menu = new JPanel(new GridLayout(maplist.size(), 1));
@@ -128,5 +128,12 @@ public class Window implements Runnable {
             menu.add(button);
         }
         return menu;
+    }
+
+    /**
+     * Disposes crashed frame
+     */
+    public void stop() {
+        frame.dispose();
     }
 }

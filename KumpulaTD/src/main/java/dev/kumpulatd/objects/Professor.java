@@ -90,7 +90,7 @@ public class Professor implements Tower {
         try {
             img = ImageIO.read(new File("src/main/resources/professor.png"));
         } catch (IOException e) {
-
+            img = new BufferedImage(1, 1, 1);
             new WarningMessage().invokeWarning();
         }
     }

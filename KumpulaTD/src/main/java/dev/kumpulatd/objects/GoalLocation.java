@@ -13,27 +13,31 @@ import dev.kumpulatd.ui.WarningMessage;
 
 /**
  * Is used to determine the last point of pathfinding
+ *
  * @author kummi
  */
 public class GoalLocation {
+
     private int x;
     private int y;
     private BufferedImage img;
 
     /**
      * Constructor for goal location
+     *
      * @param x X value
      * @param y Y value
      */
     public GoalLocation(int x, int y) {
         this.x = x;
         this.y = y;
-        
+
         img = null;
         try {
             img = ImageIO.read(new File("src/main/resources/goal.png"));
         } catch (IOException e) {
 
+            img = new BufferedImage(1, 1, 1);
             new WarningMessage().invokeWarning();
         }
     }
@@ -53,12 +57,12 @@ public class GoalLocation {
     public int getY() {
         return y;
     }
-    
+
     /**
      *
      * @return Image associated with goal
      */
-    public BufferedImage getImg(){
+    public BufferedImage getImg() {
         return img;
     }
 }
