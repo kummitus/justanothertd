@@ -61,10 +61,8 @@ public final class Game {
         initPath(list.get(3));
         initTowers(list.get(4));
         lives = Integer.parseInt(list.get(5));
-        //lives = 0;
         endGameInvoked = true;
-        //money = Integer.parseInt(list.get(6));
-        money = 40;
+        money = Integer.parseInt(list.get(6));
 
     }
 

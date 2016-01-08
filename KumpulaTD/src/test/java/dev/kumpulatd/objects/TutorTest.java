@@ -98,7 +98,7 @@ public class TutorTest {
      */
     @Test
     public void testDamage() {
-        assertEquals(5, tutor.damage());
+        assertEquals(8, tutor.damage());
         assertEquals(1, tutor.damageType());
     }
 

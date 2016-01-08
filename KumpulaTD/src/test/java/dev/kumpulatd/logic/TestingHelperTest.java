@@ -204,14 +204,14 @@ public class TestingHelperTest {
     /**
      *
      */
-    @Test
-    public void endGame1() {
-        Window window = new Window();
-        GameView view = new GameView(window, "kumpula");
-        winGame(view);
-        assertEquals(window.getFrame(), null);
-
-    }
+//    @Test
+//    public void endGame1() {
+//        Window window = new Window();
+//        GameView view = new GameView(window, "kumpula");
+//        winGame(view);
+//        assertEquals(window.getFrame(), null);
+//
+//    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

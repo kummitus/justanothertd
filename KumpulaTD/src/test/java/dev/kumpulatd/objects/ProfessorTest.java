@@ -97,8 +97,8 @@ public class ProfessorTest {
      */
     @Test
     public void testDamage() {
-        assertEquals(3, professor.damage());
-        assertEquals(1, professor.damageType());
+        assertEquals(5, professor.damage());
+        assertEquals(2, professor.damageType());
     }
 
     /**
