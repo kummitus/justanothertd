@@ -39,7 +39,7 @@ public class Window implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("KumpulaTD");
-        frame.setPreferredSize(new Dimension(1200, 800));
+        frame.setPreferredSize(new Dimension(1100, 710));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().removeAll();

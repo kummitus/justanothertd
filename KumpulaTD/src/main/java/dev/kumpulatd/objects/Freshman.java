@@ -8,11 +8,8 @@ package dev.kumpulatd.objects;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.imageio.ImageIO;
-import dev.kumpulatd.ui.WarningMessage;
 
 /**
  * Implementation of enemy class
@@ -23,7 +20,6 @@ public class Freshman implements Enemy {
 
     private int HP;
     private int speed;
-    private Map<Integer, Integer> resistance;
     private BufferedImage img;
     private int x;
     private int y;
@@ -38,7 +34,6 @@ public class Freshman implements Enemy {
     public Freshman(int x, int y) {
         HP = 50;
         speed = 5;
-        resistance = new HashMap<>();
         img = null;
         try {
             img = ImageIO.read(new File("src/main/resources/freshman.png"));
@@ -70,6 +65,7 @@ public class Freshman implements Enemy {
     @Override
     public void damage(int type, int amount) {
         HP -= amount;
+        System.out.println(amount);
     }
 
     /**

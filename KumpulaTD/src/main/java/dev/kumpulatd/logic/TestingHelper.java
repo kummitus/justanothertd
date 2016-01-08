@@ -5,6 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
+import dev.kumpulatd.objects.Ammunition;
 import dev.kumpulatd.objects.Enemy;
 import dev.kumpulatd.ui.GameLostWindow;
 import dev.kumpulatd.ui.GameWonWindow;
@@ -14,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
@@ -63,12 +65,8 @@ public class TestingHelper {
      * @param lives
      * @param view
      */
-    public static void testForRemainingLives(int lives, GameView view) {
-        if (lives <= 0) {
-
-            new GameLostWindow().invokeWarning(view);
-
-        }
+    public static void loseGame(GameView view) {
+        new GameLostWindow().invokeWarning(view);
     }
 
     /**
@@ -81,9 +79,9 @@ public class TestingHelper {
     }
 
     public static void testForGenericFiles() {
-        
+
         BufferedImage img = null;
-        
+
         try {
             img = ImageIO.read(new File("src/main/resources/professor.png"));
         } catch (IOException e) {
@@ -102,6 +100,25 @@ public class TestingHelper {
             new WarningMessage().invokeWarning("Enemy Image not Found");
         }
 
+        for (int i = 1; i < 9; i++) {
+            img = null;
+            try {
+                img = ImageIO.read(new File("src/main/resources/" + i + ".png"));
+            } catch (IOException e) {
+                new WarningMessage().invokeWarning("Enemy Image not Found");
+            }
+        }
+
+    }
+    
+    public static void removeUnnecessaryAmmo(List<Ammunition> ammunition){
+        Iterator itr = ammunition.iterator();
+        while(itr.hasNext()){
+            Ammunition ammo = (Ammunition) itr.next();
+            if(ammo.getCounter() > 3){
+                itr.remove();
+            }
+        }
     }
 
 }

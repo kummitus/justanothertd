@@ -21,10 +21,9 @@ import dev.kumpulatd.objects.Ammunition;
 import dev.kumpulatd.objects.Enemy;
 import dev.kumpulatd.logic.Game;
 import dev.kumpulatd.objects.Tower;
+import dev.kumpulatd.objects.TowerLocation;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Handles the drawing of the game currentWindow
@@ -135,8 +134,9 @@ public class GameView extends JPanel implements ActionListener {
             List<Enemy> enemies = game.getEnemies();
             List<Tower> towers = game.getTowers();
             List<Ammunition> ammunition = game.getAmmunition();
+            List<TowerLocation> towerlocations = game.getTowerLocations();
 
-            drawDrawables(enemies, towers, ammunition, g2d);
+            drawDrawables(towerlocations, enemies, towers, ammunition, g2d);
 
             drawFrameCounter(g2d);
 
@@ -182,21 +182,34 @@ public class GameView extends JPanel implements ActionListener {
         repaint();
     }
 
-    private void drawDrawables(List<Enemy> enemies, List<Tower> towers, List<Ammunition> ammunition, Graphics2D g2d) {
-
+    private void drawDrawables(List<TowerLocation> towerlocations, List<Enemy> enemies, List<Tower> towers, List<Ammunition> ammunition, Graphics2D g2d) {
+        List<TowerLocation> used = new ArrayList<>();
+        
         for (Enemy e : enemies) {
             for (Enemy ee : e.getMembers()) {
                 g2d.drawImage(ee.getImg(), null, ee.getX(), ee.getY());
             }
         }
-
+        
         for (Tower e : towers) {
             g2d.drawImage(e.getImg(), null, e.getLocation().getX(), e.getLocation().getY());
+            used.add(e.getLocation());
         }
 
         for (Ammunition e : ammunition) {
             g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
+            if(e.onTarget()){
+                e.IncreaseCounter();
+            }
         }
+        
+        for(TowerLocation location : towerlocations){
+            if(!used.contains(location)){
+                g2d.drawImage(location.getImg(), null, location.getX(), location.getY());
+            }
+        }
+        
+        
     }
 
     private void infoDraw(Graphics2D g2d) {

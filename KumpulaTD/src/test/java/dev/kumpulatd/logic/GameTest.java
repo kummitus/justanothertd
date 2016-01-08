@@ -5,8 +5,13 @@
  */
 package dev.kumpulatd.logic;
 
+import dev.kumpulatd.objects.Ammunition;
+import dev.kumpulatd.objects.Enemy;
 import dev.kumpulatd.objects.Freshman;
+import dev.kumpulatd.objects.GoalLocation;
 import dev.kumpulatd.objects.SpawnLocation;
+import dev.kumpulatd.objects.Tower;
+import dev.kumpulatd.objects.TowerLocation;
 import dev.kumpulatd.ui.GameView;
 import dev.kumpulatd.ui.Window;
 import java.util.ArrayList;
@@ -195,7 +200,7 @@ public class GameTest {
 
     /**
      *
-     * 
+     *
      */
     @Test
     public void buyTowers() {
@@ -310,4 +315,20 @@ public class GameTest {
 
     }
 
+    @Test
+    public void testFailingGame() {
+        game = new Game();
+        assertEquals(new ArrayList<Enemy>(), game.getEnemies());
+        assertEquals(new ArrayList<Tower>(), game.getTowers());
+        assertEquals(new ArrayList<Ammunition>(), game.getAmmunition());
+        assertEquals(new ArrayList<SpawnLocation>(), game.getSpawns());
+        assertEquals(new GoalLocation(1, 1), game.getGoal());
+
+    }
+    
+    @Test
+    public void testProfessorTower(){
+        game.buyTower(0, "Professor");
+        
+    }
 }

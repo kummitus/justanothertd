@@ -31,4 +31,30 @@ public interface Ammunition {
      */
     public BufferedImage getImg();
     
+    /**
+     *
+     */
+    public void IncreaseCounter();
+    
+    /**
+     *
+     * @return
+     */
+    public int getCounter();
+
+    public boolean onTarget();
+    
+    public Enemy getEnemy();
+
+    public void setX(int i);
+
+    public void setY(int i);
+
+    public int getType();
+
+    public int getAmount();
+
+    public void setOnTarget();
+    
+    
 }

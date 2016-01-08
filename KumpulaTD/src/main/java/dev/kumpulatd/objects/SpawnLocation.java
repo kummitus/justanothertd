@@ -13,6 +13,7 @@ public class SpawnLocation {
     private int x;
     private int y;
     
+    
     /**
      *
      * @param x

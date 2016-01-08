@@ -34,7 +34,7 @@ public class Tutor implements Tower {
         range = 150;
         damageType = 1;
         initImg();
-        damage = 5;
+        damage = 8;
         name = "Tutor";
     }
 

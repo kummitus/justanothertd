@@ -18,11 +18,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import static dev.kumpulatd.logic.TestingHelper.testForRemainingLives;
+import static dev.kumpulatd.logic.TestingHelper.loseGame;
 import static dev.kumpulatd.logic.TestingHelper.winGame;
 import static dev.kumpulatd.logic.EnemyManager.removeSurvivedEnemies;
 import static dev.kumpulatd.logic.EnemyManager.removeDeadEnemies;
+import static dev.kumpulatd.logic.PathFinder.moveAmmo;
 import dev.kumpulatd.objects.Professor;
+import dev.kumpulatd.objects.ProfessorAmmo;
+import dev.kumpulatd.objects.TutorAmmo;
 import dev.kumpulatd.ui.GameView;
 
 /**
@@ -60,7 +63,8 @@ public final class Game {
         lives = Integer.parseInt(list.get(5));
         //lives = 0;
         endGameInvoked = true;
-        money = Integer.parseInt(list.get(6));
+        //money = Integer.parseInt(list.get(6));
+        money = 40;
 
     }
 
@@ -107,8 +111,13 @@ public final class Game {
 
     private void initTowers(String row) {
         String[] list = row.split(",");
+        int j = 1;
         for (int i = 0; i < list.length; i += 2) {
-            towerlocations.add(new TowerLocation(Integer.parseInt(list[i]), Integer.parseInt(list[i + 1])));
+            towerlocations.add(new TowerLocation(Integer.parseInt(list[i]), Integer.parseInt(list[i + 1]), j));
+            j++;
+            if (j > 9) {
+                break;
+            }
         }
     }
 
@@ -161,6 +170,14 @@ public final class Game {
     }
 
     /**
+     *
+     * @return Returns towerlocations
+     */
+    public List<TowerLocation> getTowerLocations() {
+        return towerlocations;
+    }
+
+    /**
      * Update method is used to process the game logic as whole
      *
      * @param frame Frame is the current frame in the game and is passed from
@@ -178,13 +195,16 @@ public final class Game {
             info = removeDeadEnemies(new GameInfo(enemies, money));
             enemies = info.getEnemies();
             money = info.getMoney();
-            damageEnemies(frame);
-            if (frame < 50) {
+            targetEnemies(frame);
+            removeDeadAmmo();
+            PathFinder.moveAmmo(ammunition);
+            damageEnemies();
+            if (frame < 10000) {
                 spawnEnemies1(frame);
             }
             enemies = pathFinder.testForPathFinding(enemies, goal, path);
 
-            if (frame > 50 && enemies.isEmpty() && endGameInvoked) {
+            if (frame > 10000 && enemies.isEmpty() && endGameInvoked) {
                 endGameInvoked = false;
                 winGame(view);
             }
@@ -195,8 +215,7 @@ public final class Game {
                 enemies = info.getEnemies();
                 money = info.getMoney();
                 endGameInvoked = false;
-                testForRemainingLives(lives, view);
-                //view.stopTimer();
+                loseGame(view);
 
             }
 
@@ -207,13 +226,59 @@ public final class Game {
     public void update(GameView view) {
     }
 
-    private void damageEnemies(int frame) {
+    private void removeDeadAmmo() {
+        Iterator itr = ammunition.iterator();
+        while (itr.hasNext()) {
+            Ammunition ammo = (Ammunition) itr.next();
+            if (ammo.getEnemy() == null) {
+                itr.remove();
+            } else if (ammo.getEnemy().getHP() <= 0) {
+                itr.remove();
+            } else if (ammo.getCounter() > 1) {
+                itr.remove();
+            }
+        }
+    }
+
+    private void damageEnemies() {
+        Iterator itr = ammunition.iterator();
+        List<Enemy> damaged = new ArrayList<>();
+        while (itr.hasNext()) {
+            Ammunition ammo = (Ammunition) itr.next();
+            if (ammo.getCounter() > 0) {
+                System.out.println(ammo.getAmount());
+                if (ammo.getType() == 1) {
+                    ammo.getEnemy().damage(ammo.getType(), ammo.getAmount());
+                    damaged.add(ammo.getEnemy());
+                } else if (ammo.getType() == 2) {
+                    for (Enemy ee : enemies) {
+                        for (Enemy eee : ee.getMembers()) {
+
+                            if (isClose(eee.getX(), eee.getY(), new TowerLocation(ammo.getX(), ammo.getY()), 50)) {
+                                if (damaged.contains(eee)) {
+
+                                } else {
+                                    eee.damage(ammo.getType(), ammo.getAmount());
+                                    damaged.add(eee);
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+        }
+    }
+
+    private void targetEnemies(int frame) {
         if (frame % 4 == 0) {
             for (Tower tower : towers) {
                 if (tower.getName().equals("Tutor")) {
                     Enemy e = getClosestEnemey(tower);
                     try {
-                        e.damage(tower.damageType(), tower.damage());
+                        ammunition.add(new TutorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType()));
                     } catch (Exception ex) {
 
                     }
@@ -227,9 +292,7 @@ public final class Game {
                     try {
                         for (Enemy ee : enemies) {
                             for (Enemy eee : ee.getMembers()) {
-                                if (isClose(eee.getX(), eee.getY(), new TowerLocation(e.getX(), e.getY()), 50)) {
-                                    eee.damage(tower.damageType(), tower.damage());
-                                }
+                                ammunition.add(new ProfessorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType()));
                             }
                         }
 
@@ -262,12 +325,46 @@ public final class Game {
     }
 
     private void spawnEnemies1(int frame) {
-        if (frame % 30 == 0) {
+        if (frame % 35 == 0 && frame < 2500) {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
             EnemyGroup group = new EnemyGroup();
             group.addMember(new Freshman(x, y));
+            enemies.add(group);
+        }
+        if (frame % 35 == 0 && frame > 2500 && frame < 4000) {
+            int random = new Random().nextInt(2);
+            int x = spawns.get(random).getX();
+            int y = spawns.get(random).getY();
+            EnemyGroup group = new EnemyGroup();
+            group.addMember(new Freshman(x, y));
+            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15)));
+            enemies.add(group);
+        }
+        if (frame % 35 == 0 && frame > 4000 && frame < 8000) {
+            int random = new Random().nextInt(2);
+            int x = spawns.get(random).getX();
+            int y = spawns.get(random).getY();
+            EnemyGroup group = new EnemyGroup();
+            group.addMember(new Freshman(x, y));
+            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15)));
+            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15)));
+            group.addMember(new Freshman(x - new Random().nextInt(30), y + new Random().nextInt(30)));
+            enemies.add(group);
+        }
+        if (frame % 35 == 0 && frame > 8000) {
+            int random = new Random().nextInt(2);
+            int x = spawns.get(random).getX();
+            int y = spawns.get(random).getY();
+            EnemyGroup group = new EnemyGroup();
+            group.addMember(new Freshman(x, y));
+            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15)));
+            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15)));
+            group.addMember(new Freshman(x - new Random().nextInt(35), y + new Random().nextInt(35)));
+            group.addMember(new Freshman(x + new Random().nextInt(35), y - new Random().nextInt(35)));
+            group.addMember(new Freshman(x - new Random().nextInt(55), y + new Random().nextInt(55)));
+            group.addMember(new Freshman(x + new Random().nextInt(55), y - new Random().nextInt(55)));
             enemies.add(group);
         }
     }

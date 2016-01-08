@@ -9,16 +9,63 @@ import dev.kumpulatd.objects.Enemy;
 import dev.kumpulatd.objects.GoalLocation;
 import java.util.List;
 import static dev.kumpulatd.logic.TestingHelper.testIfClose;
-import java.util.Iterator;
+import dev.kumpulatd.objects.Ammunition;
 
 /**
  * Pathfinder, moves the enemies according to PathFinding class
+ *
  * @author antti
  */
 public class PathFinder {
 
     /**
-     * Used to move the enemies around the map. 
+     * Pathfinder, moves the ammunition according to PathFinding class
+     *
+     * 
+     * @param ammunition
+     */
+    public static void moveAmmo(List<Ammunition> ammunition) {
+        for (Ammunition ammo : ammunition) {
+            if (Math.abs(ammo.getEnemy().getX() - ammo.getX()) >= Math.abs(ammo.getEnemy().getY() - ammo.getY())) {
+                if (ammo.getEnemy().getX() >= ammo.getX()) {
+                    int i = ammo.getX() + 4;
+                    if (i > 0) {
+                        ammo.setX(4);
+                    } else {
+                        ammo.setX(ammo.getEnemy().getX());
+                    }
+                } else {
+                    int i = ammo.getX() - 4;
+                    if (i > 0) {
+                        ammo.setX(-4);
+                    } else {
+                        ammo.setX(ammo.getEnemy().getX());
+                    }
+                }
+            } else if (ammo.getEnemy().getY() >= ammo.getY()) {
+                int i = ammo.getY() + 4;
+                if (i > 0) {
+                    ammo.setY(4);
+                } else {
+                    ammo.setY(ammo.getEnemy().getX());
+                }
+            } else {
+                int i = ammo.getY() - 4;
+                if (i > 0) {
+                    ammo.setY(-4);
+                } else {
+                    ammo.setY(ammo.getEnemy().getX());
+                }
+            }
+            if(Math.abs(ammo.getX()-ammo.getEnemy().getX()) < 10 && Math.abs(ammo.getY()-ammo.getEnemy().getY()) < 10){
+                ammo.setOnTarget();
+            }
+        }
+    }
+
+    /**
+     * Used to move the enemies around the map.
+     *
      * @param enemies Enemies to be moved
      * @param goal Goal location
      * @param path Path location
@@ -32,7 +79,7 @@ public class PathFinder {
                     if (testIfClose(ee, path)) {
                         ee.increaseTarget();
                     }
-                    
+
                     moveEnemies(ee, path);
                 }
             }

@@ -9,9 +9,6 @@ import dev.kumpulatd.ui.WarningMessage;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.imageio.ImageIO;
 
 /**
@@ -34,9 +31,9 @@ public class Professor implements Tower {
     public Professor(TowerLocation location) {
         this.location = location;
         range = 100;
-        damageType = 1;
+        damageType = 2;
         initImg();
-        damage = 3;
+        damage = 5;
         name = "Professor";
     }
 

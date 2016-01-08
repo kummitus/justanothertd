@@ -9,7 +9,8 @@ import dev.kumpulatd.objects.Enemy;
 import dev.kumpulatd.objects.EnemyGroup;
 import dev.kumpulatd.objects.Freshman;
 import dev.kumpulatd.objects.GoalLocation;
-import static dev.kumpulatd.logic.TestingHelper.testForRemainingLives;
+import static dev.kumpulatd.logic.TestingHelper.loseGame;
+import static dev.kumpulatd.logic.TestingHelper.winGame;
 import static dev.kumpulatd.logic.TestingHelper.testIfClose;
 import dev.kumpulatd.ui.GameView;
 import dev.kumpulatd.ui.Window;
@@ -195,7 +196,7 @@ public class TestingHelperTest {
     public void endGame() {
         Window window = new Window();
         GameView view = new GameView(window, "kumpula");
-        testForRemainingLives(0, view);
+        loseGame(view);
         assertNotNull(window.getFrame());
 
     }
@@ -207,7 +208,7 @@ public class TestingHelperTest {
     public void endGame1() {
         Window window = new Window();
         GameView view = new GameView(window, "kumpula");
-        testForRemainingLives(1, view);
+        winGame(view);
         assertEquals(window.getFrame(), null);
 
     }
