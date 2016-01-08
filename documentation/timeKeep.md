@@ -13,3 +13,5 @@
 | 2.1 | 7 hours | Tests, chart, Some more finetuning on logic and bugspalshing, JavaDoc |
 | 5.1 | 3 hours | Working gameplay |
 | 6.1 | 6 hours | Modular map implementation, sequence diagrams, classchart, javadoc, tests, bunch of things |
+| 7.1 | 6 hours | Making the game to be a game, ammunition implemented |
+| 8.1 | 3 hours | Cont. |
