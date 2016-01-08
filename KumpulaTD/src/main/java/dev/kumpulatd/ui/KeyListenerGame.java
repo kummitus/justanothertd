@@ -27,7 +27,6 @@ class KeyListenerGame implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         game.setNextCommand(e.getKeyChar());
-        System.out.println(e.getKeyChar());
     }
 
     @Override

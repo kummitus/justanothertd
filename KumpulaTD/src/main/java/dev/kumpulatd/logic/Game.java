@@ -47,6 +47,7 @@ public final class Game {
     private boolean endGameInvoked;
     private int money;
     private GameInfo info;
+    
 
     /**
      * Constructor for the game class
@@ -184,7 +185,8 @@ public final class Game {
      * callback when the game is finished
      */
     public void update(int frame, GameView view) {
-
+        
+        
         if (lives >= 1) {
 
             info = removeSurvivedEnemies(new GameInfo(enemies, path, lives));
@@ -244,7 +246,6 @@ public final class Game {
         while (itr.hasNext()) {
             Ammunition ammo = (Ammunition) itr.next();
             if (ammo.getCounter() > 0) {
-                System.out.println(ammo.getAmount());
                 if (ammo.getType() == 1) {
                     ammo.getEnemy().damage(ammo.getType(), ammo.getAmount());
                     damaged.add(ammo.getEnemy());
@@ -323,7 +324,7 @@ public final class Game {
     }
 
     private void spawnEnemies1(int frame) {
-        if (frame % 35 == 0 && frame < 2500) {
+        if (frame % 45 == 0 && frame < 2500) {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
@@ -340,7 +341,7 @@ public final class Game {
             group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15)));
             enemies.add(group);
         }
-        if (frame % 35 == 0 && frame > 4000 && frame < 8000) {
+        if (frame % 25 == 0 && frame > 4000 && frame < 8000) {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
@@ -351,7 +352,7 @@ public final class Game {
             group.addMember(new Freshman(x - new Random().nextInt(30), y + new Random().nextInt(30)));
             enemies.add(group);
         }
-        if (frame % 35 == 0 && frame > 8000) {
+        if (frame % 20 == 0 && frame > 8000) {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();

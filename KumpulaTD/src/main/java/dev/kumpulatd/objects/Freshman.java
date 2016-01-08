@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
@@ -36,12 +37,13 @@ public class Freshman implements Enemy {
         speed = 5;
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/freshman.png"));
+            img = ImageIO.read(new File("src/main/resources/freshman" + new Random().nextInt(2) + ".png"));
         } catch (IOException e) {
 
             img = new BufferedImage(1, 1, 1);
 
         }
+
         this.x = x;
         this.y = y;
         target = 0;
@@ -65,7 +67,6 @@ public class Freshman implements Enemy {
     @Override
     public void damage(int type, int amount) {
         HP -= amount;
-        System.out.println(amount);
     }
 
     /**

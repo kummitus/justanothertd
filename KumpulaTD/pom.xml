@@ -57,7 +57,56 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.9.1</version>
             </plugin> 
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.2</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <transformers>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <mainClass>dev.kumpulatd.Main</mainClass>
+                            </transformer>    
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">    
+                                <file>src/main/resources/1.png</file>  
+                                <file>src/main/resources2.png</file>
+                                <file>src/main/resources3.png</file>
+                                <file>src/main/resources4.png</file>
+                                <file>src/main/resources5.png</file>
+                                <file>src/main/resources6.png</file>
+                                <file>src/main/resources7.png</file>
+                                <file>src/main/resources8.png</file>
+                                <file>src/main/resources9.png</file>
+                                
+                                <file>src/main/resourcesmaplist.txt</file>
+                                <file>src/main/resourceskumpula</file>
+                                <file>src/main/resourcesotaniemi</file>
+                                
+                                <file>src/main/resourcesfreshman.png</file>
+                                <file>src/main/resourcestutor.png</file>
+                                <file>src/main/resourcesprofessor.png</file>
+                                
+                                <file>src/main/resourcesgoal.png</file>
+                                
+                                <file>src/main/resourcesprofessorammo.png</file>
+                                <file>src/main/resourcestutorammo.png</file>
+                                
+                                <file>src/main/resourceskumpula.png</file>
+                                <file>src/main/resourcesotaniemi.png</file>                                
+                                
+                            </transformer>
+                        </transformers>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
         </plugins>
     </build>
-	
+    <name>Kumpula Tower Defence</name>
+    <description>Game of Tower Defence</description>
 </project>

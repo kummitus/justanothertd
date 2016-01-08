@@ -58,7 +58,7 @@ public class GameView extends JPanel implements ActionListener {
             reader = new Scanner(file);
         } catch (Exception e) {
             new WarningMessage().invokeWarning(this, window);
-            
+
         }
 
         if (file.exists()) {
@@ -73,6 +73,7 @@ public class GameView extends JPanel implements ActionListener {
             nextCommand = ' ';
             timer = new Timer(16, this);
             timer.start();
+            game.update(frame, this);
 
         } else {
             game = new Game();
@@ -82,6 +83,8 @@ public class GameView extends JPanel implements ActionListener {
             nextCommand = ' ';
             timer = new Timer(16, this);
             timer.start();
+
+            game.update(frame, this);
         }
     }
 
@@ -93,7 +96,6 @@ public class GameView extends JPanel implements ActionListener {
         timer.removeActionListener(this);
 
     }
-
     /**
      *
      * @param command Passes the game view the key press from keyboard to be
@@ -121,7 +123,7 @@ public class GameView extends JPanel implements ActionListener {
         } catch (Exception e) {
             test = false;
             new WarningMessage().invokeWarning(this, currentWindow);
-            
+
         }
 
         if (test) {
@@ -184,13 +186,13 @@ public class GameView extends JPanel implements ActionListener {
 
     private void drawDrawables(List<TowerLocation> towerlocations, List<Enemy> enemies, List<Tower> towers, List<Ammunition> ammunition, Graphics2D g2d) {
         List<TowerLocation> used = new ArrayList<>();
-        
+
         for (Enemy e : enemies) {
             for (Enemy ee : e.getMembers()) {
                 g2d.drawImage(ee.getImg(), null, ee.getX(), ee.getY());
             }
         }
-        
+
         for (Tower e : towers) {
             g2d.drawImage(e.getImg(), null, e.getLocation().getX(), e.getLocation().getY());
             used.add(e.getLocation());
@@ -198,18 +200,17 @@ public class GameView extends JPanel implements ActionListener {
 
         for (Ammunition e : ammunition) {
             g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
-            if(e.onTarget()){
+            if (e.onTarget()) {
                 e.IncreaseCounter();
             }
         }
-        
-        for(TowerLocation location : towerlocations){
-            if(!used.contains(location)){
+
+        for (TowerLocation location : towerlocations) {
+            if (!used.contains(location)) {
                 g2d.drawImage(location.getImg(), null, location.getX(), location.getY());
             }
         }
-        
-        
+
     }
 
     private void infoDraw(Graphics2D g2d) {

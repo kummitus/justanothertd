@@ -64,7 +64,7 @@ public class FreshmanTest {
 
         
         try {
-            img = ImageIO.read(new File("src/main/resources/freshman.png"));
+            img = ImageIO.read(new File("src/main/resources/freshman1.png"));
         } catch (IOException e) {
             assertEquals(null, fuksi.getImg());
             img = null;

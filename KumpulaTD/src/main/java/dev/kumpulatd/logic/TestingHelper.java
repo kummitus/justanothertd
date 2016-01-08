@@ -14,10 +14,8 @@ import dev.kumpulatd.ui.WarningMessage;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 import javax.imageio.ImageIO;
 
 /**
@@ -95,7 +93,14 @@ public class TestingHelper {
         }
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/freshman.png"));
+            img = ImageIO.read(new File("src/main/resources/freshman0.png"));
+        } catch (IOException e) {
+            new WarningMessage().invokeWarning("Enemy Image not Found");
+        }
+        
+        img = null;
+        try {
+            img = ImageIO.read(new File("src/main/resources/freshman1.png"));
         } catch (IOException e) {
             new WarningMessage().invokeWarning("Enemy Image not Found");
         }
