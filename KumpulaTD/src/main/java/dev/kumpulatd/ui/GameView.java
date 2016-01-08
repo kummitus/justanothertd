@@ -39,6 +39,7 @@ public class GameView extends JPanel implements ActionListener {
     private Timer timer;
     private Window currentWindow;
     private List<String> mapData;
+    private long average;
 
     /**
      *
@@ -47,7 +48,7 @@ public class GameView extends JPanel implements ActionListener {
      * @param map Gives the name of the map that is to be loaded
      */
     public GameView(Window window, String map) {
-
+        average = 0;
         this.currentWindow = window;
         List<String> list = new ArrayList<>();
         File file = null;
@@ -96,6 +97,7 @@ public class GameView extends JPanel implements ActionListener {
         timer.removeActionListener(this);
 
     }
+
     /**
      *
      * @param command Passes the game view the key press from keyboard to be
@@ -115,6 +117,7 @@ public class GameView extends JPanel implements ActionListener {
 
     @Override
     public void paint(Graphics g) {
+        long start = System.nanoTime();
         boolean test = true;
         Graphics2D g2d = (Graphics2D) g;
 
@@ -145,6 +148,9 @@ public class GameView extends JPanel implements ActionListener {
             infoDraw(g2d);
 
             drawGoal(g2d);
+            average = ((System.nanoTime() - start) + average) / 2;
+
+            System.out.println(average);
         }
     }
 
@@ -295,10 +301,12 @@ public class GameView extends JPanel implements ActionListener {
      * Changes the view back to opening menu
      */
     public void returnMenu() {
+
         currentWindow.restartMenu();
     }
 
     public void iniatitenewWindow() {
+
         currentWindow.run();
     }
 

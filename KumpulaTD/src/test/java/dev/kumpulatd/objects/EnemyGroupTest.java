@@ -42,8 +42,8 @@ public class EnemyGroupTest {
      */
     @Test
     public void testAddMember() {
-        group.addMember(new Freshman(5, 5));
-        group.addMember(new Freshman(5, 5));
+        group.addMember(new Freshman(5, 5, null));
+        group.addMember(new Freshman(5, 5, null));
         assertEquals(100, group.getHP());
         assertEquals(5, group.getSpeed());
 
@@ -54,8 +54,8 @@ public class EnemyGroupTest {
      */
     @Test
     public void testDamage() {
-        group.addMember(new Freshman(5, 5));
-        group.addMember(new Freshman(5, 5));
+        group.addMember(new Freshman(5, 5, null));
+        group.addMember(new Freshman(5, 5, null));
         group.damage(0, 50);
         assertEquals(0, group.getHP());
         assertEquals(5, group.getSpeed());
@@ -83,7 +83,7 @@ public class EnemyGroupTest {
      */
     @Test
     public void testOneMembers() {
-        Enemy fuksi = new Freshman(1, 1);
+        Enemy fuksi = new Freshman(1, 1, null);
         group.addMember(fuksi);
         List<Enemy> list = new ArrayList<>();
         list.add(fuksi);
@@ -111,7 +111,7 @@ public class EnemyGroupTest {
      */
     @Test
     public void oneMemberGetXY() {
-        group.addMember(new Freshman(5, 5));
+        group.addMember(new Freshman(5, 5, null));
         assertEquals(5, group.getX());
         assertEquals(5, group.getY());
 
@@ -122,8 +122,8 @@ public class EnemyGroupTest {
      */
     @Test
     public void averageMemberGetXY() {
-        group.addMember(new Freshman(5, 5));
-        group.addMember(new Freshman(15, 15));
+        group.addMember(new Freshman(5, 5, null));
+        group.addMember(new Freshman(15, 15, null));
         assertEquals(10, group.getX());
         assertEquals(10, group.getY());
 
@@ -134,8 +134,8 @@ public class EnemyGroupTest {
      */
     @Test
     public void average2MemberGetXY() {
-        group.addMember(new Freshman(5, 5));
-        group.addMember(new Freshman(10, 10));
+        group.addMember(new Freshman(5, 5, null));
+        group.addMember(new Freshman(10, 10, null));
         assertEquals(7, group.getX());
         assertEquals(7, group.getY());
 
@@ -171,7 +171,7 @@ public class EnemyGroupTest {
      */
     @Test
     public void nextTargetMember(){
-        group.addMember(new Freshman(5,5));
+        group.addMember(new Freshman(5,5, null));
         group.increaseTarget();
         assertEquals(1, group.getMembers().get(0).currentTarget());
     }
@@ -181,8 +181,8 @@ public class EnemyGroupTest {
      */
     @Test
     public void setXsetY(){
-        group.addMember(new Freshman(5,5));
-        group.addMember(new Freshman(10, 10));
+        group.addMember(new Freshman(5,5, null));
+        group.addMember(new Freshman(10, 10, null));
         group.setX(200);
         group.setY(200);
         assertEquals(200, group.getX());

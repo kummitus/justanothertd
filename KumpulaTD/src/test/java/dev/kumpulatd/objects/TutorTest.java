@@ -50,7 +50,13 @@ public class TutorTest {
      */
     @Before
     public void setUp() {
-        tutor = new Tutor(new TowerLocation(1, 1));
+        BufferedImage img;
+        try {
+            img = ImageIO.read(new File("src/main/resources/tutor.png"));
+        } catch (IOException e) {
+            img = null;
+        }
+        tutor = new Tutor(new TowerLocation(1, 1), img);
     }
 
     /**

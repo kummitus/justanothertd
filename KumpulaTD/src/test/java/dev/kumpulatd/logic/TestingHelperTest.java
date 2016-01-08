@@ -64,7 +64,7 @@ public class TestingHelperTest {
 
         path = new PathFinding();
         group = new EnemyGroup();
-        group.addMember(new Freshman(2, 2));
+        group.addMember(new Freshman(2, 2, null));
         finder = new PathFinder();
         location = new GoalLocation(10, 10);
         enemies = new ArrayList<>();

@@ -27,6 +27,10 @@ import dev.kumpulatd.objects.Professor;
 import dev.kumpulatd.objects.ProfessorAmmo;
 import dev.kumpulatd.objects.TutorAmmo;
 import dev.kumpulatd.ui.GameView;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  * Combines all the game logic found from the game in the update method
@@ -47,7 +51,7 @@ public final class Game {
     private boolean endGameInvoked;
     private int money;
     private GameInfo info;
-    
+    private List<BufferedImage> imagelist;
 
     /**
      * Constructor for the game class
@@ -61,6 +65,7 @@ public final class Game {
         initGoal(list.get(2));
         initPath(list.get(3));
         initTowers(list.get(4));
+        initImages();
         lives = Integer.parseInt(list.get(5));
         endGameInvoked = true;
         money = Integer.parseInt(list.get(6));
@@ -118,6 +123,59 @@ public final class Game {
                 break;
             }
         }
+    }
+
+    private void initImages() {
+        imagelist = new ArrayList<>();
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("src/main/resources/freshman0.png"));
+        } catch (IOException e) {
+
+            img = new BufferedImage(1, 1, 1);
+
+        }
+        imagelist.add(img);
+        try {
+            img = ImageIO.read(new File("src/main/resources/freshman1.png"));
+        } catch (IOException e) {
+
+            img = new BufferedImage(1, 1, 1);
+
+        }
+        imagelist.add(img);
+        try {
+            img = ImageIO.read(new File("src/main/resources/tutor.png"));
+        } catch (IOException e) {
+
+            img = new BufferedImage(1, 1, 1);
+
+        }
+        imagelist.add(img);
+        try {
+            img = ImageIO.read(new File("src/main/resources/professor.png"));
+        } catch (IOException e) {
+
+            img = new BufferedImage(1, 1, 1);
+
+        }
+        imagelist.add(img);
+        try {
+            img = ImageIO.read(new File("src/main/resources/tutorammo.png"));
+        } catch (IOException e) {
+
+            img = new BufferedImage(1, 1, 1);
+
+        }
+        imagelist.add(img);
+        try {
+            img = ImageIO.read(new File("src/main/resources/professorammo.png"));
+        } catch (IOException e) {
+
+            img = new BufferedImage(1, 1, 1);
+
+        }
+        imagelist.add(img);
     }
 
     /**
@@ -185,8 +243,7 @@ public final class Game {
      * callback when the game is finished
      */
     public void update(int frame, GameView view) {
-        
-        
+
         if (lives >= 1) {
 
             info = removeSurvivedEnemies(new GameInfo(enemies, path, lives));
@@ -277,7 +334,7 @@ public final class Game {
                 if (tower.getName().equals("Tutor")) {
                     Enemy e = getClosestEnemey(tower);
                     try {
-                        ammunition.add(new TutorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType()));
+                        ammunition.add(new TutorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType(), imagelist.get(4)));
                     } catch (Exception ex) {
 
                     }
@@ -291,7 +348,7 @@ public final class Game {
                     try {
                         for (Enemy ee : enemies) {
                             for (Enemy eee : ee.getMembers()) {
-                                ammunition.add(new ProfessorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType()));
+                                ammunition.add(new ProfessorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType(), imagelist.get(5)));
                             }
                         }
 
@@ -329,7 +386,7 @@ public final class Game {
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
             EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y));
+            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
             enemies.add(group);
         }
         if (frame % 35 == 0 && frame > 2500 && frame < 4000) {
@@ -337,8 +394,8 @@ public final class Game {
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
             EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y));
-            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15)));
+            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
             enemies.add(group);
         }
         if (frame % 25 == 0 && frame > 4000 && frame < 8000) {
@@ -346,10 +403,10 @@ public final class Game {
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
             EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y));
-            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15)));
-            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15)));
-            group.addMember(new Freshman(x - new Random().nextInt(30), y + new Random().nextInt(30)));
+            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x - new Random().nextInt(30), y + new Random().nextInt(30), imagelist.get(new Random().nextInt(2))));
             enemies.add(group);
         }
         if (frame % 20 == 0 && frame > 8000) {
@@ -357,13 +414,13 @@ public final class Game {
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
             EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y));
-            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15)));
-            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15)));
-            group.addMember(new Freshman(x - new Random().nextInt(35), y + new Random().nextInt(35)));
-            group.addMember(new Freshman(x + new Random().nextInt(35), y - new Random().nextInt(35)));
-            group.addMember(new Freshman(x - new Random().nextInt(55), y + new Random().nextInt(55)));
-            group.addMember(new Freshman(x + new Random().nextInt(55), y - new Random().nextInt(55)));
+            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x - new Random().nextInt(35), y + new Random().nextInt(35), imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x + new Random().nextInt(35), y - new Random().nextInt(35), imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x - new Random().nextInt(55), y + new Random().nextInt(55), imagelist.get(new Random().nextInt(2))));
+            group.addMember(new Freshman(x + new Random().nextInt(55), y - new Random().nextInt(55), imagelist.get(new Random().nextInt(2))));
             enemies.add(group);
         }
     }
@@ -396,13 +453,13 @@ public final class Game {
                 if (money >= 30) {
                     if (tow.equals("Tutor")) {
                         money -= 30;
-                        towers.add(new Tutor(towerlocations.get(currentTower - 1)));
+                        towers.add(new Tutor(towerlocations.get(currentTower - 1), imagelist.get(2)));
                     }
                 }
                 if (money >= 40) {
                     if (tow.equals("Professor")) {
                         money -= 40;
-                        towers.add(new Professor(towerlocations.get(currentTower - 1)));
+                        towers.add(new Professor(towerlocations.get(currentTower - 1), imagelist.get(3)));
                     }
                 }
             }

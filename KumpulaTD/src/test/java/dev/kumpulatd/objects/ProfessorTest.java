@@ -49,7 +49,13 @@ public class ProfessorTest {
      */
     @Before
     public void setUp() {
-        professor = new Professor(new TowerLocation(1, 1));
+        BufferedImage img;
+        try {
+            img = ImageIO.read(new File("src/main/resources/professor.png"));
+        } catch (IOException e) {
+            img = null;
+        }
+        professor = new Professor(new TowerLocation(1, 1), img);
     }
 
     /**

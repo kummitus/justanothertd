@@ -33,8 +33,14 @@ public class FreshmanTest {
      */
     @Before
     public void setUp() {
+        BufferedImage img;
 
-        fuksi = new Freshman(5, 5);
+        try {
+            img = ImageIO.read(new File("src/main/resources/freshman1.png"));
+        } catch (IOException e) {
+            img = null;
+        }
+        fuksi = new Freshman(5, 5, img);
     }
 
     /**
@@ -62,14 +68,12 @@ public class FreshmanTest {
     public void testImg() {
         BufferedImage img;
 
-        
         try {
             img = ImageIO.read(new File("src/main/resources/freshman1.png"));
         } catch (IOException e) {
-            assertEquals(null, fuksi.getImg());
             img = null;
         }
-        
+
         assertEquals(img.getHeight(), fuksi.getImg().getHeight());
         assertEquals(img.getWidth(), fuksi.getImg().getWidth());
 

@@ -32,18 +32,10 @@ public class Freshman implements Enemy {
      * @param x
      * @param y
      */
-    public Freshman(int x, int y) {
+    public Freshman(int x, int y, BufferedImage img) {
         HP = 50;
         speed = 5;
-        img = null;
-        try {
-            img = ImageIO.read(new File("src/main/resources/freshman" + new Random().nextInt(2) + ".png"));
-        } catch (IOException e) {
-
-            img = new BufferedImage(1, 1, 1);
-
-        }
-
+        this.img = img;
         this.x = x;
         this.y = y;
         target = 0;

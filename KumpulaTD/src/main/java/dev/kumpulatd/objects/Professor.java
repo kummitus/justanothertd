@@ -28,11 +28,11 @@ public class Professor implements Tower {
      *
      * @param location
      */
-    public Professor(TowerLocation location) {
+    public Professor(TowerLocation location, BufferedImage img) {
         this.location = location;
         range = 100;
+        this.img = img;
         damageType = 2;
-        initImg();
         damage = 5;
         name = "Professor";
     }
@@ -82,15 +82,6 @@ public class Professor implements Tower {
         return location;
     }
 
-    private void initImg() {
-        img = null;
-        try {
-            img = ImageIO.read(new File("src/main/resources/professor.png"));
-        } catch (IOException e) {
-            img = new BufferedImage(1, 1, 1);
-            new WarningMessage().invokeWarning();
-        }
-    }
 
     /**
      *

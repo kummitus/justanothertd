@@ -29,11 +29,11 @@ public class Tutor implements Tower {
      *
      * @param location
      */
-    public Tutor(TowerLocation location) {
+    public Tutor(TowerLocation location, BufferedImage img) {
         this.location = location;
         range = 150;
         damageType = 1;
-        initImg();
+        this.img = img;
         damage = 8;
         name = "Tutor";
     }
@@ -82,18 +82,6 @@ public class Tutor implements Tower {
     public TowerLocation getLocation() {
         return location;
     }
-
-    private void initImg() {
-        img = null;
-        try {
-            img = ImageIO.read(new File("src/main/resources/tutor.png"));
-        } catch (IOException e) {
-
-            img = new BufferedImage(1, 1, 1);
-            new WarningMessage().invokeWarning();
-        }
-    }
-
     /**
      *
      * @return

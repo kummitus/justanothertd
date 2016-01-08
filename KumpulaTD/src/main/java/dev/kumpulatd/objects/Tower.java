@@ -5,7 +5,6 @@
  */
 package dev.kumpulatd.objects;
 
-import dev.kumpulatd.objects.TowerLocation;
 import java.awt.image.BufferedImage;
 
 /**

@@ -26,20 +26,16 @@ public class ProfessorAmmo implements Ammunition {
     private int type;
     private int damage;
 
-    public ProfessorAmmo(int x, int y, Enemy enemy, int damage, int type) {
+    public ProfessorAmmo(int x, int y, Enemy enemy, int damage, int type, BufferedImage img) {
         this.x = x;
         this.y = y;
         counter = 0;
-        img = null;
+        this.img = img;
         this.enemy = enemy;
         onTarget = false;
         this.type = type;
         this.damage = damage;
-        try {
-            img = ImageIO.read(new File("src/main/resources/tutorammo.png"));
-        } catch (IOException e) {
-            new WarningMessage().invokeWarning("Ammo Image not Found");
-        }
+        
     }
 
     @Override
