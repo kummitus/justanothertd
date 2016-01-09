@@ -18,11 +18,10 @@ public class GameLostWindow {
      * @param view Gets the frame to be refreshed and shows message and clears the screen
      */
     public void invokeWarning(GameView view) {
-        JOptionPane.showOptionDialog(null,
+        JOptionPane.showMessageDialog(null,
                 "You lose the game",
                 "Haa haa",
-                JOptionPane.PLAIN_MESSAGE,
-                JOptionPane.PLAIN_MESSAGE, null, null, null);
+                JOptionPane.PLAIN_MESSAGE);
 
         view.returnMenu();
 
