@@ -5,11 +5,7 @@
  */
 package dev.kumpulatd.objects;
 
-import dev.kumpulatd.ui.WarningMessage;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -104,5 +100,10 @@ public class TutorAmmo implements Ammunition {
     @Override
     public void setOnTarget() {
         onTarget = true;
+    }
+
+    @Override
+    public int getRadius() {
+        return 1;
     }
 }

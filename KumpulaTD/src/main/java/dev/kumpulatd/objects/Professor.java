@@ -5,11 +5,7 @@
  */
 package dev.kumpulatd.objects;
 
-import dev.kumpulatd.ui.WarningMessage;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  * Professor Tower
@@ -23,18 +19,21 @@ public class Professor implements Tower {
     private BufferedImage img;
     private int damage;
     private String name;
+    private int radius;
 
     /**
      *
      * @param location
+     * @param img
      */
     public Professor(TowerLocation location, BufferedImage img) {
         this.location = location;
         range = 100;
         this.img = img;
         damageType = 2;
-        damage = 5;
+        damage = 3;
         name = "Professor";
+        radius = 50;
     }
 
     /**
@@ -91,6 +90,14 @@ public class Professor implements Tower {
     public String getName() {
         return name;
     }
+    
+    /**
+     *
+     * @return
+     */
+    public int getRadius(){
+        return radius;
+    }
 
     /**
      *
@@ -98,6 +105,7 @@ public class Professor implements Tower {
     @Override
     public void upgrade() {
         range += 5;
-        damage += 5;
+        damage += 1;
+        radius += 1;
     }
 }

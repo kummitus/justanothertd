@@ -39,7 +39,6 @@ public class GameView extends JPanel implements ActionListener {
     private Timer timer;
     private Window currentWindow;
     private List<String> mapData;
-    private long average;
 
     /**
      *
@@ -48,7 +47,6 @@ public class GameView extends JPanel implements ActionListener {
      * @param map Gives the name of the map that is to be loaded
      */
     public GameView(Window window, String map) {
-        average = 0;
         this.currentWindow = window;
         List<String> list = new ArrayList<>();
         File file = null;
@@ -117,7 +115,6 @@ public class GameView extends JPanel implements ActionListener {
 
     @Override
     public void paint(Graphics g) {
-        long start = System.nanoTime();
         boolean test = true;
         Graphics2D g2d = (Graphics2D) g;
 
@@ -148,9 +145,6 @@ public class GameView extends JPanel implements ActionListener {
             infoDraw(g2d);
 
             drawGoal(g2d);
-            average = ((System.nanoTime() - start) + average) / 2;
-
-            System.out.println(average);
         }
     }
 
@@ -180,8 +174,8 @@ public class GameView extends JPanel implements ActionListener {
      * game.
      */
     public void drawFrameCounter(Graphics2D g2d) {
-        String frametostring = "" + frame;
-        g2d.drawString(frametostring, 10, 10);
+        //String frametostring = "" + frame;
+        //g2d.drawString(frametostring, 10, 10);
         frame++;
     }
 
@@ -194,9 +188,9 @@ public class GameView extends JPanel implements ActionListener {
         List<TowerLocation> used = new ArrayList<>();
 
         for (Enemy e : enemies) {
-            for (Enemy ee : e.getMembers()) {
-                g2d.drawImage(ee.getImg(), null, ee.getX(), ee.getY());
-            }
+            //for (Enemy ee : e.getMembers()) {
+                g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
+            //}
         }
 
         for (Tower e : towers) {

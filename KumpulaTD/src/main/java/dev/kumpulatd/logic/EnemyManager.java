@@ -7,7 +7,6 @@ package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Enemy;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Manages enemies actions
@@ -22,21 +21,21 @@ public class EnemyManager {
      */
     public static GameInfo removeDeadEnemies(GameInfo info) {
         Iterator itr = info.getEnemies().iterator();
-        while (itr.hasNext()) {
-            Enemy group = (Enemy) itr.next();
-            List<Enemy> grouplist = group.getMembers();
-            Iterator finalitr = grouplist.iterator();
-            while (finalitr.hasNext()) {
-                Enemy enemy = (Enemy) finalitr.next();
+//        while (itr.hasNext()) {
+//            Enemy group = (Enemy) itr.next();
+//            List<Enemy> grouplist = group.getMembers();
+//            Iterator finalitr = grouplist.iterator();
+            while (itr.hasNext()) {
+                Enemy enemy = (Enemy) itr.next();
                 if (enemy.getHP() <= 0) {
                     info.IncreaseMoney();
-                    finalitr.remove();
+                    itr.remove();
                 }
+            
+//            if (group.getMembers().isEmpty()) {
+//                itr.remove();
             }
-            if (group.getMembers().isEmpty()) {
-                itr.remove();
-            }
-        }
+        
         return info;
     }
 
@@ -48,19 +47,19 @@ public class EnemyManager {
     public static GameInfo removeSurvivedEnemies(GameInfo info) {
         Iterator itr = info.getEnemies().iterator();
         while (itr.hasNext()) {
-            Enemy group = (Enemy) itr.next();
-            List<Enemy> grouplist = group.getMembers();
-            Iterator finalitr = grouplist.iterator();
-            while (finalitr.hasNext()) {
-                Enemy enemy = (Enemy) finalitr.next();
+            //Enemy group = (Enemy) itr.next();
+            //List<Enemy> grouplist = group.getMembers();
+            //Iterator finalitr = grouplist.iterator();
+            //while (finalitr.hasNext()) {
+                Enemy enemy = (Enemy) itr.next();
                 if (enemy.currentTarget() > info.getPath().getSize() - 1) {
-                    finalitr.remove();
+                    itr.remove();
                     info.setLives(info.getLives()-1);
                 }
-            }
-            if (group.getMembers().isEmpty()) {
-                itr.remove();
-            }
+            //}
+//            if (group.getMembers().isEmpty()) {
+//                itr.remove();
+//            }
         }
         
         return info;

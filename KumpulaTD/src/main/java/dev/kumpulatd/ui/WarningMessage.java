@@ -18,31 +18,28 @@ public class WarningMessage {
      * Invokes warning message if some files are not found
      */
     public void invokeWarning() {
-        JOptionPane.showOptionDialog(null,
+        JOptionPane.showMessageDialog(null,
                 "Some sources files are lost and might affect game experience",
                 "Something happened",
-                JOptionPane.PLAIN_MESSAGE,
-                JOptionPane.PLAIN_MESSAGE, null, null, null);
+                JOptionPane.PLAIN_MESSAGE);
 
     }
 
     public void invokeWarning(GameView view, Window window) {
-        JOptionPane.showOptionDialog(null,
+        JOptionPane.showMessageDialog(null,
                 "Map files are not found",
                 "Something happened",
-                JOptionPane.PLAIN_MESSAGE,
-                JOptionPane.PLAIN_MESSAGE, null, null, null);
+                JOptionPane.PLAIN_MESSAGE);
         window.stop();
         view.iniatitenewWindow();
 
     }
 
     public void invokeWarning(String text) {
-        JOptionPane.showOptionDialog(null,
+        JOptionPane.showMessageDialog(null,
                 "Some sources files are lost and might affect game experience\n" + text,
                 "Something happened",
-                JOptionPane.PLAIN_MESSAGE,
-                JOptionPane.PLAIN_MESSAGE, null, null, null);
+                JOptionPane.PLAIN_MESSAGE);
     }
 
 }

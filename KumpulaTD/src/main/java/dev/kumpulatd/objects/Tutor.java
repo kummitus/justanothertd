@@ -6,10 +6,6 @@
 package dev.kumpulatd.objects;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import dev.kumpulatd.ui.WarningMessage;
 
 /**
  * Implementation of Tower
@@ -98,6 +94,11 @@ public class Tutor implements Tower {
     public void upgrade() {
         range += 5;
         damage += 5;
+    }
+
+    @Override
+    public int getRadius() {
+        return 1;
     }
 
 }

@@ -55,6 +55,8 @@ public interface Ammunition {
     public int getAmount();
 
     public void setOnTarget();
+
+    public int getRadius();
     
     
 }

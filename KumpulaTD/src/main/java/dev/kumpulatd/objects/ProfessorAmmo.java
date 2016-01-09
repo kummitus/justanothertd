@@ -5,11 +5,7 @@
  */
 package dev.kumpulatd.objects;
 
-import dev.kumpulatd.ui.WarningMessage;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -25,8 +21,9 @@ public class ProfessorAmmo implements Ammunition {
     private Enemy enemy;
     private int type;
     private int damage;
+    private int radius;
 
-    public ProfessorAmmo(int x, int y, Enemy enemy, int damage, int type, BufferedImage img) {
+    public ProfessorAmmo(int x, int y, Enemy enemy, int damage, int type, BufferedImage img, int radius) {
         this.x = x;
         this.y = y;
         counter = 0;
@@ -35,6 +32,7 @@ public class ProfessorAmmo implements Ammunition {
         onTarget = false;
         this.type = type;
         this.damage = damage;
+        this.radius = radius;
         
     }
 
@@ -104,5 +102,10 @@ public class ProfessorAmmo implements Ammunition {
     @Override
     public void setOnTarget() {
         onTarget = true;
+    }
+
+    @Override
+    public int getRadius() {
+        return radius;
     }
 }

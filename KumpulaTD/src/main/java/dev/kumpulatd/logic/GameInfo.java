@@ -136,13 +136,13 @@ public class GameInfo {
         
         list.add("");
         list.add("Press number key to select tower");
-        list.add("Press 'a' to buy Tutor tower, costs 30");
-        list.add("Press 's' to sell Tutor tower, sells for 20");
-        list.add("Press 'd' to upgrade Tutor, costs 15");
+        list.add("Press 'a' to buy Tutor tower, costs 75");
+        list.add("Press 's' to sell Tutor tower, sells for 38");
+        list.add("Press 'd' to upgrade Tutor, costs 200");
         list.add("");
-        list.add("Press 'q' to buy Professor tower, costs 40");
-        list.add("Press 'w' to sell Professor tower, sells for 25");
-        list.add("Press 'e' to upgrade Professor, costs 15");
+        list.add("Press 'q' to buy Professor tower, costs 125");
+        list.add("Press 'w' to sell Professor tower, sells for 63");
+        list.add("Press 'e' to upgrade Professor, costs 200");
         str = new StringBuilder();
         str.append("");
         list.add(str.toString());
@@ -186,12 +186,12 @@ public class GameInfo {
         str.append("Enemies: ");
         list.add(str.toString());
         for (Enemy e : eenemies) {
-            for (Enemy ee : e.getMembers()) {
+            //for (Enemy ee : e.getMembers()) {
 
                 str = new StringBuilder();
-                str.append("Type: ").append(ee.getName()).append(" HP: ").append(ee.getHP());
+                str.append("Type: ").append(e.getName()).append(" HP: ").append(e.getHP());
                 list.add(str.toString());
-            }
+            //}
         }
         return list;
     }

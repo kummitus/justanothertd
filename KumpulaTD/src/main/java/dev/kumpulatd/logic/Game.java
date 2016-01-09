@@ -7,7 +7,6 @@ package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Ammunition;
 import dev.kumpulatd.objects.Enemy;
-import dev.kumpulatd.objects.EnemyGroup;
 import dev.kumpulatd.objects.Freshman;
 import dev.kumpulatd.objects.GoalLocation;
 import dev.kumpulatd.objects.SpawnLocation;
@@ -22,7 +21,6 @@ import static dev.kumpulatd.logic.TestingHelper.loseGame;
 import static dev.kumpulatd.logic.TestingHelper.winGame;
 import static dev.kumpulatd.logic.EnemyManager.removeSurvivedEnemies;
 import static dev.kumpulatd.logic.EnemyManager.removeDeadEnemies;
-import static dev.kumpulatd.logic.PathFinder.moveAmmo;
 import dev.kumpulatd.objects.Professor;
 import dev.kumpulatd.objects.ProfessorAmmo;
 import dev.kumpulatd.objects.TutorAmmo;
@@ -308,22 +306,16 @@ public final class Game {
                     damaged.add(ammo.getEnemy());
                 } else if (ammo.getType() == 2) {
                     for (Enemy ee : enemies) {
-                        for (Enemy eee : ee.getMembers()) {
+                        if (isClose(ee.getX(), ee.getY(), new TowerLocation(ammo.getX(), ammo.getY()), ammo.getRadius())) {
+                            if (damaged.contains(ee)) {
 
-                            if (isClose(eee.getX(), eee.getY(), new TowerLocation(ammo.getX(), ammo.getY()), 50)) {
-                                if (damaged.contains(eee)) {
-
-                                } else {
-                                    eee.damage(ammo.getType(), ammo.getAmount());
-                                    damaged.add(eee);
-                                }
+                            } else {
+                                ee.damage(ammo.getType(), ammo.getAmount());
+                                damaged.add(ee);
                             }
-
                         }
-
                     }
                 }
-
             }
         }
     }
@@ -345,16 +337,7 @@ public final class Game {
             for (Tower tower : towers) {
                 if (tower.getName().equals("Professor")) {
                     Enemy e = getClosestEnemey(tower);
-                    try {
-                        for (Enemy ee : enemies) {
-                            for (Enemy eee : ee.getMembers()) {
-                                ammunition.add(new ProfessorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType(), imagelist.get(5)));
-                            }
-                        }
-
-                    } catch (Exception ex) {
-
-                    }
+                    ammunition.add(new ProfessorAmmo(tower.getLocation().getX(), tower.getLocation().getY(), e, tower.damage(), tower.damageType(), imagelist.get(5), tower.getRadius()));
                 }
             }
         }
@@ -362,10 +345,8 @@ public final class Game {
 
     private Enemy getClosestEnemey(Tower tower) {
         for (Enemy e : enemies) {
-            for (Enemy ee : e.getMembers()) {
-                if (isClose(ee.getX(), ee.getY(), tower.getLocation(), tower.range())) {
-                    return ee;
-                }
+            if (isClose(e.getX(), e.getY(), tower.getLocation(), tower.range())) {
+                return e;
             }
         }
         return null;
@@ -385,43 +366,35 @@ public final class Game {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
-            EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
-            enemies.add(group);
+            enemies.add(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
         }
         if (frame % 35 == 0 && frame > 2500 && frame < 4000) {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
-            EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
-            enemies.add(group);
+            enemies.add(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
         }
         if (frame % 25 == 0 && frame > 4000 && frame < 8000) {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
-            EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x - new Random().nextInt(30), y + new Random().nextInt(30), imagelist.get(new Random().nextInt(2))));
-            enemies.add(group);
+            enemies.add(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x - new Random().nextInt(30), y + new Random().nextInt(30), imagelist.get(new Random().nextInt(2))));
         }
         if (frame % 20 == 0 && frame > 8000) {
             int random = new Random().nextInt(2);
             int x = spawns.get(random).getX();
             int y = spawns.get(random).getY();
-            EnemyGroup group = new EnemyGroup();
-            group.addMember(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x - new Random().nextInt(35), y + new Random().nextInt(35), imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x + new Random().nextInt(35), y - new Random().nextInt(35), imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x - new Random().nextInt(55), y + new Random().nextInt(55), imagelist.get(new Random().nextInt(2))));
-            group.addMember(new Freshman(x + new Random().nextInt(55), y - new Random().nextInt(55), imagelist.get(new Random().nextInt(2))));
-            enemies.add(group);
+            enemies.add(new Freshman(x, y, imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x - new Random().nextInt(15), y + new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x + new Random().nextInt(15), y - new Random().nextInt(15), imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x - new Random().nextInt(35), y + new Random().nextInt(35), imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x + new Random().nextInt(35), y - new Random().nextInt(35), imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x - new Random().nextInt(55), y + new Random().nextInt(55), imagelist.get(new Random().nextInt(2))));
+            enemies.add(new Freshman(x + new Random().nextInt(55), y - new Random().nextInt(55), imagelist.get(new Random().nextInt(2))));
         }
     }
 
@@ -450,21 +423,21 @@ public final class Game {
                 }
             }
             if (test) {
-                if (money >= 30) {
+                if (money >= 75) {
                     if (tow.equals("Tutor")) {
-                        money -= 30;
+                        money -= 75;
                         towers.add(new Tutor(towerlocations.get(currentTower - 1), imagelist.get(2)));
                     }
                 }
-                if (money >= 40) {
+                
+                if (money >= 125) {
                     if (tow.equals("Professor")) {
-                        money -= 40;
+                        money -= 125;
                         towers.add(new Professor(towerlocations.get(currentTower - 1), imagelist.get(3)));
                     }
                 }
             }
         }
-
     }
 
     /**
@@ -483,9 +456,9 @@ public final class Game {
             }
             if (test) {
                 if (tow.equals("Tutor")) {
-                    money += 20;
+                    money += 38;
                 } else if (tow.equals("Professor")) {
-                    money += 30;
+                    money += 63;
                 }
                 Iterator itr = towers.iterator();
                 while (itr.hasNext()) {
@@ -505,7 +478,7 @@ public final class Game {
      */
     public void upgradeTower(int currentTower, String tow) {
         boolean test = false;
-        if (money >= 15) {
+        if (money >= 200) {
             if (currentTower - 1 < towerlocations.size() && currentTower > 0) {
                 for (Tower tower : towers) {
                     if (tower.getLocation() == towerlocations.get(currentTower - 1)) {
@@ -513,7 +486,7 @@ public final class Game {
                     }
                 }
                 if (test) {
-                    money -= 15;
+                    money -= 200;
                     for (Tower lct : towers) {
                         if (towerlocations.get(currentTower - 1).equals(lct.getLocation())) {
                             lct.upgrade();
@@ -523,5 +496,4 @@ public final class Game {
             }
         }
     }
-
 }

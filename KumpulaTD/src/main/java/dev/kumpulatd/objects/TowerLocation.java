@@ -65,9 +65,5 @@ public class TowerLocation {
         return img;
     }
 
-    /**
-     *
-     * @param loc
-     * @return
-     */
+
 }

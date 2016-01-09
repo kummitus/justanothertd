@@ -58,54 +58,57 @@
                 <version>2.9.1</version>
             </plugin> 
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>2.2</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>shade</goal>
-                    </goals>
-                    <configuration>
-                        <transformers>
-                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <mainClass>dev.kumpulatd.Main</mainClass>
-                            </transformer>    
-                            <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">    
-                                <file>src/main/resources/1.png</file>  
-                                <file>src/main/resources2.png</file>
-                                <file>src/main/resources3.png</file>
-                                <file>src/main/resources4.png</file>
-                                <file>src/main/resources5.png</file>
-                                <file>src/main/resources6.png</file>
-                                <file>src/main/resources7.png</file>
-                                <file>src/main/resources8.png</file>
-                                <file>src/main/resources9.png</file>
-                                
-                                <file>src/main/resourcesmaplist.txt</file>
-                                <file>src/main/resourceskumpula</file>
-                                <file>src/main/resourcesotaniemi</file>
-                                
-                                <file>src/main/resourcesfreshman.png</file>
-                                <file>src/main/resourcestutor.png</file>
-                                <file>src/main/resourcesprofessor.png</file>
-                                
-                                <file>src/main/resourcesgoal.png</file>
-                                
-                                <file>src/main/resourcesprofessorammo.png</file>
-                                <file>src/main/resourcestutorammo.png</file>
-                                
-                                <file>src/main/resourceskumpula.png</file>
-                                <file>src/main/resourcesotaniemi.png</file>                                
-                                
-                            </transformer>
-                        </transformers>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>dev.kumpulatd.Main</mainClass>
+                                </transformer>                                
+                            </transformers>   
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main</directory>
+                <includes>
+                    <include>**/1.png</include>
+                    <include>**/2.png</include>
+                    <include>**/3.png</include>
+                    <include>**/4.png</include>
+                    <include>**/5.png</include>
+                    <include>**/6.png</include>
+                    <include>**/7.png</include>
+                    <include>**/8.png</include>
+                    <include>**/9.png</include>
+                    <include>**/professor.png</include>
+                    <include>**/professorammo.png</include>
+                    <include>**/tutor.png</include>
+                    <include>**/tutorammo.png</include>
+                    <include>**/freshman0.png</include>
+                    <include>**/freshman1.png</include>
+                    <include>**/goal.png</include>
+                </includes>
+                <excludes>
+                    <exclude>**/maplist.txt</exclude>
+                    <exclude>**/kumpula</exclude>
+                    <exclude>**/otaniemi</exclude>
+                    <exclude>**/kumpula.png</exclude>
+                    <exclude>**/otaniemi.png</exclude>                    
+                </excludes>
+            </resource>
+        </resources>
+                    
     </build>
     <name>Kumpula Tower Defence</name>
     <description>Game of Tower Defence</description>
