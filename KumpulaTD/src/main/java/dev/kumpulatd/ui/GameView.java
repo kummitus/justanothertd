@@ -103,6 +103,13 @@ public class GameView extends JPanel implements ActionListener {
      */
     public void setNextCommand(char command) {
         nextCommand = command;
+        String commandint = command + "";
+        try {
+            currentTower = Integer.parseInt(commandint);
+        } catch (Exception e) {
+
+        }
+        game.runCommand(this);
     }
 
     /**
@@ -119,7 +126,7 @@ public class GameView extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
 
         try {
-            drawBackGround(g2d);
+            Drawer.drawBackGround(g2d, mapData);
         } catch (Exception e) {
             test = false;
             new WarningMessage().invokeWarning(this, currentWindow);
@@ -133,18 +140,13 @@ public class GameView extends JPanel implements ActionListener {
                 game.update(frame, this);
             }
 
-            List<Enemy> enemies = game.getEnemies();
-            List<Tower> towers = game.getTowers();
-            List<Ammunition> ammunition = game.getAmmunition();
-            List<TowerLocation> towerlocations = game.getTowerLocations();
-
-            drawDrawables(towerlocations, enemies, towers, ammunition, g2d);
+            Drawer.drawDrawables(game.getTowerLocations(), game.getEnemies(), game.getTowers(), game.getAmmunition(), g2d);
 
             drawFrameCounter(g2d);
 
-            infoDraw(g2d);
+            Drawer.infoDraw(g2d, game, currentTower, nextCommand);
 
-            drawGoal(g2d);
+            Drawer.drawGoal(g2d, game.getGoal());
         }
     }
 
@@ -153,20 +155,6 @@ public class GameView extends JPanel implements ActionListener {
      * @param g2d The graphics element to which background is drawn on is passed
      * as parameter.
      */
-    public void drawBackGround(Graphics2D g2d) {
-        BufferedImage img = null;
-        try {
-            String imageLocation = mapData.get(0);
-            img = ImageIO.read(new File(imageLocation));
-            g2d.drawImage(img, null, 0, 0);
-            g2d.setBackground(Color.white);
-            g2d.setColor(Color.white);
-            g2d.fillRect(800, 0, 400, 800);
-            g2d.setColor(Color.black);
-        } catch (IOException e) {
-        }
-    }
-
     /**
      *
      * @param g2d The graphics element to which background is drawn on is passed
@@ -184,113 +172,6 @@ public class GameView extends JPanel implements ActionListener {
         repaint();
     }
 
-    private void drawDrawables(List<TowerLocation> towerlocations, List<Enemy> enemies, List<Tower> towers, List<Ammunition> ammunition, Graphics2D g2d) {
-        List<TowerLocation> used = new ArrayList<>();
-
-        for (Enemy e : enemies) {
-            //for (Enemy ee : e.getMembers()) {
-                g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
-            //}
-        }
-
-        for (Tower e : towers) {
-            g2d.drawImage(e.getImg(), null, e.getLocation().getX(), e.getLocation().getY());
-            used.add(e.getLocation());
-        }
-
-        for (Ammunition e : ammunition) {
-            g2d.drawImage(e.getImg(), null, e.getX(), e.getY());
-            if (e.onTarget()) {
-                e.IncreaseCounter();
-            }
-        }
-
-        for (TowerLocation location : towerlocations) {
-            if (!used.contains(location)) {
-                g2d.drawImage(location.getImg(), null, location.getX(), location.getY());
-            }
-        }
-
-    }
-
-    private void infoDraw(Graphics2D g2d) {
-        int x = 825;
-        int y = 50;
-        for (String row : game.getInfoString()) {
-            g2d.drawString(row, x, y);
-            y += 12;
-        }
-        try {
-            currentTower = Integer.parseInt(nextCommand + "");
-        } catch (Exception e) {
-
-        }
-
-        if (nextCommand != ' ') {
-            if (currentTower == '1' || currentTower == '2' || currentTower == '3' || currentTower == '4') {
-                drawSelectedTower(currentTower, g2d, x, y);
-                nextCommand = ' ';
-            } else if (nextCommand == 'a') {
-                game.buyTower(currentTower, "Tutor");
-                nextCommand = ' ';
-            } else if (nextCommand == 's') {
-                game.sellTower(currentTower, "Tutor");
-                nextCommand = ' ';
-            } else if (nextCommand == 'd') {
-                game.upgradeTower(currentTower, "Tutor");
-                nextCommand = ' ';
-            } else if (nextCommand == 'q') {
-                game.buyTower(currentTower, "Professor");
-                nextCommand = ' ';
-            } else if (nextCommand == 'w') {
-                game.sellTower(currentTower, "Professor");
-                nextCommand = ' ';
-            } else if (nextCommand == 'e') {
-                game.upgradeTower(currentTower, "Professor");
-                nextCommand = ' ';
-            }
-        }
-    }
-
-    private void drawSelectedTower(int currentTower, Graphics2D g2d, int x, int y) {
-        y += 24;
-
-        if (currentTower == 1 && !game.getTowers().isEmpty()) {
-            g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
-            g2d.drawString(game.getTowers().get(0).getName(), x, y);
-            y += 12;
-            g2d.drawString(game.getTowers().get(0).damage() + "", x, y);
-            y += 12;
-            g2d.drawString(currentTower + " ", x, y);
-        }
-
-        if (currentTower == 2 && game.getTowers().size() >= 2) {
-            g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
-            g2d.drawString(game.getTowers().get(1).getName(), x, y);
-            y += 12;
-            g2d.drawString(game.getTowers().get(1).damage() + "", x, y);
-        }
-
-        if (currentTower == 3 && game.getTowers().size() >= 3) {
-            g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
-            g2d.drawString(game.getTowers().get(2).getName(), x, y);
-            y += 12;
-            g2d.drawString(game.getTowers().get(2).damage() + "", x, y);
-        }
-
-        if (currentTower == 4 && game.getTowers().size() >= 4) {
-            g2d.drawImage(game.getTowers().get(0).getImg(), null, x, y);
-            g2d.drawString(game.getTowers().get(3).getName(), x, y);
-            y += 12;
-            g2d.drawString(game.getTowers().get(3).damage() + "", x, y);
-        }
-
-    }
-
-    private void drawGoal(Graphics2D g2d) {
-        g2d.drawImage(game.getGoal().getImg(), null, game.getGoal().getX() - 40, game.getGoal().getY() - 40);
-    }
-
     /**
      * Changes the view back to opening menu
      */
@@ -302,6 +183,18 @@ public class GameView extends JPanel implements ActionListener {
     public void iniatitenewWindow() {
 
         currentWindow.run();
+    }
+
+    public int getCurrentTower() {
+        return currentTower;
+    }
+
+    public char getCurrentCommand() {
+        return nextCommand;
+    }
+
+    public void resetCommand() {
+        nextCommand = ' ';
     }
 
 }
