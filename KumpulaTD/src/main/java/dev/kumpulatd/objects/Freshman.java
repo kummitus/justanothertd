@@ -27,6 +27,7 @@ public class Freshman implements Enemy {
      *
      * @param x
      * @param y
+     * @param img
      */
     public Freshman(int x, int y, BufferedImage img) {
         HP = 50;

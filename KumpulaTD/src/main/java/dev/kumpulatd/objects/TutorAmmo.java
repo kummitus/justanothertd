@@ -22,6 +22,15 @@ public class TutorAmmo implements Ammunition {
     private int type;
     private int damage;
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param enemy
+     * @param damage
+     * @param type
+     * @param img
+     */
     public TutorAmmo(int x, int y, Enemy enemy, int damage, int type, BufferedImage img) {
         this.x = x;
         this.y = y;
@@ -59,16 +68,28 @@ public class TutorAmmo implements Ammunition {
         return counter;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean onTarget() {
         return onTarget;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Enemy getEnemy() {
         return enemy;
     }
 
+    /**
+     *
+     * @param i
+     */
     @Override
     public void setX(int i) {
         if (i < 6) {
@@ -78,6 +99,10 @@ public class TutorAmmo implements Ammunition {
         }
     }
 
+    /**
+     *
+     * @param i
+     */
     @Override
     public void setY(int i) {
         if (i < 6) {
@@ -87,21 +112,36 @@ public class TutorAmmo implements Ammunition {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getType() {
         return type;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getAmount() {
         return damage;
     }
 
+    /**
+     *
+     */
     @Override
     public void setOnTarget() {
         onTarget = true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getRadius() {
         return 1;

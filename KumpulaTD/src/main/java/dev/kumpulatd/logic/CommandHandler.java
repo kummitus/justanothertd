@@ -13,6 +13,13 @@ import dev.kumpulatd.ui.GameView;
  */
 public class CommandHandler {
 
+    /**
+     *
+     * @param nextCommand
+     * @param currentTower
+     * @param game
+     * @param view
+     */
     public static void handleCommand(char nextCommand, int currentTower, Game game, GameView view) {
         if (nextCommand != ' ') {
 

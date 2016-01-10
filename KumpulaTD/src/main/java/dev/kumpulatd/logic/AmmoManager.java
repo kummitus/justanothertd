@@ -14,6 +14,11 @@ import java.util.List;
  * @author kummi
  */
 public class AmmoManager {
+
+    /**
+     *
+     * @param ammunition
+     */
     public static void removeDeadAmmo(List<Ammunition> ammunition) {
         Iterator itr = ammunition.iterator();
         while (itr.hasNext()) {

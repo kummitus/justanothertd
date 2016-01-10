@@ -6,14 +6,9 @@
 package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Enemy;
-import dev.kumpulatd.objects.EnemyGroup;
 import dev.kumpulatd.objects.Freshman;
 import dev.kumpulatd.objects.GoalLocation;
-import static dev.kumpulatd.logic.TestingHelper.loseGame;
-import static dev.kumpulatd.logic.TestingHelper.winGame;
 import static dev.kumpulatd.logic.TestingHelper.testIfClose;
-import dev.kumpulatd.ui.GameView;
-import dev.kumpulatd.ui.Window;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -30,7 +25,6 @@ import static org.junit.Assert.*;
 public class TestingHelperTest {
 
     PathFinding path;
-    EnemyGroup group;
     PathFinder finder;
     GoalLocation location;
     List<Enemy> enemies;
@@ -63,13 +57,11 @@ public class TestingHelperTest {
     public void setUp() {
 
         path = new PathFinding();
-        group = new EnemyGroup();
-        group.addMember(new Freshman(2, 2, null));
         finder = new PathFinder();
         location = new GoalLocation(10, 10);
         enemies = new ArrayList<>();
-        enemies.add(group);
         test = new TestingHelper();
+        enemies.add(new Freshman(2, 2, null));
 
     }
 
@@ -87,9 +79,9 @@ public class TestingHelperTest {
     public void move1() {
         path.addPoint(1, 1);
         path.addPoint(10, 10);
-        assertTrue(testIfClose(group.getMembers().get(0), path));
+        assertTrue(testIfClose(enemies.get(0), path));
         finder.testForPathFinding(enemies, location, path);
-        assertEquals(1, group.getMembers().get(0).currentTarget());
+        assertEquals(1, enemies.get(0).currentTarget());
     }
 
     /**
@@ -99,9 +91,9 @@ public class TestingHelperTest {
     public void move2() {
         path.addPoint(1, 2);
         path.addPoint(10, 10);
-        assertTrue(testIfClose(group.getMembers().get(0), path));
+        assertTrue(testIfClose(enemies.get(0), path));
         finder.testForPathFinding(enemies, location, path);
-        assertEquals(1, group.getMembers().get(0).currentTarget());
+        assertEquals(1, enemies.get(0).currentTarget());
     }
 
 //    @Test
@@ -117,9 +109,9 @@ public class TestingHelperTest {
     public void move4() {
         path.addPoint(2, 1);
         path.addPoint(10, 10);
-        assertTrue(testIfClose(group.getMembers().get(0), path));
+        assertTrue(testIfClose(enemies.get(0), path));
         finder.testForPathFinding(enemies, location, path);
-        assertEquals(1, group.getMembers().get(0).currentTarget());
+        assertEquals(1, enemies.get(0).currentTarget());
     }
 
     /**
@@ -129,9 +121,9 @@ public class TestingHelperTest {
     public void move5() {
         path.addPoint(2, 2);
         path.addPoint(10, 10);
-        assertTrue(testIfClose(group.getMembers().get(0), path));
+        assertTrue(testIfClose(enemies.get(0), path));
         finder.testForPathFinding(enemies, location, path);
-        assertEquals(1, group.getMembers().get(0).currentTarget());
+        assertEquals(1, enemies.get(0).currentTarget());
     }
 
     /**
@@ -141,9 +133,9 @@ public class TestingHelperTest {
     public void move6() {
         path.addPoint(2, 3);
         path.addPoint(10, 10);
-        assertTrue(testIfClose(group.getMembers().get(0), path));
+        assertTrue(testIfClose(enemies.get(0), path));
         finder.testForPathFinding(enemies, location, path);
-        assertEquals(1, group.getMembers().get(0).currentTarget());
+        assertEquals(1, enemies.get(0).currentTarget());
     }
 
 //    @Test
@@ -159,9 +151,9 @@ public class TestingHelperTest {
     public void move8() {
         path.addPoint(3, 2);
         path.addPoint(10, 10);
-        assertTrue(testIfClose(group.getMembers().get(0), path));
+        assertTrue(testIfClose(enemies.get(0), path));
         finder.testForPathFinding(enemies, location, path);
-        assertEquals(1, group.getMembers().get(0).currentTarget());
+        assertEquals(1, enemies.get(0).currentTarget());
     }
 
     /**
@@ -171,9 +163,9 @@ public class TestingHelperTest {
     public void move9() {
         path.addPoint(3, 3);
         path.addPoint(10, 10);
-        assertTrue(testIfClose(group.getMembers().get(0), path));
+        assertTrue(testIfClose(enemies.get(0), path));
         finder.testForPathFinding(enemies, location, path);
-        assertEquals(1, group.getMembers().get(0).currentTarget());
+        assertEquals(1, enemies.get(0).currentTarget());
     }
 
     /**
@@ -184,22 +176,22 @@ public class TestingHelperTest {
 
         path.addPoint(4, 4);
         path.addPoint(10, 10);
-        assertFalse(testIfClose(group.getMembers().get(0), path));
-        group.setMembers(finder.testForPathFinding(enemies, location, path));
-        assertEquals(0, group.getMembers().get(0).currentTarget());
+        assertFalse(testIfClose(enemies.get(0), path));
+        
+        assertEquals(0, enemies.get(0).currentTarget());
     }
 
     /**
      *
      */
-    @Test
-    public void endGame() {
-        Window window = new Window();
-        GameView view = new GameView(window, "kumpula");
-        loseGame(view);
-        assertNotNull(window.getFrame());
-
-    }
+//    @Test
+//    public void endGame() {
+//        Window window = new Window();
+//        GameView view = new GameView(window, "kumpula");
+//        loseGame(view);
+//        assertNotNull(window.getFrame());
+//
+//    }
 
     /**
      *

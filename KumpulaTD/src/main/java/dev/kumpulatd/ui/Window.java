@@ -110,7 +110,7 @@ public class Window implements Runnable {
         List<String> maplist = new ArrayList<>();
         List<JButton> buttonlist = new ArrayList<>();
         try {
-            file = new File("src/main/resources/maplist.txt");
+            file = new File("assets/maplist.txt");
             reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 maplist.add(reader.nextLine());

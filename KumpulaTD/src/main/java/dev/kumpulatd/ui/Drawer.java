@@ -14,11 +14,8 @@ import dev.kumpulatd.objects.TowerLocation;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -26,20 +23,28 @@ import javax.imageio.ImageIO;
  */
 public class Drawer {
 
-    public static void drawBackGround(Graphics2D g2d, List<String> mapData) {
-        BufferedImage img = null;
-        try {
-            String imageLocation = mapData.get(0);
-            img = ImageIO.read(new File(imageLocation));
-            g2d.drawImage(img, null, 0, 0);
-            g2d.setBackground(Color.white);
-            g2d.setColor(Color.white);
-            g2d.fillRect(800, 0, 400, 800);
-            g2d.setColor(Color.black);
-        } catch (IOException e) {
-        }
+    /**
+     *
+     * @param g2d
+     * @param img
+     */
+    public static void drawBackGround(Graphics2D g2d, BufferedImage img) {
+
+        g2d.drawImage(img, null, 0, 0);
+        g2d.setBackground(Color.white);
+        g2d.setColor(Color.white);
+        g2d.fillRect(800, 0, 400, 800);
+        g2d.setColor(Color.black);
     }
 
+    /**
+     *
+     * @param towerlocations
+     * @param enemies
+     * @param towers
+     * @param ammunition
+     * @param g2d
+     */
     public static void drawDrawables(List<TowerLocation> towerlocations, List<Enemy> enemies, List<Tower> towers, List<Ammunition> ammunition, Graphics2D g2d) {
         List<TowerLocation> used = new ArrayList<>();
 
@@ -67,6 +72,13 @@ public class Drawer {
 
     }
 
+    /**
+     *
+     * @param g2d
+     * @param game
+     * @param currentTower
+     * @param nextCommand
+     */
     public static void infoDraw(Graphics2D g2d, Game game, int currentTower, char nextCommand) {
         int x = 825;
         int y = 50;
@@ -85,6 +97,14 @@ public class Drawer {
 
     }
 
+    /**
+     *
+     * @param currentTower
+     * @param g2d
+     * @param x
+     * @param y
+     * @param game
+     */
     public static void drawSelectedTower(int currentTower, Graphics2D g2d, int x, int y, Game game) {
         y += 24;
 
@@ -119,6 +139,11 @@ public class Drawer {
 
     }
 
+    /**
+     *
+     * @param g2d
+     * @param goal
+     */
     public static void drawGoal(Graphics2D g2d, GoalLocation goal) {
         g2d.drawImage(goal.getImg(), null, goal.getX() - 40, goal.getY() - 40);
     }

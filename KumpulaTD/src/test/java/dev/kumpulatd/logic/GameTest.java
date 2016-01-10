@@ -5,15 +5,7 @@
  */
 package dev.kumpulatd.logic;
 
-import dev.kumpulatd.objects.Ammunition;
-import dev.kumpulatd.objects.Enemy;
-import dev.kumpulatd.objects.Freshman;
-import dev.kumpulatd.objects.GoalLocation;
-import dev.kumpulatd.objects.SpawnLocation;
-import dev.kumpulatd.objects.Tower;
-import dev.kumpulatd.objects.TowerLocation;
-import dev.kumpulatd.ui.GameView;
-import dev.kumpulatd.ui.Window;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -321,13 +313,13 @@ public class GameTest {
     /**
      *
      */
-    @Test
-    public void getToEnd() {
-        for (int i = 0; i < 1000; i++) {
-            game.update(i, new GameView(new Window(), "kumpula"));
-        }
-
-    }
+//    @Test
+//    public void getToEnd() {
+//        for (int i = 0; i < 1000; i++) {
+//            game.update(i, new GameView(new Window(), "kumpula"));
+//        }
+//
+//    }
 
     @Test
     public void upgradeTower() {

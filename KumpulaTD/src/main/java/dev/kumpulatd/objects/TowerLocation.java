@@ -39,6 +39,11 @@ public class TowerLocation {
         }
     }
     
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public TowerLocation(int x, int y) {
         this.x = x;
         this.y = y;
@@ -61,6 +66,10 @@ public class TowerLocation {
         return y;
     }
     
+    /**
+     *
+     * @return
+     */
     public BufferedImage getImg(){
         return img;
     }

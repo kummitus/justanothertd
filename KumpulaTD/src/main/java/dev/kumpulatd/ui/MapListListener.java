@@ -21,6 +21,12 @@ public class MapListListener implements ActionListener {
     private GameView game;
     private Window window;
 
+    /**
+     *
+     * @param frame
+     * @param map
+     * @param window
+     */
     public MapListListener(JFrame frame, String map, Window window) {
         this.map = map;
         this.frame = frame;

@@ -60,7 +60,6 @@ public class TestingHelper {
     /**
      * Tests for remaining lives and invokes end game screen
      *
-     * @param lives
      * @param view
      */
     public static void loseGame(GameView view) {
@@ -76,6 +75,9 @@ public class TestingHelper {
         new GameWonWindow().invokeWarning(view);
     }
 
+    /**
+     *
+     */
     public static void testForGenericFiles() {
 
         BufferedImage img = null;
@@ -116,6 +118,10 @@ public class TestingHelper {
 
     }
     
+    /**
+     *
+     * @param ammunition
+     */
     public static void removeUnnecessaryAmmo(List<Ammunition> ammunition){
         Iterator itr = ammunition.iterator();
         while(itr.hasNext()){

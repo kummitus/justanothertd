@@ -6,7 +6,6 @@
 package dev.kumpulatd.logic;
 
 import dev.kumpulatd.objects.Enemy;
-import dev.kumpulatd.objects.EnemyGroup;
 import dev.kumpulatd.objects.Freshman;
 import dev.kumpulatd.objects.GoalLocation;
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import static org.junit.Assert.*;
 public class PathFinderTest {
 
     PathFinder path;
-    EnemyGroup group;
 
     /**
      *
@@ -53,7 +51,6 @@ public class PathFinderTest {
     @Before
     public void setUp() {
         path = new PathFinder();
-        group = new EnemyGroup();
     }
 
     /**

@@ -121,6 +121,11 @@ public class EnemyManager {
         }
     }
 
+    /**
+     *
+     * @param ammunition
+     * @param enemies
+     */
     public static void damageEnemies(List<Ammunition> ammunition, List<Enemy> enemies) {
         Iterator itr = ammunition.iterator();
         List<Enemy> damaged = new ArrayList<>();
@@ -146,6 +151,14 @@ public class EnemyManager {
         }
     }
 
+    /**
+     *
+     * @param frame
+     * @param towers
+     * @param enemies
+     * @param ammunition
+     * @param imagelist
+     */
     public static void targetEnemies(int frame, List<Tower> towers, List<Enemy> enemies, List<Ammunition> ammunition, List<BufferedImage> imagelist) {
         if (frame % 4 == 0) {
             for (Tower tower : towers) {
@@ -169,6 +182,12 @@ public class EnemyManager {
         }
     }
 
+    /**
+     *
+     * @param tower
+     * @param enemies
+     * @return
+     */
     public static Enemy getClosestEnemey(Tower tower, List<Enemy> enemies) {
         for (Enemy e : enemies) {
             if (isClose(e.getX(), e.getY(), tower.getLocation(), tower.range())) {
@@ -178,6 +197,14 @@ public class EnemyManager {
         return null;
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param location
+     * @param range
+     * @return
+     */
     public static boolean isClose(int x, int y, TowerLocation location, int range) {
         int dx = Math.abs(x - location.getX());
         int dy = Math.abs(y - location.getY());

@@ -39,6 +39,7 @@ public class GameView extends JPanel implements ActionListener {
     private Timer timer;
     private Window currentWindow;
     private List<String> mapData;
+    private BufferedImage img;
 
     /**
      *
@@ -51,7 +52,7 @@ public class GameView extends JPanel implements ActionListener {
         List<String> list = new ArrayList<>();
         File file = null;
         Scanner reader = null;
-        map = "src/main/resources/" + map;
+        map = "assets/" + map;
         try {
             file = new File(map);
             reader = new Scanner(file);
@@ -74,17 +75,27 @@ public class GameView extends JPanel implements ActionListener {
             timer.start();
             game.update(frame, this);
 
+            String imageLocation = list.get(0);
+            try {
+                img = ImageIO.read(new File(imageLocation));
+            } catch (Exception e) {
+                new WarningMessage().invokeWarning("Map not found");
+                img = null;
+            }
+
         } else {
             game = new Game();
             mapData = list;
             frame = 0;
             currentTower = 1;
             nextCommand = ' ';
-            timer = new Timer(16, this);
+            timer = new Timer(200, this);
             timer.start();
+            img = null;
 
             game.update(frame, this);
         }
+
     }
 
     /**
@@ -126,7 +137,7 @@ public class GameView extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
 
         try {
-            Drawer.drawBackGround(g2d, mapData);
+            Drawer.drawBackGround(g2d, img);
         } catch (Exception e) {
             test = false;
             new WarningMessage().invokeWarning(this, currentWindow);
@@ -180,19 +191,33 @@ public class GameView extends JPanel implements ActionListener {
         currentWindow.restartMenu();
     }
 
+    /**
+     *
+     */
     public void iniatitenewWindow() {
 
         currentWindow.run();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCurrentTower() {
         return currentTower;
     }
 
+    /**
+     *
+     * @return
+     */
     public char getCurrentCommand() {
         return nextCommand;
     }
 
+    /**
+     *
+     */
     public void resetCommand() {
         nextCommand = ' ';
     }

@@ -42,20 +42,51 @@ public interface Ammunition {
      */
     public int getCounter();
 
+    /**
+     *
+     * @return
+     */
     public boolean onTarget();
     
+    /**
+     *
+     * @return
+     */
     public Enemy getEnemy();
 
+    /**
+     *
+     * @param i
+     */
     public void setX(int i);
 
+    /**
+     *
+     * @param i
+     */
     public void setY(int i);
 
+    /**
+     *
+     * @return
+     */
     public int getType();
 
+    /**
+     *
+     * @return
+     */
     public int getAmount();
 
+    /**
+     *
+     */
     public void setOnTarget();
 
+    /**
+     *
+     * @return
+     */
     public int getRadius();
     
     

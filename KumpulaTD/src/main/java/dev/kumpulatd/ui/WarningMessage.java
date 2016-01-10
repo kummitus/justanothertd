@@ -25,6 +25,11 @@ public class WarningMessage {
 
     }
 
+    /**
+     *
+     * @param view
+     * @param window
+     */
     public void invokeWarning(GameView view, Window window) {
         JOptionPane.showMessageDialog(null,
                 "Map files are not found",
@@ -35,6 +40,10 @@ public class WarningMessage {
 
     }
 
+    /**
+     *
+     * @param text
+     */
     public void invokeWarning(String text) {
         JOptionPane.showMessageDialog(null,
                 "Some sources files are lost and might affect game experience\n" + text,

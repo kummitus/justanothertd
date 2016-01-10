@@ -72,6 +72,9 @@ public final class Game {
         endGameInvoked = true;
     }
 
+    /**
+     *
+     */
     public Game() {
         lives = 0;
         endGameInvoked = false;
@@ -185,6 +188,10 @@ public final class Game {
         }
     }
 
+    /**
+     *
+     * @param view
+     */
     public void update(GameView view) {
     }
 
@@ -197,22 +204,45 @@ public final class Game {
         return GameInfo.infoBuilder(towerlocations, towers, enemies, money, lives);
     }
 
+    /**
+     *
+     * @param money
+     */
     public void setMoney(int money) {
         this.money = money;
     }
 
+    /**
+     *
+     * @param currentTower
+     * @param tow
+     */
     public void buyTower(int currentTower, String tow) {
         TowerManager.buyTower(currentTower, tow, money, towerlocations, towers, imagelist, this);
     }
 
+    /**
+     *
+     * @param currentTower
+     * @param tow
+     */
     public void sellTower(int currentTower, String tow) {
         TowerManager.sellTower(currentTower, tow, money, towerlocations, towers, this);
     }
 
+    /**
+     *
+     * @param currentTower
+     * @param tow
+     */
     public void upgradeTower(int currentTower, String tow) {
         TowerManager.upgradeTower(currentTower, tow, money, towerlocations, towers, this);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void runCommand(GameView view) {
         CommandHandler.handleCommand(view.getCurrentCommand(), view.getCurrentTower(), this, view);
     }

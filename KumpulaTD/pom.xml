@@ -22,6 +22,30 @@
 
     <build>
         <plugins>
+            
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>copy-assets</id>
+                        <!-- here the phase you need -->
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/assets</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>assets</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -59,6 +83,19 @@
             </plugin> 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.13</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.2</version>
                 <executions>
@@ -77,38 +114,7 @@
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main</directory>
-                <includes>
-                    <include>**/1.png</include>
-                    <include>**/2.png</include>
-                    <include>**/3.png</include>
-                    <include>**/4.png</include>
-                    <include>**/5.png</include>
-                    <include>**/6.png</include>
-                    <include>**/7.png</include>
-                    <include>**/8.png</include>
-                    <include>**/9.png</include>
-                    <include>**/professor.png</include>
-                    <include>**/professorammo.png</include>
-                    <include>**/tutor.png</include>
-                    <include>**/tutorammo.png</include>
-                    <include>**/freshman0.png</include>
-                    <include>**/freshman1.png</include>
-                    <include>**/goal.png</include>
-                </includes>
-                <excludes>
-                    <exclude>**/maplist.txt</exclude>
-                    <exclude>**/kumpula</exclude>
-                    <exclude>**/otaniemi</exclude>
-                    <exclude>**/kumpula.png</exclude>
-                    <exclude>**/otaniemi.png</exclude>                    
-                </excludes>
-            </resource>
-        </resources>
-                    
+        </plugins>      
     </build>
     <name>Kumpula Tower Defence</name>
     <description>Game of Tower Defence</description>

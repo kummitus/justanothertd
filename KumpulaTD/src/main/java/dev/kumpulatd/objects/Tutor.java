@@ -24,6 +24,7 @@ public class Tutor implements Tower {
     /**
      *
      * @param location
+     * @param img
      */
     public Tutor(TowerLocation location, BufferedImage img) {
         this.location = location;

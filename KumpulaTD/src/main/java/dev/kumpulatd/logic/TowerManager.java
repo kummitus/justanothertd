@@ -24,6 +24,11 @@ public class TowerManager {
      * @param currentTower Gives the tower location to be manipulated to the
      * logic and tries to perform action on it
      * @param tow
+     * @param money
+     * @param towerlocations
+     * @param towers
+     * @param imagelist
+     * @param game
      */
     public static void buyTower(int currentTower, String tow, int money, List<TowerLocation> towerlocations, List<Tower> towers, List<BufferedImage> imagelist, Game game) {
         boolean test = true;
@@ -58,6 +63,10 @@ public class TowerManager {
      * @param currentTower Gives the tower location to be manipulated to the
      * logic and tries to perform action on it
      * @param tow Towertype to be sold
+     * @param money
+     * @param towerlocations
+     * @param towers
+     * @param game
      */
     public static void sellTower(int currentTower, String tow, int money, List<TowerLocation> towerlocations, List<Tower> towers, Game game) {
         boolean test = false;
@@ -89,6 +98,10 @@ public class TowerManager {
      *
      * @param currentTower Gives the method tower on which upgrade is attempted
      * @param tow Gives the towers type
+     * @param money
+     * @param towerlocations
+     * @param towers
+     * @param game
      */
     public static void upgradeTower(int currentTower, String tow, int money, List<TowerLocation> towerlocations, List<Tower> towers, Game game) {
         boolean test = false;
