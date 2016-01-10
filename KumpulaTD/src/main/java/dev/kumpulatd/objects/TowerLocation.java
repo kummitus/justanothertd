@@ -33,7 +33,7 @@ public class TowerLocation {
         this.y = y;
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/" + image + ".png"));
+            img = ImageIO.read(new File("assets/" + image + ".png"));
         } catch (IOException e) {
             new WarningMessage().invokeWarning("Towerbase Image not Found");
         }

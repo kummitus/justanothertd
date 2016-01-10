@@ -192,7 +192,7 @@ public class GameView extends JPanel implements ActionListener {
     }
 
     /**
-     *
+     * Reruns the window
      */
     public void iniatitenewWindow() {
 
@@ -216,7 +216,7 @@ public class GameView extends JPanel implements ActionListener {
     }
 
     /**
-     *
+     * Clears the current command
      */
     public void resetCommand() {
         nextCommand = ' ';

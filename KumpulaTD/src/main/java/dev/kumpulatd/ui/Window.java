@@ -10,7 +10,10 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +102,7 @@ public class Window implements Runnable {
             frame.getContentPane().removeAll();
             createComponents(frame.getContentPane());
             frame.revalidate();
-            frame.validate();            
+            frame.validate();
             frame.requestFocusInWindow();
         }
     }
@@ -110,8 +113,11 @@ public class Window implements Runnable {
         List<String> maplist = new ArrayList<>();
         List<JButton> buttonlist = new ArrayList<>();
         try {
+            //ClassLoader classLoader = getClass().getClassLoader();
+            //file = new File(classLoader.getResource("/assets/maplist.txt").getFile());
             file = new File("assets/maplist.txt");
             reader = new Scanner(file);
+
             while (reader.hasNextLine()) {
                 maplist.add(reader.nextLine());
             }

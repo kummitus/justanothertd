@@ -76,33 +76,33 @@ public class TestingHelper {
     }
 
     /**
-     *
+     * Tests for file integrity
      */
     public static void testForGenericFiles() {
 
         BufferedImage img = null;
 
         try {
-            img = ImageIO.read(new File("src/main/resources/professor.png"));
+            img = ImageIO.read(new File("assets/professor.png"));
         } catch (IOException e) {
             new WarningMessage().invokeWarning("Tower Image not Found");
         }
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/tutor.png"));
+            img = ImageIO.read(new File("assets/tutor.png"));
         } catch (IOException e) {
             new WarningMessage().invokeWarning("Tower Image not Found");
         }
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/freshman0.png"));
+            img = ImageIO.read(new File("assets/freshman0.png"));
         } catch (IOException e) {
             new WarningMessage().invokeWarning("Enemy Image not Found");
         }
         
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/freshman1.png"));
+            img = ImageIO.read(new File("assets/freshman1.png"));
         } catch (IOException e) {
             new WarningMessage().invokeWarning("Enemy Image not Found");
         }
@@ -110,7 +110,7 @@ public class TestingHelper {
         for (int i = 1; i < 9; i++) {
             img = null;
             try {
-                img = ImageIO.read(new File("src/main/resources/" + i + ".png"));
+                img = ImageIO.read(new File("assets/" + i + ".png"));
             } catch (IOException e) {
                 new WarningMessage().invokeWarning("Enemy Image not Found");
             }

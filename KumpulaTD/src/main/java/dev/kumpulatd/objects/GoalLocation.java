@@ -34,7 +34,7 @@ public class GoalLocation {
 
         img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/goal.png"));
+            img = ImageIO.read(new File("assets/goal.png"));
         } catch (IOException e) {
 
             img = new BufferedImage(1, 1, 1);

@@ -92,7 +92,7 @@ public class GameInfo {
     }
 
     /**
-     * infoBuilder is used to generate List<String> object from game data that is sent for game view to be drawn for the player
+     * infoBuilder is used to generate List < String > object from game data that is sent for game view to be drawn for the player
      * @param towerlocations
      * @param towers
      * @param eenemies

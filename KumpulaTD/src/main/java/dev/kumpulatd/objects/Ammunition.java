@@ -32,7 +32,7 @@ public interface Ammunition {
     public BufferedImage getImg();
     
     /**
-     *
+     * Increase counter
      */
     public void IncreaseCounter();
     
@@ -79,7 +79,7 @@ public interface Ammunition {
     public int getAmount();
 
     /**
-     *
+     * Sets the target
      */
     public void setOnTarget();
 

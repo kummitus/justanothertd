@@ -73,7 +73,7 @@ public final class Game {
     }
 
     /**
-     *
+     * Constructof for failing start
      */
     public Game() {
         lives = 0;
